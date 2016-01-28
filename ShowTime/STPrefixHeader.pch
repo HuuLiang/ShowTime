@@ -13,9 +13,56 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
 
 #import <Aspects.h>
 #import <BlocksKit+UIKit.h>
+#import <Masonry.h>
+#import <UIImageView+WebCache.h>
+#import "RACEXTScope.h"
 #import "STExtensions.h"
+#import "STConfig.h"
+#import "STHudManager.h"
+#import "STErrorHandler.h"
+#import "STUtil.h"
 
+typedef NS_ENUM(NSUInteger, STPaymentType) {
+    STPaymentTypeNone,
+    STPaymentTypeAlipay = 1001,
+    STPaymentTypeWeChatPay = 1008,
+    STPaymentTypeUPPay = 1009
+};
+
+typedef NS_ENUM(NSInteger, PAYRESULT)
+{
+    PAYRESULT_SUCCESS   = 0,
+    PAYRESULT_FAIL      = 1,
+    PAYRESULT_ABANDON   = 2,
+    PAYRESULT_UNKNOWN   = 3
+};
+
+#define DefineLazyPropertyInitialization(propertyType, propertyName) \
+-(propertyType *)propertyName { \
+if (_##propertyName) { \
+return _##propertyName; \
+} \
+_##propertyName = [[propertyType alloc] init]; \
+return _##propertyName; \
+}
+
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
+// DLog
+#ifdef  DEBUG
+#define DLog(fmt,...) {NSLog((@"%s [Line:%d]" fmt),__PRETTY_FUNCTION__,__LINE__,##__VA_ARGS__);}
+#else
+#define DLog(...)
+#endif
+
+#define kPaidNotificationName @"SHOWTIME_PAID_NOTIFICATION"
+#define kDefaultDateFormat    @"yyyyMMddHHmmss"
+
+typedef void (^STCompletionHandler)(BOOL success, id obj);
+typedef void (^STAction)(id obj);
 #endif /* STPrefixHeader_pch */

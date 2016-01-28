@@ -9,9 +9,7 @@
 #import "MJRefreshAutoGifFooter.h"
 
 @interface MJRefreshAutoGifFooter()
-{
-    __unsafe_unretained UIImageView *_gifView;
-}
+@property (weak, nonatomic) UIImageView *gifView;
 /** 所有状态对应的动画图片 */
 @property (strong, nonatomic) NSMutableDictionary *stateImages;
 /** 所有状态对应的动画时间 */
@@ -69,8 +67,6 @@
 - (void)placeSubviews
 {
     [super placeSubviews];
-    
-    if (self.gifView.constraints.count) return;
     
     self.gifView.frame = self.bounds;
     if (self.isRefreshingTitleHidden) {

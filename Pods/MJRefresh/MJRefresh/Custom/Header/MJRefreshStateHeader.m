@@ -11,9 +11,9 @@
 @interface MJRefreshStateHeader()
 {
     /** 显示上一次刷新时间的label */
-    __unsafe_unretained UILabel *_lastUpdatedTimeLabel;
+    __weak UILabel *_lastUpdatedTimeLabel;
     /** 显示刷新状态的label */
-    __unsafe_unretained UILabel *_stateLabel;
+    __weak UILabel *_stateLabel;
 }
 /** 所有状态对应的文字 */
 @property (strong, nonatomic) NSMutableDictionary *stateTitles;
@@ -53,21 +53,10 @@
     self.stateLabel.text = self.stateTitles[@(self.state)];
 }
 
-#pragma mark - 日历获取在9.x之后的系统使用currentCalendar会出异常。在8.0之后使用系统新API。
-- (NSCalendar *)currentCalendar {
-    if ([NSCalendar respondsToSelector:@selector(calendarWithIdentifier:)]) {
-        return [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-    }
-    return [NSCalendar currentCalendar];
-}
-
 #pragma mark key的处理
 - (void)setLastUpdatedTimeKey:(NSString *)lastUpdatedTimeKey
 {
     [super setLastUpdatedTimeKey:lastUpdatedTimeKey];
-    
-    // 如果label隐藏了，就不用再处理
-    if (self.lastUpdatedTimeLabel.hidden) return;
     
     NSDate *lastUpdatedTime = [[NSUserDefaults standardUserDefaults] objectForKey:lastUpdatedTimeKey];
     
@@ -79,7 +68,7 @@
     
     if (lastUpdatedTime) {
         // 1.获得年月日
-        NSCalendar *calendar = [self currentCalendar];
+        NSCalendar *calendar = [NSCalendar currentCalendar];
         NSUInteger unitFlags = NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay |NSCalendarUnitHour |NSCalendarUnitMinute;
         NSDateComponents *cmp1 = [calendar components:unitFlags fromDate:lastUpdatedTime];
         NSDateComponents *cmp2 = [calendar components:unitFlags fromDate:[NSDate date]];
@@ -119,28 +108,21 @@
     
     if (self.stateLabel.hidden) return;
     
-    BOOL noConstrainsOnStatusLabel = self.stateLabel.constraints.count == 0;
-    
     if (self.lastUpdatedTimeLabel.hidden) {
         // 状态
-        if (noConstrainsOnStatusLabel) self.stateLabel.frame = self.bounds;
+        self.stateLabel.frame = self.bounds;
     } else {
-        CGFloat stateLabelH = self.mj_h * 0.5;
         // 状态
-        if (noConstrainsOnStatusLabel) {
-            self.stateLabel.mj_x = 0;
-            self.stateLabel.mj_y = 0;
-            self.stateLabel.mj_w = self.mj_w;
-            self.stateLabel.mj_h = stateLabelH;
-        }
+        self.stateLabel.mj_x = 0;
+        self.stateLabel.mj_y = 0;
+        self.stateLabel.mj_w = self.mj_w;
+        self.stateLabel.mj_h = self.mj_h * 0.5;
         
         // 更新时间
-        if (self.lastUpdatedTimeLabel.constraints.count == 0) {
-            self.lastUpdatedTimeLabel.mj_x = 0;
-            self.lastUpdatedTimeLabel.mj_y = stateLabelH;
-            self.lastUpdatedTimeLabel.mj_w = self.mj_w;
-            self.lastUpdatedTimeLabel.mj_h = self.mj_h - self.lastUpdatedTimeLabel.mj_y;
-        }
+        self.lastUpdatedTimeLabel.mj_x = 0;
+        self.lastUpdatedTimeLabel.mj_y = self.stateLabel.mj_h;
+        self.lastUpdatedTimeLabel.mj_w = self.mj_w;
+        self.lastUpdatedTimeLabel.mj_h = self.mj_h - self.lastUpdatedTimeLabel.mj_y;
     }
 }
 

@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class STProgram;
+
 @interface STBaseViewController : UIViewController
+
+- (void)switchToPlayProgram:(STProgram *)program;
+- (void)payForProgram:(STProgram *)program;
 
 @end

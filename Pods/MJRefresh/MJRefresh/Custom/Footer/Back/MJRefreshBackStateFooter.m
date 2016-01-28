@@ -11,7 +11,7 @@
 @interface MJRefreshBackStateFooter()
 {
     /** 显示刷新状态的label */
-    __unsafe_unretained UILabel *_stateLabel;
+    __weak UILabel *_stateLabel;
 }
 /** 所有状态对应的文字 */
 @property (strong, nonatomic) NSMutableDictionary *stateTitles;
@@ -62,8 +62,6 @@
 - (void)placeSubviews
 {
     [super placeSubviews];
-    
-    if (self.stateLabel.constraints.count) return;
     
     // 状态标签
     self.stateLabel.frame = self.bounds;

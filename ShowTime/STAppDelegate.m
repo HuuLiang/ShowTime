@@ -10,12 +10,26 @@
 #import "STHomeViewController.h"
 #import "STAnchorViewController.h"
 #import "STMineViewController.h"
+#import "STActivateModel.h"
+#import "STUserAccessModel.h"
+#import "STPaymentModel.h"
+#import "STSystemConfigModel.h"
+#import "STWeChatPayConfigModel.h"
+#import "STWeChatPayQueryOrderRequest.h"
+#import "STPaymentViewController.h"
+#import "WXApi.h"
+#import "MobClick.h"
+#import "WeChatPayManager.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "AlipayManager.h"
 
-@interface STAppDelegate ()
-
+@interface STAppDelegate () <WXApiDelegate>
+@property (nonatomic,retain) STWeChatPayQueryOrderRequest *wechatPayOrderQueryRequest;
 @end
 
 @implementation STAppDelegate
+
+DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQueryRequest)
 
 - (UIWindow *)window {
     if (_window) {
@@ -26,20 +40,26 @@
     anchorVC.title = @"火爆主播";
     
     UINavigationController *anchorNav = [[UINavigationController alloc] initWithRootViewController:anchorVC];
-    anchorNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:anchorVC.title image:[UIImage imageNamed:@"anchor_normal"] selectedImage:[UIImage imageNamed:@"anchor_selected"]];
+    anchorNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:anchorVC.title
+                                                         image:[[UIImage imageNamed:@"anchor_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                 selectedImage:[[UIImage imageNamed:@"anchor_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     STHomeViewController *homeVC = [[STHomeViewController alloc] init];
     homeVC.title = @"大厅";
     
     UINavigationController *homeNav = [[UINavigationController alloc] initWithRootViewController:homeVC];
-    homeNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"home_normal"] selectedImage:[UIImage imageNamed:@"home_selected"]];
+    homeNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil
+                                                       image:[[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                               selectedImage:[[UIImage imageNamed:@"home_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     homeNav.tabBarItem.imageInsets = UIEdgeInsetsMake(-15, 0, 15, 0);
     
     STMineViewController *mineVC = [[STMineViewController alloc] init];
     mineVC.title = @"我的";
     
     UINavigationController *mineNav = [[UINavigationController alloc] initWithRootViewController:mineVC];
-    mineNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:mineVC.title image:[UIImage imageNamed:@"mine_normal"] selectedImage:[UIImage imageNamed:@"mine_selected"]];
+    mineNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:mineVC.title
+                                                       image:[[UIImage imageNamed:@"mine_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                               selectedImage:[[UIImage imageNamed:@"mine_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[anchorNav, homeNav, mineNav];
@@ -84,41 +104,88 @@
                                    [[aspectInfo originalInvocation] setReturnValue:&statusBarStyle];
                                } error:nil];
     
-    [UITabBarController aspect_hookSelector:@selector(shouldAutorotate)
-                                withOptions:AspectPositionInstead
-                                 usingBlock:^(id<AspectInfo> aspectInfo){
-                                     UITabBarController *thisTabBarVC = [aspectInfo instance];
-                                     UIViewController *selectedVC = thisTabBarVC.selectedViewController;
-                                     
-                                     BOOL autoRotate = NO;
-                                     if ([selectedVC isKindOfClass:[UINavigationController class]]) {
-                                         autoRotate = [((UINavigationController *)selectedVC).topViewController shouldAutorotate];
-                                     } else {
-                                         autoRotate = [selectedVC shouldAutorotate];
-                                     }
-                                     [[aspectInfo originalInvocation] setReturnValue:&autoRotate];
-                                 } error:nil];
-    
-    [UITabBarController aspect_hookSelector:@selector(supportedInterfaceOrientations)
-                                withOptions:AspectPositionInstead
-                                 usingBlock:^(id<AspectInfo> aspectInfo){
-                                     UITabBarController *thisTabBarVC = [aspectInfo instance];
-                                     UIViewController *selectedVC = thisTabBarVC.selectedViewController;
-                                     
-                                     NSUInteger result = 0;
-                                     if ([selectedVC isKindOfClass:[UINavigationController class]]) {
-                                         result = [((UINavigationController *)selectedVC).topViewController supportedInterfaceOrientations];
-                                     } else {
-                                         result = [selectedVC supportedInterfaceOrientations];
-                                     }
-                                     [[aspectInfo originalInvocation] setReturnValue:&result];
-                                 } error:nil];
+//    [UITabBarController aspect_hookSelector:@selector(shouldAutorotate)
+//                                withOptions:AspectPositionInstead
+//                                 usingBlock:^(id<AspectInfo> aspectInfo){
+//                                     UITabBarController *thisTabBarVC = [aspectInfo instance];
+//                                     UIViewController *selectedVC = thisTabBarVC.selectedViewController;
+//                                     
+//                                     BOOL autoRotate = NO;
+//                                     if ([selectedVC isKindOfClass:[UINavigationController class]]) {
+//                                         autoRotate = [((UINavigationController *)selectedVC).topViewController shouldAutorotate];
+//                                     } else {
+//                                         autoRotate = [selectedVC shouldAutorotate];
+//                                     }
+//                                     [[aspectInfo originalInvocation] setReturnValue:&autoRotate];
+//                                 } error:nil];
+//    
+//    [UITabBarController aspect_hookSelector:@selector(supportedInterfaceOrientations)
+//                                withOptions:AspectPositionInstead
+//                                 usingBlock:^(id<AspectInfo> aspectInfo){
+//                                     UITabBarController *thisTabBarVC = [aspectInfo instance];
+//                                     UIViewController *selectedVC = thisTabBarVC.selectedViewController;
+//                                     
+//                                     NSUInteger result = 0;
+//                                     if ([selectedVC isKindOfClass:[UINavigationController class]]) {
+//                                         result = [((UINavigationController *)selectedVC).topViewController supportedInterfaceOrientations];
+//                                     } else {
+//                                         result = [selectedVC supportedInterfaceOrientations];
+//                                     }
+//                                     [[aspectInfo originalInvocation] setReturnValue:&result];
+//                                 } error:nil];
+}
+
+- (void)setupMobStatistics {
+#ifdef DEBUG
+    [MobClick setLogEnabled:YES];
+#endif
+    NSString *bundleVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
+    if (bundleVersion) {
+        [MobClick setAppVersion:bundleVersion];
+    }
+    [MobClick startWithAppkey:ST_UMENG_APP_ID reportPolicy:BATCH channelId:ST_CHANNEL_NO];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[STErrorHandler sharedHandler] initialize];
+    [self setupMobStatistics];
     [self setupCommonStyles];
     [self.window makeKeyAndVisible];
+    
+    if (![STUtil isRegistered]) {
+        [[STActivateModel sharedModel] activateWithCompletionHandler:^(BOOL success, NSString *userId) {
+            if (success) {
+                [STUtil setRegisteredWithUserId:userId];
+                [[STUserAccessModel sharedModel] requestUserAccess];
+            }
+        }];
+    } else {
+        [[STUserAccessModel sharedModel] requestUserAccess];
+    }
+    
+    [[STPaymentModel sharedModel] startRetryingToCommitUnprocessedOrders];
+    [[STSystemConfigModel sharedModel] fetchSystemConfigWithCompletionHandler:^(BOOL success) {
+        if (!success) {
+            return ;
+        }
+        
+        if ([STSystemConfigModel sharedModel].startupInstall.length == 0
+            || [STSystemConfigModel sharedModel].startupPrompt.length == 0) {
+            return ;
+        }
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[STSystemConfigModel sharedModel].startupInstall]];
+    }];
+    
+    [[STWeChatPayConfigModel sharedModel] fetchWeChatPayConfigWithCompletionHandler:^(BOOL success, id obj) {
+        STWeChatPayConfig *config = [STWeChatPayConfig defaultConfig];
+        if (config.isValid) {
+            [WXApi registerApp:config.appId];
+        }
+    }];
+    
+    
     return YES;
 }
 
@@ -138,10 +205,57 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self checkPayment];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+        [[AlipayManager shareInstance] sendNotificationByResult:resultDic];
+    }];
+    [WXApi handleOpenURL:url delegate:self];
+    return YES;
+}
+
+- (void)checkPayment {
+    if ([STUtil isPaid]) {
+        return ;
+    }
+    
+    NSArray<STPaymentInfo *> *payingPaymentInfos = [STUtil payingPaymentInfos];
+    [payingPaymentInfos enumerateObjectsUsingBlock:^(STPaymentInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        STPaymentType paymentType = obj.paymentType.unsignedIntegerValue;
+        if (paymentType == STPaymentTypeWeChatPay) {
+            [self.wechatPayOrderQueryRequest queryOrderWithNo:obj.orderId completionHandler:^(BOOL success, NSString *trade_state, double total_fee) {
+                if ([trade_state isEqualToString:@"SUCCESS"]) {
+                    STPaymentViewController *paymentVC = [STPaymentViewController sharedPaymentVC];
+                    [paymentVC notifyPaymentResult:PAYRESULT_SUCCESS withPaymentInfo:obj];
+                }
+            }];
+        }
+    }];
+}
+
+#pragma mark - WeChat delegate
+
+- (void)onReq:(BaseReq *)req {
+    
+}
+
+- (void)onResp:(BaseResp *)resp {
+    if([resp isKindOfClass:[PayResp class]]){
+        PAYRESULT payResult;
+        if (resp.errCode == WXErrCodeUserCancel) {
+            payResult = PAYRESULT_ABANDON;
+        } else if (resp.errCode == WXSuccess) {
+            payResult = PAYRESULT_SUCCESS;
+        } else {
+            payResult = PAYRESULT_FAIL;
+        }
+        [[WeChatPayManager sharedInstance] sendNotificationByResult:payResult];
+    }
+}
 @end
