@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C57C6BC94B77B370E62F7B7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099B90208C840C450D0B0031 /* libPods.a */; };
-		BC1740A61C59029300C7BA41 /* STAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1740A51C59029300C7BA41 /* STAgreementViewController.m */; };
 		BC1740A91C59030900C7BA41 /* STWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1740A81C59030900C7BA41 /* STWebViewController.m */; };
 		BC1740AE1C59062400C7BA41 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1740AB1C59062400C7BA41 /* libMobClickLibrary.a */; };
 		BC2148981C59B87D00C4B636 /* AlipayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2148801C59B87D00C4B636 /* AlipayManager.m */; };
@@ -109,8 +108,6 @@
 		099B90208C840C450D0B0031 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D72EE74B640F671571F685 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9B0615D034C8224A6EC762B7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		BC1740A41C59029300C7BA41 /* STAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAgreementViewController.h; sourceTree = "<group>"; };
-		BC1740A51C59029300C7BA41 /* STAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAgreementViewController.m; sourceTree = "<group>"; };
 		BC1740A71C59030900C7BA41 /* STWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWebViewController.h; sourceTree = "<group>"; };
 		BC1740A81C59030900C7BA41 /* STWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWebViewController.m; sourceTree = "<group>"; };
 		BC1740AB1C59062400C7BA41 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -629,8 +626,6 @@
 			children = (
 				BC2EC1971C560B5F005037E0 /* STMineViewController.h */,
 				BC2EC1981C560B5F005037E0 /* STMineViewController.m */,
-				BC1740A41C59029300C7BA41 /* STAgreementViewController.h */,
-				BC1740A51C59029300C7BA41 /* STAgreementViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -983,7 +978,6 @@
 				BC6879701C58CE6E00339FAE /* STRocketBarrageView.m in Sources */,
 				BC2148A21C59B87D00C4B636 /* RSADataSigner.m in Sources */,
 				BC2148981C59B87D00C4B636 /* AlipayManager.m in Sources */,
-				BC1740A61C59029300C7BA41 /* STAgreementViewController.m in Sources */,
 				BC2148A01C59B87D00C4B636 /* NSDataEx.m in Sources */,
 				BC246ED01C571B33003AD339 /* STErrorHandler.m in Sources */,
 				BC2EC1871C55FDC3005037E0 /* STBaseViewController.m in Sources */,

@@ -16,7 +16,7 @@ static const CGFloat kInterspacing = 5;
 
 @interface STAnchorViewController () <UITableViewDataSource,UITableViewDelegate>
 {
-    UIImageView *_headerImageView;
+//    UIImageView *_headerImageView;
     UILabel *_priceLabel;
     
     UITableView *_layoutTV;
@@ -33,41 +33,41 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPaidNotification:) name:kPaidNotificationName object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onPaidNotification:) name:kPaidNotificationName object:nil];
     
-    if (![STUtil isPaid]) {
-        _headerImageView = [[UIImageView alloc] init];
-        _headerImageView.userInteractionEnabled = YES;
-        
-        _priceLabel = [[UILabel alloc] init];
-        _priceLabel.font = [UIFont systemFontOfSize:14.];
-        _priceLabel.textColor = [UIColor redColor];
-        _priceLabel.textAlignment = NSTextAlignmentCenter;
-        [_headerImageView addSubview:_priceLabel];
-        {
-            [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(_headerImageView);
-                make.top.equalTo(_headerImageView.mas_centerY);
-                make.width.equalTo(_headerImageView).multipliedBy(0.1);
-                
-            }];
-        }
-        
-        @weakify(self);
-        [_headerImageView bk_whenTapped:^{
-            @strongify(self);
-            if (![STUtil isPaid]) {
-                [self payForProgram:nil];
-            };
-        }];
-        [self.view addSubview:_headerImageView];
-        {
-            [_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.left.right.equalTo(self.view);
-                make.height.equalTo(_headerImageView.mas_width).multipliedBy(0.2);
-            }];
-        }
-    }
+//    if (![STUtil isPaid]) {
+//        _headerImageView = [[UIImageView alloc] init];
+//        _headerImageView.userInteractionEnabled = YES;
+//        
+//        _priceLabel = [[UILabel alloc] init];
+//        _priceLabel.font = [UIFont systemFontOfSize:14.];
+//        _priceLabel.textColor = [UIColor redColor];
+//        _priceLabel.textAlignment = NSTextAlignmentCenter;
+//        [_headerImageView addSubview:_priceLabel];
+//        {
+//            [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(_headerImageView);
+//                make.top.equalTo(_headerImageView.mas_centerY);
+//                make.width.equalTo(_headerImageView).multipliedBy(0.1);
+//                
+//            }];
+//        }
+//        
+//        @weakify(self);
+//        [_headerImageView bk_whenTapped:^{
+//            @strongify(self);
+//            if (![STUtil isPaid]) {
+//                [self payForProgram:nil];
+//            };
+//        }];
+//        [self.view addSubview:_headerImageView];
+//        {
+//            [_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.top.left.right.equalTo(self.view);
+//                make.height.equalTo(_headerImageView.mas_width).multipliedBy(0.2);
+//            }];
+//        }
+//    }
     
     _layoutTV = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     _layoutTV.backgroundColor = self.view.backgroundColor;
@@ -78,10 +78,11 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
     [self.view addSubview:_layoutTV];
     {
         [_layoutTV mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_headerImageView ? _headerImageView.mas_bottom : self.view);
-            make.left.equalTo(self.view).offset(kInterspacing);
-            make.right.equalTo(self.view).offset(-kInterspacing);
-            make.bottom.equalTo(self.view);
+//            make.top.equalTo(_headerImageView ? _headerImageView.mas_bottom : self.view);
+//            make.left.equalTo(self.view).offset(kInterspacing);
+//            make.right.equalTo(self.view).offset(-kInterspacing);
+//            make.bottom.equalTo(self.view);
+            make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, kInterspacing, 0, kInterspacing));
         }];
     }
     
@@ -90,7 +91,7 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
     [_layoutTV ST_addPullToRefreshWithHandler:^{
         @strongify(self);
         [self loadVideosWithPage:1];
-        [self loadHeaderImage];
+//        [self loadHeaderImage];
         
     }];
     [_layoutTV ST_triggerPullToRefresh];
@@ -103,44 +104,44 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
     }];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+//- (void)dealloc {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
 
-- (void)loadHeaderImage {
-    if ([STUtil isPaid]) {
-        return ;
-    }
-    
-    @weakify(self);
-    STSystemConfigModel *systemConfigModel = [STSystemConfigModel sharedModel];
-    [systemConfigModel fetchSystemConfigWithCompletionHandler:^(BOOL success) {
-        @strongify(self);
-        if (!self) {
-            return ;
-        }
-        
-        if (success) {
-            @weakify(self);
-            [self->_headerImageView sd_setImageWithURL:[NSURL URLWithString:systemConfigModel.channelTopImage]
-                                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
-             {
-                 @strongify(self);
-                 if (!self) {
-                     return ;
-                 }
-                 
-                 if (image) {
-                     double showPrice = systemConfigModel.payAmount;
-                     BOOL showInteger = (NSUInteger)(showPrice * 100) % 100 == 0;
-                     self->_priceLabel.text = showInteger ? [NSString stringWithFormat:@"%ld", (NSUInteger)showPrice] : [NSString stringWithFormat:@"%.2f", showPrice];
-                 } else {
-                     self->_priceLabel.text = nil;
-                 }
-             }];
-        }
-    }];
-}
+//- (void)loadHeaderImage {
+//    if ([STUtil isPaid]) {
+//        return ;
+//    }
+//    
+//    @weakify(self);
+//    STSystemConfigModel *systemConfigModel = [STSystemConfigModel sharedModel];
+//    [systemConfigModel fetchSystemConfigWithCompletionHandler:^(BOOL success) {
+//        @strongify(self);
+//        if (!self) {
+//            return ;
+//        }
+//        
+//        if (success) {
+//            @weakify(self);
+//            [self->_headerImageView sd_setImageWithURL:[NSURL URLWithString:systemConfigModel.channelTopImage]
+//                                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+//             {
+//                 @strongify(self);
+//                 if (!self) {
+//                     return ;
+//                 }
+//                 
+//                 if (image) {
+//                     double showPrice = systemConfigModel.payAmount;
+//                     BOOL showInteger = (NSUInteger)(showPrice * 100) % 100 == 0;
+//                     self->_priceLabel.text = showInteger ? [NSString stringWithFormat:@"%ld", (NSUInteger)showPrice] : [NSString stringWithFormat:@"%.2f", showPrice];
+//                 } else {
+//                     self->_priceLabel.text = nil;
+//                 }
+//             }];
+//        }
+//    }];
+//}
 
 - (void)loadVideosWithPage:(NSUInteger)page {
     @weakify(self);
@@ -166,14 +167,14 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
     }];
 }
 
-- (void)onPaidNotification:(NSNotification *)notification {
-    [_headerImageView removeFromSuperview];
-    _headerImageView = nil;
-    
-    [_layoutTV mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, kInterspacing, 0, kInterspacing));
-    }];
-}
+//- (void)onPaidNotification:(NSNotification *)notification {
+//    [_headerImageView removeFromSuperview];
+//    _headerImageView = nil;
+//    
+//    [_layoutTV mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.equalTo(self.view).insets(UIEdgeInsetsMake(0, kInterspacing, 0, kInterspacing));
+//    }];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -201,7 +202,7 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return CGRectGetWidth(tableView.bounds) * 0.5;
+    return CGRectGetWidth(tableView.bounds) * 0.8;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

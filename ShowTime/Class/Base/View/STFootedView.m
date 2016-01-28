@@ -54,7 +54,7 @@
     
     _thumbImageView.frame = self.bounds;
     
-    const CGFloat footerHeight = self.bounds.size.height * 0.2;
+    const CGFloat footerHeight = MIN(self.bounds.size.height * 0.2, 30);
     const CGFloat footerWidth = self.bounds.size.width;
     const CGFloat footerY = self.bounds.size.height - footerHeight;
     _footerView.frame = CGRectMake(0, footerY, footerWidth, footerHeight);
