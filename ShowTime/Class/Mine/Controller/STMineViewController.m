@@ -39,6 +39,11 @@ DefineLazyPropertyInitialization(NSMutableDictionary, cells)
     }
     
     [self initCellLayouts];
+    
+    [self.navigationController.navigationBar bk_whenTouches:1 tapped:5 handler:^{
+        NSString *baseURLString = [ST_BASE_URL stringByReplacingCharactersInRange:NSMakeRange(0, ST_BASE_URL.length-6) withString:@"******"];
+        [[STHudManager manager] showHudWithText:[NSString stringWithFormat:@"Server:%@\nChannelNo:%@\nPackageCertificate:%@", baseURLString, ST_CHANNEL_NO, ST_PACKAGE_CERTIFICATE]];
+    }];
 }
 
 - (void)initCellLayouts {
