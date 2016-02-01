@@ -37,7 +37,7 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     }
     
     STAnchorViewController *anchorVC = [[STAnchorViewController alloc] init];
-    anchorVC.title = @"火爆主播";
+    anchorVC.title = @"深夜福利";
     
     UINavigationController *anchorNav = [[UINavigationController alloc] initWithRootViewController:anchorVC];
     anchorNav.tabBarItem = [[UITabBarItem alloc] initWithTitle:anchorVC.title

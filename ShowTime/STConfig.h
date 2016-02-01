@@ -28,8 +28,8 @@
 #define ST_ALIPAY_CONFIG_URL        @"/iosvideo/aliConfig.htm"
 #define ST_WECHATPAY_CONFIG_URL     @"/iosvideo/weixinConfig.htm"
 #define ST_SYSTEM_CONFIG_URL        @"/iosvideo/systemConfig.htm"
-#define ST_AGREEMENT_NOTPAID_URL    @"/iosvideo/agreement.html"
-#define ST_AGREEMENT_PAID_URL       @"/iosvideo/agreement-paid.html"
+#define ST_AGREEMENT_NOTPAID_URL    @"/iosvideo/show-agreement.html"
+#define ST_AGREEMENT_PAID_URL       @"/iosvideo/show-agreement-paid.html"
 #define ST_Q_AND_A_URL              @"/iosvideo/q-a.html"
 
 #define ST_PAYMENT_COMMIT_URL   @"http://pay.iqu8.net/paycenter/qubaPr.json"
