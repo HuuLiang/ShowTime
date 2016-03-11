@@ -1120,7 +1120,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jiangxi Electronic Group Corporation Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tianjin Institute of Surveying and Mapping";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/Alipay",
@@ -1134,7 +1134,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.showtimev.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "925f84a3-48fc-4b21-a2b7-b13945e73ab4";
+				PROVISIONING_PROFILE = "5440a7bc-3ca0-40db-81da-139ccabb600b";
 			};
 			name = Debug;
 		};
@@ -1144,7 +1144,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Jiangxi Electronic Group Corporation Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Tianjin Institute of Surveying and Mapping";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/Alipay",
@@ -1158,7 +1158,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.showtimev.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "925f84a3-48fc-4b21-a2b7-b13945e73ab4";
+				PROVISIONING_PROFILE = "5440a7bc-3ca0-40db-81da-139ccabb600b";
 			};
 			name = Release;
 		};
