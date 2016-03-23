@@ -85,6 +85,7 @@
 		BC68796A1C58A07900339FAE /* STLiveVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6879691C58A07900339FAE /* STLiveVideoPlayer.m */; };
 		BC68796D1C58C5AE00339FAE /* STMessagePopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68796C1C58C5AE00339FAE /* STMessagePopupView.m */; };
 		BC6879701C58CE6E00339FAE /* STRocketBarrageView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68796F1C58CE6E00339FAE /* STRocketBarrageView.m */; };
+		BCFBEB2F1C93EA17003BF595 /* payment_header_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BCFBEB2E1C93EA17003BF595 /* payment_header_placeholder.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -268,6 +269,7 @@
 		BC68796C1C58C5AE00339FAE /* STMessagePopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STMessagePopupView.m; sourceTree = "<group>"; };
 		BC68796E1C58CE6E00339FAE /* STRocketBarrageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STRocketBarrageView.h; sourceTree = "<group>"; };
 		BC68796F1C58CE6E00339FAE /* STRocketBarrageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STRocketBarrageView.m; sourceTree = "<group>"; };
+		BCFBEB2E1C93EA17003BF595 /* payment_header_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = payment_header_placeholder.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,6 +425,7 @@
 				BC2EC18C1C55FEB2005037E0 /* STAppDelegate.m */,
 				BC2EC1561C55FC9B005037E0 /* Assets.xcassets */,
 				BC2EC14A1C55FC9B005037E0 /* Supporting Files */,
+				BCFBEB2D1C93E9AA003BF595 /* Resources */,
 				BC2EC17D1C55FD18005037E0 /* Class */,
 			);
 			path = ShowTime;
@@ -735,6 +738,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BCFBEB2D1C93E9AA003BF595 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BCFBEB2E1C93EA17003BF595 /* payment_header_placeholder.jpg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		E1395A711428683153B15924 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -851,6 +862,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC2148991C59B87D00C4B636 /* AlipaySDK.bundle in Resources */,
+				BCFBEB2F1C93EA17003BF595 /* payment_header_placeholder.jpg in Resources */,
 				BC246E831C571259003AD339 /* config.plist in Resources */,
 				BC2EC1571C55FC9B005037E0 /* Assets.xcassets in Resources */,
 			);
