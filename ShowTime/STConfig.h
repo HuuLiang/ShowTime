@@ -12,7 +12,7 @@
 #import "STConfiguration.h"
 
 #define ST_CHANNEL_NO           [STConfiguration sharedConfig].channelNo
-#define ST_PACKAGE_CERTIFICATE  @"iPhone Distribution: Jiangxi Electronic Group Corporation Ltd."
+#define ST_PACKAGE_CERTIFICATE  @"iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd."
 
 #define ST_REST_APP_ID          @"QUBA_2005"
 #define ST_REST_PV              @"100"

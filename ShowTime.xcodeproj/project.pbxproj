@@ -1132,7 +1132,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Tianjin Institute of Surveying and Mapping";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/Alipay",
@@ -1144,9 +1144,9 @@
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/WeChatSDK",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/Umeng",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.showtimev.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.showtime2016.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5440a7bc-3ca0-40db-81da-139ccabb600b";
+				PROVISIONING_PROFILE = "4e7309e3-adb6-4e73-80c9-dbba211bd466";
 			};
 			name = Debug;
 		};
@@ -1156,7 +1156,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Tianjin Institute of Surveying and Mapping";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/Alipay",
@@ -1168,9 +1168,9 @@
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/WeChatSDK",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/Umeng",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.showtimev.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.showtime2016.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5440a7bc-3ca0-40db-81da-139ccabb600b";
+				PROVISIONING_PROFILE = "4e7309e3-adb6-4e73-80c9-dbba211bd466";
 			};
 			name = Release;
 		};
