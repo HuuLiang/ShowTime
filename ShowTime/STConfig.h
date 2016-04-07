@@ -15,7 +15,7 @@
 #define ST_PACKAGE_CERTIFICATE  @"iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd."
 
 #define ST_REST_APP_ID          @"QUBA_2005"
-#define ST_REST_PV              @"100"
+#define ST_REST_PV              @"110"
 #define ST_REST_APP_VERSION     ((NSString *)([NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"]))
 
 #define ST_BASE_URL             @"http://iv.ihuiyx.com" //@"http://120.24.252.114:8093"
