@@ -12,8 +12,8 @@
 
 static const NSTimeInterval kRetryingTimeInterval = 180;
 
-static NSString *const kSignKey = @"qdge^%$#@(sdwHs^&";
-static NSString *const kPaymentEncryptionPassword = @"wdnxs&*@#!*qb)*&qiang";
+static NSString *const SSignKey = @"qdge^%$#@(sdwHs^&";
+static NSString *const SPaymentEncryptionPassword = @"wdnxs&*@#!*qb)*&qiang";
 
 typedef void (^STPaymentCompletionHandler)(BOOL success);
 
@@ -45,18 +45,18 @@ typedef void (^STPaymentCompletionHandler)(BOOL success);
 }
 
 + (NSString *)signKey {
-    return kSignKey;
+    return SSignKey;
 }
 
 - (NSDictionary *)encryptWithParams:(NSDictionary *)params {
     NSDictionary *signParams = @{  @"appId":ST_REST_APP_ID,
-                                   @"key":kSignKey,
+                                   @"key":SSignKey,
                                    @"imsi":@"999999999999999",
                                    @"channelNo":ST_CHANNEL_NO,
                                    @"pV":ST_REST_PV };
     
     NSString *sign = [signParams signWithDictionary:[self class].commonParams keyOrders:[self class].keyOrdersOfCommonParams];
-    NSString *encryptedDataString = [params encryptedStringWithSign:sign password:kPaymentEncryptionPassword excludeKeys:@[@"key"]];
+    NSString *encryptedDataString = [params encryptedStringWithSign:sign password:SPaymentEncryptionPassword excludeKeys:@[@"key"]];
     return @{@"data":encryptedDataString, @"appId":ST_REST_APP_ID};
 }
 

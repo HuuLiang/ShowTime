@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STPaymentInfo.h"
 
 typedef void (^WeChatPayCompletionHandler)(PAYRESULT payResult);
 
@@ -14,6 +15,6 @@ typedef void (^WeChatPayCompletionHandler)(PAYRESULT payResult);
 
 + (instancetype)sharedInstance;
 
-- (void)startWeChatPayWithOrderNo:(NSString *)orderNo price:(double)price completionHandler:(WeChatPayCompletionHandler)handler;
+- (void)startWeChatPayWithPayment:(STPaymentInfo *)paymentInfo completionHandler:(WeChatPayCompletionHandler)handler;
 - (void)sendNotificationByResult:(PAYRESULT)result;
 @end

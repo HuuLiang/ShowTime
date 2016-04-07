@@ -9,7 +9,7 @@
 #import "STWeChatPayQueryOrderRequest.h"
 #import "payRequsestHandler.h"
 #import "WXUtil.h"
-#import "STWeChatPayConfig.h"
+//#import "STWeChatPayConfig.h"
 
 static NSString *const kWeChatPayQueryOrderUrlString = @"https://api.mch.weixin.qq.com/pay/orderquery";
 static NSString *const kSuccessString = @"SUCCESS";
@@ -22,20 +22,20 @@ static NSString *const kSuccessString = @"SUCCESS";
         srand( (unsigned)time(0) );
         NSString *noncestr  = [NSString stringWithFormat:@"%d", rand()];
         
-        NSMutableDictionary *params = @{@"appid":[STWeChatPayConfig defaultConfig].appId,
-                                        @"mch_id":[STWeChatPayConfig defaultConfig].mchId,
-                                        @"out_trade_no":orderNo,
-                                        @"nonce_str":noncestr}.mutableCopy;
+//        NSMutableDictionary *params = @{@"appid":[STWeChatPayConfig defaultConfig].appId,
+//                                        @"mch_id":[STWeChatPayConfig defaultConfig].mchId,
+//                                        @"out_trade_no":orderNo,
+//                                        @"nonce_str":noncestr}.mutableCopy;
         //创建支付签名对象
         payRequsestHandler *req = [[payRequsestHandler alloc] init];
 
-        NSString *package = [req genPackage:params];
-        NSData *data =[WXUtil httpSend:kWeChatPayQueryOrderUrlString method:@"POST" data:package];
+//        NSString *package = [req genPackage:params];
+//        NSData *data =[WXUtil httpSend:kWeChatPayQueryOrderUrlString method:@"POST" data:package];
         
         XMLHelper *xml  = [[XMLHelper alloc] init];
         
         //开始解析
-        [xml startParse:data];
+//        [xml startParse:data];
         
         NSMutableDictionary *resParams = [xml getDict];
         self.return_code = resParams[@"return_code"];

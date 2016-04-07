@@ -14,7 +14,7 @@
 #import "STUserAccessModel.h"
 #import "STPaymentModel.h"
 #import "STSystemConfigModel.h"
-#import "STWeChatPayConfigModel.h"
+#import "STPaymentManager.h"
 #import "STWeChatPayQueryOrderRequest.h"
 #import "STPaymentViewController.h"
 #import "WXApi.h"
@@ -104,35 +104,7 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
                                    [[aspectInfo originalInvocation] setReturnValue:&statusBarStyle];
                                } error:nil];
     
-//    [UITabBarController aspect_hookSelector:@selector(shouldAutorotate)
-//                                withOptions:AspectPositionInstead
-//                                 usingBlock:^(id<AspectInfo> aspectInfo){
-//                                     UITabBarController *thisTabBarVC = [aspectInfo instance];
-//                                     UIViewController *selectedVC = thisTabBarVC.selectedViewController;
-//                                     
-//                                     BOOL autoRotate = NO;
-//                                     if ([selectedVC isKindOfClass:[UINavigationController class]]) {
-//                                         autoRotate = [((UINavigationController *)selectedVC).topViewController shouldAutorotate];
-//                                     } else {
-//                                         autoRotate = [selectedVC shouldAutorotate];
-//                                     }
-//                                     [[aspectInfo originalInvocation] setReturnValue:&autoRotate];
-//                                 } error:nil];
-//    
-//    [UITabBarController aspect_hookSelector:@selector(supportedInterfaceOrientations)
-//                                withOptions:AspectPositionInstead
-//                                 usingBlock:^(id<AspectInfo> aspectInfo){
-//                                     UITabBarController *thisTabBarVC = [aspectInfo instance];
-//                                     UIViewController *selectedVC = thisTabBarVC.selectedViewController;
-//                                     
-//                                     NSUInteger result = 0;
-//                                     if ([selectedVC isKindOfClass:[UINavigationController class]]) {
-//                                         result = [((UINavigationController *)selectedVC).topViewController supportedInterfaceOrientations];
-//                                     } else {
-//                                         result = [selectedVC supportedInterfaceOrientations];
-//                                     }
-//                                     [[aspectInfo originalInvocation] setReturnValue:&result];
-//                                 } error:nil];
+
 }
 
 - (void)setupMobStatistics {
@@ -149,6 +121,7 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[STErrorHandler sharedHandler] initialize];
+    [[STPaymentManager sharedManager] setup];
     [self setupMobStatistics];
     [self setupCommonStyles];
     [self.window makeKeyAndVisible];
@@ -178,12 +151,12 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[STSystemConfigModel sharedModel].startupInstall]];
     }];
     
-    [[STWeChatPayConfigModel sharedModel] fetchWeChatPayConfigWithCompletionHandler:^(BOOL success, id obj) {
-        STWeChatPayConfig *config = [STWeChatPayConfig defaultConfig];
-        if (config.isValid) {
-            [WXApi registerApp:config.appId];
-        }
-    }];
+//    [[STWeChatPayConfigModel sharedModel] fetchWeChatPayConfigWithCompletionHandler:^(BOOL success, id obj) {
+//        STWeChatPayConfig *config = [STWeChatPayConfig defaultConfig];
+//        if (config.isValid) {
+//            [WXApi registerApp:config.appId];
+//        }
+//    }];
     
     
     return YES;
@@ -200,7 +173,7 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

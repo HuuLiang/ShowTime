@@ -10,6 +10,7 @@
 
 typedef void (^STWeChatPayQueryOrderCompletionHandler)(BOOL success, NSString *trade_state, double total_fee);
 
+@class STPaymentInfo;
 @interface STWeChatPayQueryOrderRequest : NSObject
 
 @property (nonatomic) NSString *return_code;

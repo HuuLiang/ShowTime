@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, STPaymentType) {
     STPaymentTypeNone,
     STPaymentTypeAlipay = 1001,
     STPaymentTypeWeChatPay = 1008,
-    STPaymentTypeUPPay = 1009
+    STPaymentTypeIAppPay = 1009
 };
 
 typedef NS_ENUM(NSInteger, PAYRESULT)

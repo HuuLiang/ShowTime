@@ -32,8 +32,10 @@
 #define ST_AGREEMENT_PAID_URL       @"/iosvideo/show-agreement-paid.html"
 #define ST_Q_AND_A_URL              @"/iosvideo/q-a.html"
 
-#define ST_PAYMENT_COMMIT_URL   @"http://pay.iqu8.net/paycenter/qubaPr.json"
-#define ST_PAYMENT_RESERVE_DATA [NSString stringWithFormat:@"%@$%@", ST_REST_APP_ID, ST_CHANNEL_NO]
+#define ST_PAYMENT_CONFIG_URL           @"http://pay.iqu8.net/paycenter/payConfig.json"
+#define ST_STANDBY_PAYMENT_CONFIG_URL   @"http://appcdn.mqu8.com/static/iosvideo/payConfig_%@.json"
+#define ST_PAYMENT_COMMIT_URL           @"http://pay.iqu8.net/paycenter/qubaPr.json"
+#define ST_PAYMENT_RESERVE_DATA         [NSString stringWithFormat:@"%@$%@", ST_REST_APP_ID, ST_CHANNEL_NO]
 
 #define ST_WECHAT_APP_ID        @"wx4af04eb5b3dbfb56"
 #define ST_WECHAT_MCH_ID        @"1281148901"

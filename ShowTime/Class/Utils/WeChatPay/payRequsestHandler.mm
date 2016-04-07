@@ -1,28 +1,10 @@
 
 #import <Foundation/Foundation.h>
 #import "payRequsestHandler.h"
-#import "STWeChatPayConfig.h"
-
 /*
  服务器请求操作处理
  */
 @implementation payRequsestHandler
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        STWeChatPayConfig *config = [STWeChatPayConfig defaultConfig];
-        //初始化支付签名对象
-        [self init:config.appId mch_id:config.mchId];
-        //设置密钥
-        [self setKey:config.signKey];
-        //设置回调URL
-        [self setNotifyUrl:config.notifyUrl];
-        //设置附加数据
-        [self setAttach:ST_PAYMENT_RESERVE_DATA];
-    }
-    return self;
-}
 
 //初始化函数
 -(BOOL) init:(NSString *)app_id mch_id:(NSString *)mch_id;
