@@ -58,6 +58,7 @@
                       price:self.payAmount.doubleValue
                 paymentType:type
              paymentSubType:subType];
+        [self hidePayment];
     };
     
     _popView = [[STPaymentPopView alloc] init];
