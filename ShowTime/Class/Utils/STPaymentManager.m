@@ -115,7 +115,7 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
 #ifdef DEBUG
         order.waresId = @"1";
 #else
-        order.waresId = [KbPaymentConfig sharedConfig].iappPayInfo.waresid;
+        order.waresId = [STPaymentConfig sharedConfig].iappPayInfo.waresid.stringValue;
 #endif
         order.price = [NSString stringWithFormat:@"%.2f", price/100.];
         order.appUserId = [STUtil userId] ?: @"UnregisterUser";
