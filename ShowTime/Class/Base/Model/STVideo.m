@@ -8,6 +8,10 @@
 
 #import "STVideo.h"
 
+@implementation STComment
+
+@end
+
 @implementation STVideo
 
 @end

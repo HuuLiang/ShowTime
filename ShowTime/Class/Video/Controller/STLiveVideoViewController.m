@@ -11,8 +11,11 @@
 #import "STVideo.h"
 #import "STMessagePopupView.h"
 #import "STRocketBarrageView.h"
+#import "YPBVideoMessagePollingView.h"
+#import "STVideoCommentModel.h"
 
 static const CGFloat kThumbFlowerButtonInsets = 10;
+static int kSTBarrageIndex = 0;
 
 @interface STLiveVideoViewController ()
 {
@@ -26,6 +29,10 @@ static const CGFloat kThumbFlowerButtonInsets = 10;
 }
 @property (nonatomic,retain) STMessagePopupView *messageView;
 @property (nonatomic,retain) STRocketBarrageView *rocketBarrageView;
+@property (nonatomic,retain) YPBVideoMessagePollingView *messagePollingView;
+@property (nonatomic,retain) NSTimer *timer;
+@property (nonatomic,retain) NSArray *usersList;
+@property (nonatomic,retain) NSArray *barrageList;
 @end
 
 @implementation STLiveVideoViewController
@@ -127,7 +134,76 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
             make.size.mas_equalTo(CGSizeMake(flowerImage.size.width+_flowerButton.contentEdgeInsets.left+_flowerButton.contentEdgeInsets.right, flowerImage.size.height+_flowerButton.contentEdgeInsets.top+_flowerButton.contentEdgeInsets.bottom));
         }];
     }
+    _messagePollingView = [[YPBVideoMessagePollingView alloc] init];
+    _messagePollingView.contentInset = UIEdgeInsetsMake(_messagePollingView.messageRowHeight*8, 0, 0, 0);
+//    [self.view addSubview:_messagePollingView];
+    [self.view insertSubview:_messagePollingView belowSubview:_flowerButton];
+    {
+        [_messagePollingView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self);
+            make.bottom.equalTo(_flowerButton.mas_top);
+            make.right.equalTo(self.view.mas_centerX).multipliedBy(1.5);
+            make.height.equalTo(self.view.mas_height).multipliedBy(0.3);
+        }];
+        
+    }
+    //加载弹幕内容
+    [self loadBarrages];
 }
+
+- (void)loadBarrages{
+    
+    [[[STVideoCommentModel alloc] init] fetchCommentWithCompletionHandler:^(BOOL Success, NSArray *commentList) {
+        if (Success) {
+            NSMutableArray *users = [NSMutableArray array];
+            NSMutableArray *comments = [NSMutableArray array];
+            [commentList enumerateObjectsUsingBlock:^(STComment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [users addObject:obj.userName];
+                [comments addObject:obj.content];
+                //                [self addBarrage];
+            }];
+            //            _usersList = users.copy;
+            //            _barrageList = comments.copy;
+            int count = arc4random()%((int)comments.count- 10)+ 10;
+            
+            NSMutableArray *userList = [NSMutableArray array];
+            NSMutableArray *barrageList = [NSMutableArray array];
+            for (int j = 0; j<count; j++) {
+                int  i = arc4random_uniform((int)users.count);
+                
+                NSString *user = users[i];
+                NSString *barrage = comments[i];
+                [userList addObject:user];
+                [barrageList addObject:barrage];
+            }
+            NSArray * user =  [[NSSet setWithArray:userList] allObjects];
+            NSArray *barrage = [[NSSet setWithArray:barrageList] allObjects];
+            _usersList = user;
+            _barrageList = barrage;
+            if (!_timer) {
+                _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(gotoMessagePollingView) userInfo:nil repeats:YES];
+            }
+            
+            
+        }
+        
+    }];
+}
+
+- (void)gotoMessagePollingView{
+    int i = kSTBarrageIndex ++;
+//    NSLog(@"%d,%d",i,kSTBarrageIndex);
+    NSString *user = _usersList[i];
+    NSString *barrage = _barrageList[i];
+    if (i == _usersList.count-1) {
+        kSTBarrageIndex = 0;
+        [_timer invalidate];
+        _timer = nil;
+    }
+    
+    [_messagePollingView insertMessages:@[barrage] forNames:@[user]withCount:_usersList.count];
+}
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -150,7 +226,7 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
 
 - (void)onTypeMessage {
     [self.messageView showInView:self.view atLeftBottomPosition:CGPointMake(_typeButton.frame.origin.x,
-                                                                           _typeButton.frame.origin.y+_typeButton.frame.size.height) width:_typeButton.frame.size.width];
+                                                                            _typeButton.frame.origin.y+_typeButton.frame.size.height) width:_typeButton.frame.size.width];
 }
 
 - (void)animateImageViewWithName:(NSString *)name fromRect:(CGRect)rect {
@@ -179,6 +255,13 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
 
 - (void)onFlower {
     [self animateImageViewWithName:@"flower_icon" fromRect:_flowerButton.frame];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [_timer invalidate];
+    _timer = nil;
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -18,7 +18,8 @@
 #define ST_REST_PV              @"110"
 #define ST_REST_APP_VERSION     ((NSString *)([NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"]))
 
-#define ST_BASE_URL             @"http://iv.ihuiyx.com" //@"http://120.24.252.114:8093"
+#define ST_BASE_URL             @"http://120.24.252.114:8093"
+//#define ST_BASE_URL             @"http://iv.ihuiyx.com"
 #define ST_STANDBY_BASE_URL     @""
 
 #define ST_HOME_PAGE_URL            @"/iosvideo/homePage.htm"
@@ -29,6 +30,7 @@
 #define ST_WECHATPAY_CONFIG_URL     @"/iosvideo/weixinConfig.htm"
 #define ST_SYSTEM_CONFIG_URL        @"/iosvideo/systemConfig.htm"
 #define ST_AGREEMENT_NOTPAID_URL    @"/iosvideo/show-agreement.html"
+#define ST_COMMENT_URL              @"/iosvideo/comment.htm"
 #define ST_AGREEMENT_PAID_URL       @"/iosvideo/show-agreement-paid.html"
 #define ST_Q_AND_A_URL              @"/iosvideo/q-a.html"
 
