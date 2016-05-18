@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YPBVideoMessagePollingCell : UITableViewCell
+@interface STVideoMessagePollingCell : UITableViewCell
 
 @property (nonatomic,retain,readonly) UILabel *titleLabel;
 

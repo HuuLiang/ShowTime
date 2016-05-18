@@ -11,7 +11,7 @@
 #import "STVideo.h"
 #import "STMessagePopupView.h"
 #import "STRocketBarrageView.h"
-#import "YPBVideoMessagePollingView.h"
+#import "STVideoMessagePollingView.h"
 #import "STVideoCommentModel.h"
 
 static const CGFloat kThumbFlowerButtonInsets = 10;
@@ -29,7 +29,7 @@ static int kSTBarrageIndex = 0;
 }
 @property (nonatomic,retain) STMessagePopupView *messageView;
 @property (nonatomic,retain) STRocketBarrageView *rocketBarrageView;
-@property (nonatomic,retain) YPBVideoMessagePollingView *messagePollingView;
+@property (nonatomic,retain) STVideoMessagePollingView *messagePollingView;
 @property (nonatomic,retain) NSTimer *timer;
 @property (nonatomic,retain) NSArray *usersList;
 @property (nonatomic,retain) NSArray *barrageList;
@@ -134,9 +134,9 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
             make.size.mas_equalTo(CGSizeMake(flowerImage.size.width+_flowerButton.contentEdgeInsets.left+_flowerButton.contentEdgeInsets.right, flowerImage.size.height+_flowerButton.contentEdgeInsets.top+_flowerButton.contentEdgeInsets.bottom));
         }];
     }
-    _messagePollingView = [[YPBVideoMessagePollingView alloc] init];
+    _messagePollingView = [[STVideoMessagePollingView alloc] init];
     _messagePollingView.contentInset = UIEdgeInsetsMake(_messagePollingView.messageRowHeight*8, 0, 0, 0);
-//    [self.view addSubview:_messagePollingView];
+    //    [self.view addSubview:_messagePollingView];
     [self.view insertSubview:_messagePollingView belowSubview:_flowerButton];
     {
         [_messagePollingView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -192,7 +192,7 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
 
 - (void)gotoMessagePollingView{
     int i = kSTBarrageIndex ++;
-//    NSLog(@"%d,%d",i,kSTBarrageIndex);
+    //    NSLog(@"%d,%d",i,kSTBarrageIndex);
     NSString *user = _usersList[i];
     NSString *barrage = _barrageList[i];
     if (i == _usersList.count-1) {

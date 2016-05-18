@@ -1,5 +1,5 @@
 //
-//  YPBVideoMessagePollingView.h
+//  STVideoMessagePollingView.h
 //  YuePaoBa
 //
 //  Created by Sean Yue on 16/2/25.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YPBVideoMessagePollingView : UITableView
+@interface STVideoMessagePollingView : UITableView
 
 //@property (nonatomic,readonly) NSUInteger maximumDisplayingMessages;
 @property (nonatomic) CGFloat messageRowHeight;

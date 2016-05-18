@@ -1,18 +1,18 @@
 //
-//  YPBVideoMessagePollingCell.m
+//  STVideoMessagePollingCell.m
 //  YuePaoBa
 //
 //  Created by Sean Yue on 16/2/27.
 //  Copyright © 2016年 iqu8. All rights reserved.
 //
 
-#import "YPBVideoMessagePollingCell.h"
+#import "STVideoMessagePollingCell.h"
 
-@interface YPBVideoMessagePollingCell ()
+@interface STVideoMessagePollingCell ()
 
 @end
 
-@implementation YPBVideoMessagePollingCell
+@implementation STVideoMessagePollingCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

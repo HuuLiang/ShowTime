@@ -1,17 +1,17 @@
 //
-//  YPBVideoMessagePollingView.m
+//  STVideoMessagePollingView.m
 //  YuePaoBa
 //
 //  Created by Sean Yue on 16/2/25.
 //  Copyright © 2016年 iqu8. All rights reserved.
 //
 
-#import "YPBVideoMessagePollingView.h"
-#import "YPBVideoMessagePollingCell.h"
+#import "STVideoMessagePollingView.h"
+#import "STVideoMessagePollingCell.h"
 
 static  CGFloat offsetY = 0;
 
-@interface YPBVideoMessagePollingView () <UITableViewDataSource,UITableViewDelegate>
+@interface STVideoMessagePollingView () <UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,retain) NSMutableArray<NSAttributedString *> *messages;
 @property (nonatomic,retain,readonly) NSString *cellIdentifier;
 @property (nonatomic,retain) NSMutableDictionary<NSString *, UIColor *> *nameColors;
@@ -19,7 +19,7 @@ static  CGFloat offsetY = 0;
 @property (nonatomic,assign) CGFloat cellHeight;
 @end
 
-@implementation YPBVideoMessagePollingView
+@implementation STVideoMessagePollingView
 
 DefineLazyPropertyInitialization(NSMutableArray, messages)
 DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
@@ -39,7 +39,7 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.scrollEnabled = NO;
         self.bounces = NO;
-        [self registerClass:[YPBVideoMessagePollingCell class] forCellReuseIdentifier:self.cellIdentifier];
+        [self registerClass:[STVideoMessagePollingCell class] forCellReuseIdentifier:self.cellIdentifier];
         
     }
     return self;
@@ -151,7 +151,7 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
 #pragma mark - UITableViewDataSource,UITableViewDelegate
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YPBVideoMessagePollingCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier forIndexPath:indexPath];
+    STVideoMessagePollingCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier forIndexPath:indexPath];
     
     if (indexPath.row < self.messages.count) {
         cell.titleLabel.attributedText = self.messages[indexPath.row];
