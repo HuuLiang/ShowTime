@@ -8,15 +8,14 @@
 
 #import "STVideoMessagePollingView.h"
 #import "STVideoMessagePollingCell.h"
+#import "NSString+Size.h"
 
-#define STBarrageContant 140.0;
 
 @interface STVideoMessagePollingView () <UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,retain) NSMutableArray<NSAttributedString *> *messages;
 @property (nonatomic,retain,readonly) NSString *cellIdentifier;
 @property (nonatomic,retain) NSMutableDictionary<NSString *, UIColor *> *nameColors;
 @property (nonatomic,retain) NSTimer *fadingTimer;
-@property (nonatomic,assign) CGFloat cellHeight;
 @end
 
 @implementation STVideoMessagePollingView
@@ -47,11 +46,11 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
 
 - (void)setMessageRowHeight:(CGFloat)messageRowHeight {
     _messageRowHeight = messageRowHeight;
-            self.rowHeight = messageRowHeight;
+    self.rowHeight = messageRowHeight;
 }
 
 - (void)insertMessages:(NSArray *)messages forNames:(NSArray *)names withCount:(NSInteger)count {
-
+    
     [self.fadingTimer invalidate];
     self.fadingTimer = nil;
     
@@ -82,7 +81,7 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
         style.firstLineHeadIndent = 5;
         style.lineSpacing = 2;//行距
         [attributedMessage addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, attributedMessage.length)];
-            [self.messages addObject:attributedMessage];
+        [self.messages addObject:attributedMessage];
     }];
     
     NSUInteger numberOfRows = [self numberOfRowsInSection:0];
@@ -90,14 +89,14 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
     for (NSUInteger i = 0; i < messages.count; ++i) {
         [indexPaths addObject:[NSIndexPath indexPathForRow:numberOfRows+i inSection:0]];
     }
-       if (indexPaths.count > 0) {
+    if (indexPaths.count > 0) {
         [self insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
     }
     
     //    
-//    const CGFloat offsetY = self.messages.count * self.messageRowHeight - CGRectGetHeight(self.bounds);
-//    NSLog(@"%f",offsetY);
-//    [self setContentOffset:CGPointMake(0, offsetY) animated:YES];
+    //    const CGFloat offsetY = self.messages.count * self.messageRowHeight - CGRectGetHeight(self.bounds);
+    //    NSLog(@"%f",offsetY);
+    //    [self setContentOffset:CGPointMake(0, offsetY) animated:YES];
     [self scrollToRowAtIndexPath:indexPaths.lastObject atScrollPosition:UITableViewScrollPositionTop animated:NO];
     
     [self countDownFading];
@@ -142,8 +141,7 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
         cell.titleLabel.attributedText = self.messages[indexPath.row];
         
     }
-    //    _pollCell = [tableView cellForRowAtIndexPath:indexPath];
-    //    _pollCell = self.messages[indexPath.row-1];
+    
     return cell;
 }
 
@@ -154,15 +152,19 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    CGFloat contentW = STBarrageContant;
-    CGSize constraint = CGSizeMake(contentW, MAXFLOAT);
-    NSAttributedString *attStr = self.messages[indexPath.row];
+    //    CGFloat contentW = STBarrageContant;
+    //    CGSize constraint = CGSizeMake(contentW, MAXFLOAT);
+    //    NSAttributedString *attStr = self.messages[indexPath.row];
+    //    
+    //    CGRect rect = [attStr boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    //    
+    //    CGFloat cellHeight = MAX(rect.size.height, 20);
     
-    CGRect rect = [attStr boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    CGFloat contentW = kScreenWidth *0.75 - 30;
+    NSString *str = self.messages[indexPath.row].string;
+    CGSize size = [str sizeWithFont:[UIFont systemFontOfSize:17.] maxWidth:contentW];
     
-    CGFloat cellHeight = MAX(rect.size.height, 20);
-    _cellHeight = cellHeight;
-    return cellHeight + 5;
+    return size.height;
 }
 //
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{

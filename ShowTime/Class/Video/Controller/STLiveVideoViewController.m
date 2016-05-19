@@ -142,19 +142,14 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
         [_messagePollingView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view);
             make.bottom.equalTo(_flowerButton.mas_top);
-            make.right.equalTo(self.view.mas_centerX).multipliedBy(1.5);
-//            make.height.equalTo(self.view.mas_height).multipliedBy(0.3);
-             make.height.mas_equalTo(_messagePollingView.contentInset.top);
+//            make.right.equalTo(self.view.mas_centerX).multipliedBy(1.5);
+            make.width.mas_equalTo(kScreenWidth*0.75);
+            //            make.height.equalTo(self.view.mas_height).multipliedBy(0.3);
+            make.height.mas_equalTo(_messagePollingView.contentInset.top);
         }];
         
     }
-    //    [_messagePollingView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //       
-    //        make.left.equalTo(self.view);
-    //        make.bottom.equalTo(_flowerButton.mas_bottom);
-    //        make.height.mas_equalTo(200);
-    //        make.width.mas_equalTo(200);
-    //    }];
+  
     
     //加载弹幕内容
     [self loadBarrages];
@@ -164,6 +159,10 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
     
     [[[STVideoCommentModel alloc] init] fetchCommentWithCompletionHandler:^(BOOL Success, NSArray *commentList) {
         if (Success) {
+            if (commentList.count == 0) {
+                return ;
+            }
+            NSLog(@"%ld,%@",(unsigned long)commentList.count,commentList);
             NSMutableArray *users = [NSMutableArray array];
             NSMutableArray *comments = [NSMutableArray array];
             [commentList enumerateObjectsUsingBlock:^(STComment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -173,7 +172,7 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
             }];
             //            _usersList = users.copy;
             //            _barrageList = comments.copy;
-            int count = arc4random()%((int)comments.count- 20)+ 20;
+            int count = arc4random()%((int)comments.count- 10)+ 10;
             
             NSMutableArray *userList = [NSMutableArray array];
             NSMutableArray *barrageList = [NSMutableArray array];
@@ -184,20 +183,20 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
                 [userList addObject:user];
                 [barrageList addObject:barrage];
                 
-                
             }
-            //下面加@""是为了防止弹幕显示不全,让弹幕往上多滚一点
             NSMutableArray * userTemp = [NSMutableArray arrayWithArray:[[NSSet setWithArray:userList] allObjects]];
             NSMutableArray * barrageTemp = [NSMutableArray arrayWithArray:[[NSSet setWithArray:barrageList] allObjects]];
-//            for (int i = 0; i <2; i++) {
-//                NSString *string = @"";
-//                [userTemp addObject:string];
-//                [barrageTemp addObject:string];
-//            }
+            //            for (int i = 0; i <2; i++) {
+            //                NSString *string = @"";
+            //                [userTemp addObject:string];
+            //                [barrageTemp addObject:string];
+            //            }
             NSArray *user = userTemp;
             NSArray *barrage = barrageTemp;
             _usersList = user;
             _barrageList = barrage;
+            [self gotoMessagePollingView];
+//            NSLog(@"user=%@,barrage=%@",_usersList,_barrageList);
             if (!_timer) {
                 _timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(gotoMessagePollingView) userInfo:nil repeats:YES];
             }
@@ -210,7 +209,7 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
 
 - (void)gotoMessagePollingView{
     ++kSTBarrageIndex ;
-   
+    
     NSString *user = _usersList[kSTBarrageIndex-1];
     NSString *barrage = _barrageList[kSTBarrageIndex-1];
     if (kSTBarrageIndex == _usersList.count) {
@@ -218,7 +217,7 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
         [_timer invalidate];
         _timer = nil;
     }
-     NSLog(@"user --%@,barr%@",user,barrage);
+//    NSLog(@"user --%@,barr%@",user,barrage);
     [_messagePollingView insertMessages:@[barrage] forNames:@[user]withCount:_usersList.count];
 }
 

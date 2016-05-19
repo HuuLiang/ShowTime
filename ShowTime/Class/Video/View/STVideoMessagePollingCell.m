@@ -40,13 +40,14 @@
              textRect = CGRectMake(textRect.origin.x, textRect.origin.y, textRect.size.width+10, textRect.size.height);
              [[aspectInfo originalInvocation] setReturnValue:&textRect];
          } error:nil];
+//        _titleLabel.bounds = self.bounds;
         [self addSubview:_titleLabel];
         {
             [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 //                make.centerY.equalTo(self);
 //                make.top.bottom.equalTo(self.contentView).offset(-8);
                 make.left.equalTo(self).offset(15);
-                make.right.lessThanOrEqualTo(self).offset(-15);
+                make.right.lessThanOrEqualTo(self).mas_offset(-15);
                 make.bottom.equalTo(self).offset(-2.5);
                 make.top.equalTo(self).offset(2.5);
 //                make.height.equalTo(@(rect.size.height));
