@@ -19,7 +19,7 @@
     if (self) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.numberOfLines = 0;
-//                _titleLabel.lineBreakMode = UILineBreakModeWordWrap;
+                _titleLabel.lineBreakMode = UILineBreakModeWordWrap;
         _titleLabel.font = [UIFont systemFontOfSize:14.0];
         _titleLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
         _titleLabel.layer.cornerRadius = _titleLabel.font.pointSize/2;
@@ -43,12 +43,12 @@
         [self addSubview:_titleLabel];
         {
             [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerY.equalTo(self);
+//                make.centerY.equalTo(self);
 //                make.top.bottom.equalTo(self.contentView).offset(-8);
                 make.left.equalTo(self).offset(15);
-                make.right.lessThanOrEqualTo(self);
-                make.bottom.equalTo(self).offset(0);
-                make.top.equalTo(self).offset(0);
+                make.right.lessThanOrEqualTo(self).offset(-15);
+                make.bottom.equalTo(self).offset(-2.5);
+                make.top.equalTo(self).offset(2.5);
 //                make.height.equalTo(@(rect.size.height));
             }];
         }

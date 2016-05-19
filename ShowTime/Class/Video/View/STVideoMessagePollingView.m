@@ -9,7 +9,7 @@
 #import "STVideoMessagePollingView.h"
 #import "STVideoMessagePollingCell.h"
 
-static  CGFloat offsetY = 0;
+#define STBarrageContant 140.0;
 
 @interface STVideoMessagePollingView () <UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,retain) NSMutableArray<NSAttributedString *> *messages;
@@ -27,7 +27,7 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _messageRowHeight = 35;
+        _messageRowHeight = 25;
         
         self.estimatedRowHeight = 30;
         self.rowHeight = UITableViewAutomaticDimension;
@@ -47,11 +47,11 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
 
 - (void)setMessageRowHeight:(CGFloat)messageRowHeight {
     _messageRowHeight = messageRowHeight;
-    //        self.rowHeight = messageRowHeight;
+            self.rowHeight = messageRowHeight;
 }
 
 - (void)insertMessages:(NSArray *)messages forNames:(NSArray *)names withCount:(NSInteger)count {
-    //    NSLog(@"-------------------------->%f",offsetY);
+
     [self.fadingTimer invalidate];
     self.fadingTimer = nil;
     
@@ -59,6 +59,7 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
         [self clearMessages];
         self.alpha = 1;
     }
+    
     
     [messages enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *message = obj;
@@ -75,8 +76,13 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
         
         NSMutableAttributedString *attributedMessage = [[NSMutableAttributedString alloc] init];
         [attributedMessage appendAttributedString:[[NSAttributedString alloc] initWithString:name attributes:@{NSForegroundColorAttributeName:nameColor}]];
-        [attributedMessage appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@":%@", message] attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}]];
-        [self.messages addObject:attributedMessage];
+        [attributedMessage appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" : %@   ", message] attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}]];
+        NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+        style.headIndent = 5;//缩进
+        style.firstLineHeadIndent = 5;
+        style.lineSpacing = 2;//行距
+        [attributedMessage addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, attributedMessage.length)];
+            [self.messages addObject:attributedMessage];
     }];
     
     NSUInteger numberOfRows = [self numberOfRowsInSection:0];
@@ -84,39 +90,18 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
     for (NSUInteger i = 0; i < messages.count; ++i) {
         [indexPaths addObject:[NSIndexPath indexPathForRow:numberOfRows+i inSection:0]];
     }
-    //    NSLog(@"%lu,num%lu",(unsigned long)messages.count,(unsigned long)numberOfRows);
-    if (indexPaths.count > 0) {
-        [UIView animateWithDuration:0.5 animations:^{
-            [self insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-        }];
+       if (indexPaths.count > 0) {
+        [self insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
     }
     
-    //  CGFloat frameX = CGRectGetMaxY(_pollCell.frame);
-    //    CGFloat frameH = CGRectGetHeight(_pollCell.frame);
     //    
-    const CGFloat offsetY1 = self.messages.count * self.messageRowHeight - CGRectGetHeight(self.bounds);
-    //    if (_messages.count == 1) {
-    //        
-    //        offsetY = self.cellHeight  + 10+ offsetY -CGRectGetHeight(self.bounds);
-    //    }else {
-    //        offsetY = offsetY +10 + self.cellHeight;
-    //    }
-    //    
-    //    NSLog(@" ------> %f,",offsetY);
-    //    NSLog(@"%f,%ld,%f,--->cell %f",offsetY,(unsigned long)self.messages.count,_cellHeight,frameX);
-    
-    [self setContentOffset:CGPointMake(0, offsetY1) animated:YES];
+//    const CGFloat offsetY = self.messages.count * self.messageRowHeight - CGRectGetHeight(self.bounds);
+//    NSLog(@"%f",offsetY);
+//    [self setContentOffset:CGPointMake(0, offsetY) animated:YES];
+    [self scrollToRowAtIndexPath:indexPaths.lastObject atScrollPosition:UITableViewScrollPositionTop animated:NO];
     
     [self countDownFading];
     
-//    NSLog(@"%lu,---->%lu",(long)count,(unsigned long)_messages.count);
-    
-    if (self.messages.count == count) {
-       
-            [self setContentOffset:CGPointMake(0, offsetY1) animated:YES];
-       
-    }
-    //    NSLog(@" ------> %f,",offsetY1);
 }
 
 
@@ -168,24 +153,16 @@ DefineLazyPropertyInitialization(NSMutableDictionary, nameColors)
 //
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGFloat contentW = 140;
+    
+    CGFloat contentW = STBarrageContant;
     CGSize constraint = CGSizeMake(contentW, MAXFLOAT);
     NSAttributedString *attStr = self.messages[indexPath.row];
     
     CGRect rect = [attStr boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     
-    //    CGSize size = [attStr.string sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.]}];
-    //    NSString *str = [attStr string];
-    //    CGSize rec= [str sizeWithFont:[UIFont systemFontOfSize:14.] forWidth:contentW lineBreakMode:NSLineBreakByWordWrapping];
-    //    rect = [str boundingRectWithSize:constraint options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.]} context:nil];
-    
-    
-    
-    //    NSLog(@"%@--->%f,in%ld",attStr,rect.size.height,(long)indexPath.row);
-    
     CGFloat cellHeight = MAX(rect.size.height, 20);
     _cellHeight = cellHeight;
-    return cellHeight;
+    return cellHeight + 5;
 }
 //
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{

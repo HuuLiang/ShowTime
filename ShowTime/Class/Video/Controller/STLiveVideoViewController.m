@@ -136,17 +136,26 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
     }
     _messagePollingView = [[STVideoMessagePollingView alloc] init];
     _messagePollingView.contentInset = UIEdgeInsetsMake(_messagePollingView.messageRowHeight*8, 0, 0, 0);
-    //    [self.view addSubview:_messagePollingView];
+    //        [self.view addSubview:_messagePollingView];
     [self.view insertSubview:_messagePollingView belowSubview:_flowerButton];
     {
         [_messagePollingView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self);
+            make.left.equalTo(self.view);
             make.bottom.equalTo(_flowerButton.mas_top);
             make.right.equalTo(self.view.mas_centerX).multipliedBy(1.5);
-            make.height.equalTo(self.view.mas_height).multipliedBy(0.3);
+//            make.height.equalTo(self.view.mas_height).multipliedBy(0.3);
+             make.height.mas_equalTo(_messagePollingView.contentInset.top);
         }];
         
     }
+    //    [_messagePollingView mas_makeConstraints:^(MASConstraintMaker *make) {
+    //       
+    //        make.left.equalTo(self.view);
+    //        make.bottom.equalTo(_flowerButton.mas_bottom);
+    //        make.height.mas_equalTo(200);
+    //        make.width.mas_equalTo(200);
+    //    }];
+    
     //加载弹幕内容
     [self loadBarrages];
 }
@@ -164,24 +173,33 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
             }];
             //            _usersList = users.copy;
             //            _barrageList = comments.copy;
-            int count = arc4random()%((int)comments.count- 10)+ 10;
+            int count = arc4random()%((int)comments.count- 20)+ 20;
             
             NSMutableArray *userList = [NSMutableArray array];
             NSMutableArray *barrageList = [NSMutableArray array];
             for (int j = 0; j<count; j++) {
                 int  i = arc4random_uniform((int)users.count);
-                
                 NSString *user = users[i];
                 NSString *barrage = comments[i];
                 [userList addObject:user];
                 [barrageList addObject:barrage];
+                
+                
             }
-            NSArray * user =  [[NSSet setWithArray:userList] allObjects];
-            NSArray *barrage = [[NSSet setWithArray:barrageList] allObjects];
+            //下面加@""是为了防止弹幕显示不全,让弹幕往上多滚一点
+            NSMutableArray * userTemp = [NSMutableArray arrayWithArray:[[NSSet setWithArray:userList] allObjects]];
+            NSMutableArray * barrageTemp = [NSMutableArray arrayWithArray:[[NSSet setWithArray:barrageList] allObjects]];
+//            for (int i = 0; i <2; i++) {
+//                NSString *string = @"";
+//                [userTemp addObject:string];
+//                [barrageTemp addObject:string];
+//            }
+            NSArray *user = userTemp;
+            NSArray *barrage = barrageTemp;
             _usersList = user;
             _barrageList = barrage;
             if (!_timer) {
-                _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(gotoMessagePollingView) userInfo:nil repeats:YES];
+                _timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(gotoMessagePollingView) userInfo:nil repeats:YES];
             }
             
             
@@ -191,16 +209,16 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
 }
 
 - (void)gotoMessagePollingView{
-    int i = kSTBarrageIndex ++;
-    //    NSLog(@"%d,%d",i,kSTBarrageIndex);
-    NSString *user = _usersList[i];
-    NSString *barrage = _barrageList[i];
-    if (i == _usersList.count-1) {
+    ++kSTBarrageIndex ;
+   
+    NSString *user = _usersList[kSTBarrageIndex-1];
+    NSString *barrage = _barrageList[kSTBarrageIndex-1];
+    if (kSTBarrageIndex == _usersList.count) {
         kSTBarrageIndex = 0;
         [_timer invalidate];
         _timer = nil;
     }
-    
+     NSLog(@"user --%@,barr%@",user,barrage);
     [_messagePollingView insertMessages:@[barrage] forNames:@[user]withCount:_usersList.count];
 }
 
