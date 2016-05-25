@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@import AVFoundation;
 
 @interface STLiveVideoPlayer : UIView
 
 @property (nonatomic) NSURL *videoURL;
+@property (nonatomic,retain)UILabel *loadingLabel;
+@property (nonatomic,retain) AVPlayer *player;
 
 - (instancetype)initWithVideoURL:(NSURL *)videoURL;
 - (void)startToPlay;

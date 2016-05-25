@@ -60,6 +60,9 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
         }];
     }
     
+    [_player.player addObserver:self forKeyPath:@"status" options:0 context:nil];;
+    
+    
     @weakify(self);
     [_player bk_whenTapped:^{
         @strongify(self);
@@ -135,24 +138,23 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
         }];
     }
     _messagePollingView = [[STVideoMessagePollingView alloc] init];
-    _messagePollingView.contentInset = UIEdgeInsetsMake(_messagePollingView.messageRowHeight*8, 0, 0, 0);
+    _messagePollingView.contentInset = UIEdgeInsetsMake(kScreenHeight /3.5, 0, 0, 0);
     //        [self.view addSubview:_messagePollingView];
     [self.view insertSubview:_messagePollingView belowSubview:_flowerButton];
     {
         [_messagePollingView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view);
-            make.bottom.equalTo(_flowerButton.mas_top);
-//            make.right.equalTo(self.view.mas_centerX).multipliedBy(1.5);
+            make.left.mas_equalTo(self.view);
+            make.bottom.mas_equalTo(_flowerButton.mas_top).mas_offset(-2);
+            //            make.right.equalTo(self.view.mas_centerX).multipliedBy(1.5);
             make.width.mas_equalTo(kScreenWidth*0.75);
             //            make.height.equalTo(self.view.mas_height).multipliedBy(0.3);
-            make.height.mas_equalTo(_messagePollingView.contentInset.top);
+            //            make.height.mas_equalTo(_messagePollingView.contentInset.top);
+            make.height.mas_equalTo(kScreenHeight /3.5);
         }];
         
     }
-  
-    
-    //加载弹幕内容
-    [self loadBarrages];
+    //    //加载弹幕内容
+    //    [self loadBarrages];
 }
 
 - (void)loadBarrages{
@@ -162,17 +164,25 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
             if (commentList.count == 0) {
                 return ;
             }
-            NSLog(@"%ld,%@",(unsigned long)commentList.count,commentList);
             NSMutableArray *users = [NSMutableArray array];
             NSMutableArray *comments = [NSMutableArray array];
             [commentList enumerateObjectsUsingBlock:^(STComment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 [users addObject:obj.userName];
                 [comments addObject:obj.content];
-                //                [self addBarrage];
+                //                NSLog(@"%@,---%@",obj.userName,obj.content);
+                
             }];
-            //            _usersList = users.copy;
-            //            _barrageList = comments.copy;
-            int count = arc4random()%((int)comments.count- 10)+ 10;
+            
+            int count;
+            if (comments.count % 2 == 0) {
+                
+                count = arc4random()%((int)comments.count/3) + ((int)comments.count/3) ;
+            }else {
+                
+                count = arc4random()%((int)comments.count/3) + ((int)comments.count/3) +1 ;
+                
+            }
+            
             
             NSMutableArray *userList = [NSMutableArray array];
             NSMutableArray *barrageList = [NSMutableArray array];
@@ -182,21 +192,18 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
                 NSString *barrage = comments[i];
                 [userList addObject:user];
                 [barrageList addObject:barrage];
+                //                NSLog(@"%d,%@,%@",i,user,barrage);
                 
             }
-            NSMutableArray * userTemp = [NSMutableArray arrayWithArray:[[NSSet setWithArray:userList] allObjects]];
-            NSMutableArray * barrageTemp = [NSMutableArray arrayWithArray:[[NSSet setWithArray:barrageList] allObjects]];
-            //            for (int i = 0; i <2; i++) {
-            //                NSString *string = @"";
-            //                [userTemp addObject:string];
-            //                [barrageTemp addObject:string];
-            //            }
-            NSArray *user = userTemp;
-            NSArray *barrage = barrageTemp;
+            //            NSMutableArray * userTemp = [NSMutableArray arrayWithArray:[[NSSet setWithArray:userList] allObjects]];
+            //            NSMutableArray * barrageTemp = [NSMutableArray arrayWithArray:[[NSSet setWithArray:barrageList] allObjects]];
+            NSArray *user = userList;
+            NSArray *barrage = barrageList;
             _usersList = user;
             _barrageList = barrage;
+            //            NSLog(@"user=%@,barrage=%@",_usersList,_barrageList);
+            
             [self gotoMessagePollingView];
-//            NSLog(@"user=%@,barrage=%@",_usersList,_barrageList);
             if (!_timer) {
                 _timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(gotoMessagePollingView) userInfo:nil repeats:YES];
             }
@@ -206,21 +213,36 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
         
     }];
 }
+//使用KVO监听播放器是否开始播放
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if (object == _player.player && [keyPath isEqualToString:@"status"])
+    {
+        if (_player.player.status == AVPlayerStatusReadyToPlay) {
+            [self loadBarrages];
+        }
+        
+    }
+    
+}
 
 - (void)gotoMessagePollingView{
     ++kSTBarrageIndex ;
-    
-    NSString *user = _usersList[kSTBarrageIndex-1];
-    NSString *barrage = _barrageList[kSTBarrageIndex-1];
-    if (kSTBarrageIndex == _usersList.count) {
+    int i = kSTBarrageIndex-1;
+    NSString *user = _usersList[i];
+    NSString *barrage = _barrageList[i];
+    if (kSTBarrageIndex >= _usersList.count-1) {
         kSTBarrageIndex = 0;
         [_timer invalidate];
         _timer = nil;
     }
-//    NSLog(@"user --%@,barr%@",user,barrage);
+    //    NSLog(@"user --%@,barr%@--->%d",user,barrage,kSTBarrageIndex);
     [_messagePollingView insertMessages:@[barrage] forNames:@[user]withCount:_usersList.count];
 }
 
+- (void)dealloc {
+    [_player.player removeObserver:self forKeyPath:@"status"];
+    
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

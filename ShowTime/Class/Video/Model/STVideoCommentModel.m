@@ -28,7 +28,8 @@
 - (BOOL)fetchCommentWithCompletionHandler:(STCommentCompletionHandler)handler {
     
     @weakify(self);
-    BOOL success = [self requestURLPath:ST_COMMENT_URL withParams:nil responseHandler:^(STURLResponseStatus respStatus, NSString *errorMessage) {
+    NSDictionary *parame = @{@"type":@"2"};
+    BOOL success = [self requestURLPath:ST_COMMENT_URL withParams:parame responseHandler:^(STURLResponseStatus respStatus, NSString *errorMessage) {
         @strongify(self);
         if (!self) {
             return ;

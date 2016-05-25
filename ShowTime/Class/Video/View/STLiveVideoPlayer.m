@@ -8,13 +8,13 @@
 
 #import "STLiveVideoPlayer.h"
 
-@import AVFoundation;
+
 
 @interface STLiveVideoPlayer ()
-{
-    UILabel *_loadingLabel;
-}
-@property (nonatomic,retain) AVPlayer *player;
+//{
+//    UILabel *_loadingLabel;
+//}
+
 @end
 
 @implementation STLiveVideoPlayer
