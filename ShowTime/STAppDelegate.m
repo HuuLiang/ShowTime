@@ -22,6 +22,7 @@
 #import "WeChatPayManager.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "AlipayManager.h"
+#import "STKLaunchView.h"
 
 @interface STAppDelegate () <WXApiDelegate>
 @property (nonatomic,retain) STWeChatPayQueryOrderRequest *wechatPayOrderQueryRequest;
@@ -125,6 +126,8 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     [self setupMobStatistics];
     [self setupCommonStyles];
     [self.window makeKeyAndVisible];
+    STKLaunchView *launchView = [[STKLaunchView alloc] init];
+    [launchView show];
     
     if (![STUtil isRegistered]) {
         [[STActivateModel sharedModel] activateWithCompletionHandler:^(BOOL success, NSString *userId) {
