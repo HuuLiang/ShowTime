@@ -10,6 +10,7 @@
 #import "STPaymentViewController.h"
 #import "STProgram.h"
 #import "STLiveVideoViewController.h"
+#import "STVideoPlayViewController.h"
 
 @import MediaPlayer;
 @import AVKit;
@@ -41,6 +42,21 @@
 
 - (void)payForProgram:(STProgram *)program {
     [[STPaymentViewController sharedPaymentVC] popupPaymentInView:self.view.window forProgram:program];
+}
+
+- (void)playVideo:(STProgram *)video withTimeControl:(BOOL)hasTimeControl shouldPopPayment:(BOOL)shouldPopPayment {
+//    if (hasTimeControl) {
+//        UIViewController *videoPlayVC = [self playerVCWithVideo:video];
+//        videoPlayVC.hidesBottomBarWhenPushed = YES;
+//        [self presentViewController:videoPlayVC animated:YES completion:nil];
+//    } else {
+    if (hasTimeControl && shouldPopPayment) {
+        
+        STVideoPlayViewController *playerVC = [[STVideoPlayViewController alloc] initWithVideo:video];
+        playerVC.hidesBottomBarWhenPushed = YES;
+        [self presentViewController:playerVC animated:YES completion:nil];
+    }
+//    }
 }
 
 //- (UIViewController *)playerVCWithVideo:(STVideo *)video {

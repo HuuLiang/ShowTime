@@ -14,5 +14,6 @@
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSUInteger numberOfGuests;
 @property (nonatomic) BOOL showFooter;
+@property (nonatomic,getter=isShowTrival) BOOL showTrival;
 
 @end

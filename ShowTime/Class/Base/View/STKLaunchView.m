@@ -1,20 +1,20 @@
 //
-//  YYKLaunchView.m
-//  YYKuaibo
+//  STKLaunchView.m
+//  STKuaibo
 //
 //  Created by Sean Yue on 16/4/11.
 //  Copyright © 2016年 iqu8. All rights reserved.
 //
 
-#import "YYKLaunchView.h"
+#import "STKLaunchView.h"
 
-@interface YYKLaunchView ()
+@interface STKLaunchView ()
 {
     UIImageView *_imageView;
 }
 @end
 
-@implementation YYKLaunchView
+@implementation STKLaunchView
 
 - (instancetype)init {
     self = [super init];
@@ -22,7 +22,7 @@
         _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         _imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
-        NSString *launchImagePath = [[NSBundle mainBundle] pathForResource:@"launch_image" ofType:@"jpg"];
+        NSString *launchImagePath = [[NSBundle mainBundle] pathForResource:@"launch_image5" ofType:@"jpg"];
         _imageView.image = [UIImage imageWithContentsOfFile:launchImagePath];
         [self addSubview:_imageView];
     }
@@ -30,7 +30,7 @@
 }
 
 - (void)dealloc {
-    DLog(@"YYKLaunchView dealloc");
+    DLog(@"STKLaunchView dealloc");
 }
 
 - (void)show {

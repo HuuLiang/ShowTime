@@ -12,6 +12,7 @@
 @interface STHomeCell ()
 {
     STFootedView *_footedView;
+    UIImageView *_trivalLabel;
 }
 @end
 
@@ -27,6 +28,35 @@
                 make.edges.equalTo(self);
             }];
         }
+        
+        _trivalLabel = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shibo"]];
+
+        _trivalLabel.hidden = YES;
+        [_footedView addSubview:_trivalLabel];
+        {
+        [_trivalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(_footedView).mas_offset(5);
+            make.right.mas_equalTo(self);
+            make.width.mas_equalTo(40);
+            make.height.mas_equalTo(18);
+        }];
+        
+        }
+        UILabel *textLabel = [[UILabel alloc] init];
+        textLabel.text = @"试播";
+        textLabel.textAlignment = NSTextAlignmentCenter;
+        textLabel.font = [UIFont systemFontOfSize:12.];
+        textLabel.textColor = [UIColor whiteColor];
+        [_trivalLabel addSubview:textLabel];
+        {
+        [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(_trivalLabel);
+            make.left.mas_equalTo(_trivalLabel).mas_offset(5);
+            make.right.mas_equalTo(_trivalLabel).mas_equalTo(-5);
+            
+        }];
+        }
+        
     }
     return self;
 }
@@ -52,5 +82,15 @@
 
 - (void)setShowFooter:(BOOL)showFooter {
     _footedView.showFooterBar = showFooter;
+}
+
+- (void)setShowTrival:(BOOL)showTrival {
+    _showTrival = showTrival;
+    if (showTrival) {
+        _trivalLabel.hidden = NO;
+    }else {
+        _trivalLabel.hidden = YES;
+    }
+
 }
 @end

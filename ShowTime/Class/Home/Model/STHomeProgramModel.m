@@ -70,7 +70,7 @@
     _fetchedVideoAndAdProgramList = [self.fetchedProgramList bk_select:^BOOL(id obj)
                                            {
                                                STProgramType type = ((STPrograms *)obj).type.unsignedIntegerValue;
-                                               return type == STProgramTypeVideo || type == STProgramTypeAd;
+                                               return type == STProgramTypeVideo || type == STProgramTypeAd || type == STProgramTypeTrival;
                                            }];
     
     NSArray<STPrograms *> *bannerProgramList = [self.fetchedProgramList bk_select:^BOOL(id obj)

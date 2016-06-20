@@ -15,4 +15,7 @@
 - (void)switchToPlayProgram:(STProgram *)program;
 - (void)payForProgram:(STProgram *)program;
 
+- (void)playVideo:(STProgram *)video withTimeControl:(BOOL)hasTimeControl shouldPopPayment:(BOOL)shouldPopPayment;
+//- (void)play
+
 @end

@@ -14,6 +14,8 @@
 static NSString *const kAnchorCellReusableIdentifier = @"AnchorCellReusableIdentifier";
 static const CGFloat kInterspacing = 5;
 
+static NSString *kAnchorAttentionArr = @"kanchorattentionarr";
+
 @interface STAnchorViewController () <UITableViewDataSource,UITableViewDelegate>
 {
 //    UIImageView *_headerImageView;
@@ -23,12 +25,36 @@ static const CGFloat kInterspacing = 5;
 }
 @property (nonatomic,retain) STHotVideoModel *videoModel;
 @property (nonatomic,retain) NSMutableArray<STProgram *> *videos;
+
+@property (nonatomic,retain)NSArray *attentArr;//关注人数
+@property (nonatomic,retain)NSArray *changePerson;//
 @end
 
 @implementation STAnchorViewController
 
 DefineLazyPropertyInitialization(STHotVideoModel, videoModel)
 DefineLazyPropertyInitialization(NSMutableArray, videos)
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _attentArr = [defaults objectForKey:kAnchorAttentionArr];
+    if (!_attentArr) {
+        
+        NSMutableArray *attarr = [NSMutableArray array];
+        
+        for (int i = 0; i<250; i++) {
+            NSInteger temp = (arc4random()%10 + 2)*100;
+            NSString *str = [NSString stringWithFormat:@"%ld",(long)temp];
+            [attarr addObject:str];
+            
+        }
+        _attentArr = attarr;
+        [defaults setObject:attarr forKey:kAnchorAttentionArr];
+    }
+    
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -92,6 +118,12 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
         @strongify(self);
         [self loadVideosWithPage:1];
 //        [self loadHeaderImage];
+        NSMutableArray *changeArr = [NSMutableArray array];
+        for (int i = 0; i<250; i++) {
+            NSInteger change = arc4random_uniform(60)+40;
+            NSString *changeStr = [NSString stringWithFormat:@"%ld",(long)change];
+            [changeArr addObject:changeStr];}
+        self.changePerson = changeArr.copy;
         
     }];
     [_layoutTV ST_triggerPullToRefresh];
@@ -189,6 +221,13 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
         STProgram *video = self.videos[indexPath.section];
         cell.imageURL = [NSURL URLWithString:video.coverImg];
         cell.title = video.title;
+        NSUInteger attentText = 0;
+        if (indexPath.section < self.attentArr.count) {
+            NSString *attent = self.attentArr[indexPath.section];
+            NSString *change = self.changePerson[indexPath.section];
+            attentText = (NSUInteger)(attent.integerValue + change.integerValue);
+        }
+        cell.numberOfGuests = attentText;
     }
     return cell;
 }

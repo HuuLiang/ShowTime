@@ -15,7 +15,8 @@ typedef NS_ENUM(NSUInteger, STProgramType) {
     STProgramTypeVideo = 1,
     STProgramTypePicture = 2,
     STProgramTypeAd = 3,
-    STProgramTypeBanner = 4
+    STProgramTypeBanner = 4,
+    STProgramTypeTrival = 5
 };
 
 @protocol STProgramUrl <NSObject>

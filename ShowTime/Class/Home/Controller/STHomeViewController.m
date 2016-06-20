@@ -16,6 +16,8 @@ static NSString *const kNormalCellReusableIdentifier = @"NormalCellReusableIdent
 static NSString *const kHeaderViewReusableIdentifier = @"HeaderViewReusableIdentifier";
 
 static const CGFloat kInteritemSpacing = 5;
+static NSString *kHomeAttentionArr = @"khomeattentionarr";
+
 
 @interface STHomeViewController () <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -25,6 +27,9 @@ static const CGFloat kInteritemSpacing = 5;
 
 @property (nonatomic,readonly) CGSize normalCellSize;
 @property (nonatomic,readonly) CGSize bannerCellSize;
+
+@property (nonatomic,retain)NSArray *attentArr;//关注人数
+@property (nonatomic,retain)NSArray *changePerson;//
 @end
 
 @implementation STHomeViewController
@@ -32,6 +37,26 @@ static const CGFloat kInteritemSpacing = 5;
 @synthesize bannerCellSize = _bannerCellSize;
 
 DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _attentArr = [defaults objectForKey:kHomeAttentionArr];
+    if (!_attentArr) {
+        
+        NSMutableArray *attarr = [NSMutableArray array];
+        
+        for (int i = 0; i<250; i++) {
+            NSInteger temp = (arc4random()%10 + 2)*100;
+            NSString *str = [NSString stringWithFormat:@"%ld",(long)temp];
+            [attarr addObject:str];
+            
+        }
+        _attentArr = attarr;
+        [defaults setObject:attarr forKey:kHomeAttentionArr];
+    }
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,6 +85,12 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
     [_layoutCV ST_addPullToRefreshWithHandler:^{
         @strongify(self);
         [self reloadPrograms];
+        NSMutableArray *changeArr = [NSMutableArray array];
+        for (int i = 0; i<250; i++) {
+            NSInteger change = arc4random_uniform(60)+40;
+            NSString *changeStr = [NSString stringWithFormat:@"%ld",(long)change];
+            [changeArr addObject:changeStr];}
+         self.changePerson = changeArr.copy;
     }];
     [_layoutCV ST_triggerPullToRefresh];
 }
@@ -150,11 +181,36 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
     
     STHomeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kNormalCellReusableIdentifier
                                                                  forIndexPath:indexPath];
-    if (programs.type.unsignedIntegerValue == STProgramTypeVideo) {
+    if (programs.type.unsignedIntegerValue == STProgramTypeVideo || programs.type.unsignedIntegerValue == STProgramTypeTrival) {
         cell.imageURL = [NSURL URLWithString:program.coverImg];
         cell.title = program.title;
-        cell.numberOfGuests = program.specialDesc.integerValue;
+      
+//        if (indexPath.item < self.attentArr.count) {
+//            NSString *attent = self.attentArr[indexPath.item];
+//            NSString *change = self.changePerson[indexPath.item];
+//            attentText = (NSUInteger)(attent.integerValue + change.integerValue);
+//        }
+//        cell.numberOfGuests = attentText;
         cell.showFooter = YES;
+        cell.showTrival = NO;
+         NSUInteger attentText = 0;
+        if (programs.type.unsignedIntegerValue == STProgramTypeTrival) {
+            cell.showTrival = YES;
+            if (indexPath.item < self.attentArr.count) {
+                NSString *attent = self.attentArr[indexPath.item];
+                NSString *change = self.changePerson[indexPath.item];
+                attentText = (NSUInteger)(attent.integerValue + change.integerValue);
+            }
+            cell.numberOfGuests = attentText;
+        }else {
+            if (indexPath.item < self.attentArr.count) {
+                NSString *attent = self.attentArr[indexPath.item+2];
+                NSString *change = self.changePerson[indexPath.item+2];
+                attentText = (NSUInteger)(attent.integerValue + change.integerValue);
+            }
+            cell.numberOfGuests = attentText;
+        
+        }
     } else if (programs.type.unsignedIntegerValue == STProgramTypeAd) {
         cell.imageURL = [NSURL URLWithString:programs.columnImg];
         cell.showFooter = NO;
@@ -183,14 +239,15 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+//    NSLog(@">>>%ld",self.programModel.fetchedVideoAndAdProgramList.count);
     return self.programModel.fetchedVideoAndAdProgramList.count;
     
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     STPrograms *programs = [self programsInSection:section];
-    
-    if (programs.type.unsignedIntegerValue == STProgramTypeVideo) {
+    //|| programs.type.unsignedIntegerValue == STProgramTypeTrival
+    if (programs.type.unsignedIntegerValue == STProgramTypeVideo || programs.type.unsignedIntegerValue == STProgramTypeTrival) {
         return programs.programList.count;
     } else if (programs.type.unsignedIntegerValue == STProgramTypeAd) {
         return 1;
@@ -218,8 +275,9 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
+//     return CGSizeMake(collectionView.bounds.size.width-kInteritemSpacing*2, MIN(25,collectionView.bounds.size.height*0.06));
     STPrograms *programs = [self programsInSection:section];
-    if (programs.type.unsignedIntegerValue == STProgramTypeVideo) {
+    if (programs.type.unsignedIntegerValue ==  STProgramTypeVideo ) {
         return CGSizeMake(collectionView.bounds.size.width-kInteritemSpacing*2, MIN(25,collectionView.bounds.size.height*0.06));
     }
     return CGSizeZero;
@@ -227,7 +285,7 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     STPrograms *programs = [self programsInSection:indexPath.section];
-    if (programs.type.unsignedIntegerValue == STProgramTypeVideo) {
+    if (programs.type.unsignedIntegerValue == STProgramTypeVideo ||programs.type.unsignedIntegerValue == STProgramTypeTrival) {
         return self.normalCellSize;
     } else if (programs.type.unsignedIntegerValue == STProgramTypeAd) {
         return self.bannerCellSize;
@@ -237,7 +295,7 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     STPrograms *programs = [self programsInSection:section];
-    if (programs.type.unsignedIntegerValue == STProgramTypeVideo) {
+    if (programs.type.unsignedIntegerValue == STProgramTypeVideo ||programs.type.unsignedIntegerValue == STProgramTypeTrival) {
         return UIEdgeInsetsMake(kInteritemSpacing, kInteritemSpacing, kInteritemSpacing, kInteritemSpacing);
     } else if (programs.type.unsignedIntegerValue == STProgramTypeAd) {
         return UIEdgeInsetsMake(0, kInteritemSpacing, kInteritemSpacing, kInteritemSpacing);
@@ -254,6 +312,9 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
         }
     } else if (programs.type.unsignedIntegerValue == STProgramTypeAd) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:programs.spreadUrl]];
+    } else if (programs.type.unsignedIntegerValue == STProgramTypeTrival) {
+        [self playVideo:programs.programList[indexPath.item] withTimeControl:YES shouldPopPayment:YES];
+    
     }
 }
 @end
