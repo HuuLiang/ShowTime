@@ -35,27 +35,6 @@ static NSString *kAnchorAttentionArr = @"kanchorattentionarr";
 DefineLazyPropertyInitialization(STHotVideoModel, videoModel)
 DefineLazyPropertyInitialization(NSMutableArray, videos)
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _attentArr = [defaults objectForKey:kAnchorAttentionArr];
-    if (!_attentArr) {
-        
-        NSMutableArray *attarr = [NSMutableArray array];
-        
-        for (int i = 0; i<250; i++) {
-            NSInteger temp = (arc4random()%10 + 2)*100;
-            NSString *str = [NSString stringWithFormat:@"%ld",(long)temp];
-            [attarr addObject:str];
-            
-        }
-        _attentArr = attarr;
-        [defaults setObject:attarr forKey:kAnchorAttentionArr];
-    }
-    
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -116,14 +95,8 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
 
     [_layoutTV ST_addPullToRefreshWithHandler:^{
         @strongify(self);
-        [self loadVideosWithPage:1];
+        [self loadVideosWithPage:1 WithIsRefresh:YES];
 //        [self loadHeaderImage];
-        NSMutableArray *changeArr = [NSMutableArray array];
-        for (int i = 0; i<250; i++) {
-            NSInteger change = arc4random_uniform(60)+40;
-            NSString *changeStr = [NSString stringWithFormat:@"%ld",(long)change];
-            [changeArr addObject:changeStr];}
-        self.changePerson = changeArr.copy;
         
     }];
     [_layoutTV ST_triggerPullToRefresh];
@@ -132,7 +105,7 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
         @strongify(self);
         
         NSUInteger currentPage = self.videoModel.fetchedVideos.page.unsignedIntegerValue;
-        [self loadVideosWithPage:currentPage+1];
+        [self loadVideosWithPage:currentPage+1 WithIsRefresh:NO];
     }];
 }
 
@@ -175,7 +148,7 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
 //    }];
 //}
 
-- (void)loadVideosWithPage:(NSUInteger)page {
+- (void)loadVideosWithPage:(NSUInteger)page WithIsRefresh:(BOOL)isRefresh{
     @weakify(self);
     [self.videoModel fetchVideosWithPageNo:page completionHandler:^(BOOL success, STVideos *videos) {
         @strongify(self);
@@ -186,6 +159,10 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
         [self->_layoutTV ST_endPullToRefresh];
         
         if (success) {
+            if (isRefresh) {
+                [self attentPerson];//生成随机关注人数
+            }
+            
             if (page == 1) {
                 [self.videos removeAllObjects];
             }
@@ -197,6 +174,37 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
             }
         }
     }];
+}
+
+
+//关注的人数(客户端随机生成)
+- (void)attentPerson{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    _attentArr = [defaults objectForKey:kAnchorAttentionArr];
+    if (_attentArr.count != _videoModel.fetchedVideos.items.integerValue || _attentArr.count==0 ) {
+        
+        NSMutableArray *attarr = [NSMutableArray array];
+        
+        for (int i = 0; i<_videoModel.fetchedVideos.items.integerValue; i++) {
+            NSInteger temp = (arc4random()%50 + 10)*100;
+            NSString *str = [NSString stringWithFormat:@"%ld",(long)temp];
+            [attarr addObject:str];
+            
+        }
+        _attentArr = attarr;
+        [defaults setObject:attarr forKey:kAnchorAttentionArr];
+    }
+    
+    NSMutableArray *changeArr = [NSMutableArray array];
+    for (int i = 0; i<_videoModel.fetchedVideos.items.integerValue; i++) {
+        NSInteger change = arc4random_uniform(60)+40;
+        NSString *changeStr = [NSString stringWithFormat:@"%ld",(long)change];
+        [changeArr addObject:changeStr];
+    }
+    self.changePerson = changeArr.copy;
+    
 }
 
 //- (void)onPaidNotification:(NSNotification *)notification {

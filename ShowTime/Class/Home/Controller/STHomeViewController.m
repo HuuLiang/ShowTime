@@ -11,6 +11,8 @@
 #import "STHomeCollectionHeaderView.h"
 #import "STHomeProgramModel.h"
 
+NSInteger items = 300;//生成随机人数的数量,如果后台可以获取到总共的items则需要换成后台获取的items
+
 static NSString *const kNormalCellReusableIdentifier = @"NormalCellReusableIdentifier";
 //static NSString *const kBannerCellReusableIdentifier = @"BannerCellReusableIdentifier";
 static NSString *const kHeaderViewReusableIdentifier = @"HeaderViewReusableIdentifier";
@@ -38,25 +40,25 @@ static NSString *kHomeAttentionArr = @"khomeattentionarr";
 
 DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _attentArr = [defaults objectForKey:kHomeAttentionArr];
-    if (!_attentArr) {
-        
-        NSMutableArray *attarr = [NSMutableArray array];
-        
-        for (int i = 0; i<250; i++) {
-            NSInteger temp = (arc4random()%10 + 2)*100;
-            NSString *str = [NSString stringWithFormat:@"%ld",(long)temp];
-            [attarr addObject:str];
-            
-        }
-        _attentArr = attarr;
-        [defaults setObject:attarr forKey:kHomeAttentionArr];
-    }
-    
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    _attentArr = [defaults objectForKey:kHomeAttentionArr];
+//    if (!_attentArr) {
+//        
+//        NSMutableArray *attarr = [NSMutableArray array];
+//        
+//        for (int i = 0; i<250; i++) {
+//            NSInteger temp = (arc4random()%10 + 2)*100;
+//            NSString *str = [NSString stringWithFormat:@"%ld",(long)temp];
+//            [attarr addObject:str];
+//            
+//        }
+//        _attentArr = attarr;
+//        [defaults setObject:attarr forKey:kHomeAttentionArr];
+//    }
+//    
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,12 +87,12 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
     [_layoutCV ST_addPullToRefreshWithHandler:^{
         @strongify(self);
         [self reloadPrograms];
-        NSMutableArray *changeArr = [NSMutableArray array];
-        for (int i = 0; i<250; i++) {
-            NSInteger change = arc4random_uniform(60)+40;
-            NSString *changeStr = [NSString stringWithFormat:@"%ld",(long)change];
-            [changeArr addObject:changeStr];}
-         self.changePerson = changeArr.copy;
+//        NSMutableArray *changeArr = [NSMutableArray array];
+//        for (int i = 0; i<250; i++) {
+//            NSInteger change = arc4random_uniform(60)+40;
+//            NSString *changeStr = [NSString stringWithFormat:@"%ld",(long)change];
+//            [changeArr addObject:changeStr];}
+//         self.changePerson = changeArr.copy;
     }];
     [_layoutCV ST_triggerPullToRefresh];
 }
@@ -101,11 +103,48 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
         @strongify(self);
         
         if (success) {
+            [self attentPerson];
             [self->_layoutCV reloadData];
         }
         [self->_layoutCV ST_endPullToRefresh];
     }];
 }
+
+//关注的人数(客户端随机生成)
+- (void)attentPerson{
+    NSInteger allItems = 0;
+    for (STChannel *channel in _programModel.fetchedProgramList) {
+        allItems = (channel.items.integerValue) + allItems;
+    }
+    items = allItems ? allItems : items ;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    _attentArr = [defaults objectForKey:kHomeAttentionArr];
+    if (_attentArr.count != items || _attentArr.count==0 ) {
+        
+        NSMutableArray *attarr = [NSMutableArray array];
+        
+        for (int i = 0; i<items; i++) {
+            NSInteger temp = (arc4random()%50 + 10)*100;
+            NSString *str = [NSString stringWithFormat:@"%ld",(long)temp];
+            [attarr addObject:str];
+            
+        }
+        _attentArr = attarr;
+        [defaults setObject:attarr forKey:kHomeAttentionArr];
+    }
+    
+    NSMutableArray *changeArr = [NSMutableArray array];
+    for (int i = 0; i<items; i++) {
+        NSInteger change = arc4random_uniform(60)+40;
+        NSString *changeStr = [NSString stringWithFormat:@"%ld",(long)change];
+        [changeArr addObject:changeStr];
+    }
+    self.changePerson = changeArr.copy;
+    
+}
+
 
 - (STChannel *)programsInSection:(NSUInteger)section {
     STChannel *programs;
