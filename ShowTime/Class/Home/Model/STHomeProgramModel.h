@@ -10,15 +10,15 @@
 #import "STProgram.h"
 
 @interface STHomeProgramResponse : STURLResponse
-@property (nonatomic,retain) NSArray<STPrograms> *columnList;
+@property (nonatomic,retain) NSArray<STChannel *> *columnList;
 @end
 
 typedef void (^STFetchHomeProgramsCompletionHandler)(BOOL success, NSArray *programs);
 
 @interface STHomeProgramModel : STEncryptedURLRequest
 
-@property (nonatomic,retain,readonly) NSArray<STPrograms *> *fetchedProgramList;
-@property (nonatomic,retain,readonly) NSArray<STPrograms *> *fetchedVideoAndAdProgramList;
+@property (nonatomic,retain,readonly) NSArray<STChannel *> *fetchedProgramList;
+@property (nonatomic,retain,readonly) NSArray<STChannel *> *fetchedVideoAndAdProgramList;
 
 @property (nonatomic,retain,readonly) NSArray<STProgram *> *fetchedBannerPrograms;
 

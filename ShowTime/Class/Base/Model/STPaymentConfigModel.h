@@ -13,6 +13,7 @@
 
 @property (nonatomic,readonly) BOOL loaded;
 
+
 + (instancetype)sharedModel;
 
 - (BOOL)fetchConfigWithCompletionHandler:(STCompletionHandler)handler;

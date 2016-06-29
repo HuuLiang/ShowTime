@@ -58,8 +58,11 @@
                     self.spreadTopImage = config.value;
                 } else if ([config.name isEqualToString:ST_SYSTEM_CONFIG_SPREAD_URL]) {
                     self.spreadURL = config.value;
+                }else if ([config.name isEqualToString:ST_SYSTEM_CONFIG_STATS_TIME_INTERVAL]) {
+                    self.statsTimeInterval = config.value.integerValue;
                 }
             }];
+            _loaded = YES;
         }
         
         if (handler) {

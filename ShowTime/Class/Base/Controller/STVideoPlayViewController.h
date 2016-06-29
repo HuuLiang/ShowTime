@@ -11,6 +11,8 @@
 
 @interface STVideoPlayViewController : STBaseViewController
 
+@property (nonatomic) NSUInteger videoLocation;
+@property (nonatomic,retain) STChannel *channel;
 @property (nonatomic) BOOL shouldPopupPaymentIfNotPaid;
 @property (nonatomic,retain,readonly) STProgram *video;
 

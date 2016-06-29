@@ -10,7 +10,10 @@
 
 @interface STLiveVideoViewController : STBaseViewController
 
-@property (nonatomic,retain,readonly) STVideo *video;
+@property (nonatomic,retain,readonly) STProgram *video;
+@property (nonatomic)BOOL isTrival;
+@property (nonatomic) NSUInteger videoLocation;
+@property (nonatomic,retain) STChannel *channel;
 
 - (instancetype)initWithVideo:(STVideo *)video;
 

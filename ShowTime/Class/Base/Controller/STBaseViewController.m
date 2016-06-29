@@ -10,7 +10,7 @@
 #import "STPaymentViewController.h"
 #import "STProgram.h"
 #import "STLiveVideoViewController.h"
-#import "STVideoPlayViewController.h"
+//#import "STVideoPlayViewController.h"
 
 @import MediaPlayer;
 @import AVKit;
@@ -24,24 +24,38 @@
 
 @implementation STBaseViewController
 
+- (NSUInteger)currentIndex {
+    return NSNotFound;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithWhite:0.93 alpha:1];
 }
 
-- (void)switchToPlayProgram:(STProgram *)program {
-    if (![STUtil isPaid]) {
-        [self payForProgram:program];
-    } else if (program.type.unsignedIntegerValue == STProgramTypeVideo) {
+- (void)switchToPlayProgram:(STProgram *)program isTrival:(BOOL)isTrival
+            programLocation:(NSUInteger)programLocation
+                  inChannel:(STChannel *)channel{
+    if (![STUtil isPaid] && isTrival == NO) {
+        [self payForProgram:program programLocation:programLocation inChannel:channel];
+    } else if (program.type.unsignedIntegerValue == STProgramTypeVideo && isTrival == NO) {
         UIViewController *videoPlayVC = [[STLiveVideoViewController alloc] initWithVideo:program];//[self playerVCWithVideo:program];
         videoPlayVC.hidesBottomBarWhenPushed = YES;
+        [self presentViewController:videoPlayVC animated:YES completion:nil];
+    }else if (![STUtil isPaid] && isTrival == YES) {
+    STLiveVideoViewController *videoPlayVC = [[STLiveVideoViewController alloc] initWithVideo:program];
+        videoPlayVC.isTrival = YES;
+        videoPlayVC.channel = channel;
+        videoPlayVC.videoLocation = programLocation;
         [self presentViewController:videoPlayVC animated:YES completion:nil];
     }
 }
 
-- (void)payForProgram:(STProgram *)program {
-    [[STPaymentViewController sharedPaymentVC] popupPaymentInView:self.view.window forProgram:program];
+- (void)payForProgram:(STProgram *)program programLocation:(NSUInteger)programLocation
+            inChannel:(STChannel *)channel{
+    [[STPaymentViewController sharedPaymentVC] popupPaymentInView:self.view.window forProgram:program programLocation:programLocation inChannel:channel];
 }
 
 - (void)playVideo:(STProgram *)video withTimeControl:(BOOL)hasTimeControl shouldPopPayment:(BOOL)shouldPopPayment {
@@ -52,9 +66,9 @@
 //    } else {
     if (hasTimeControl && shouldPopPayment) {
         
-        STVideoPlayViewController *playerVC = [[STVideoPlayViewController alloc] initWithVideo:video];
-        playerVC.hidesBottomBarWhenPushed = YES;
-        [self presentViewController:playerVC animated:YES completion:nil];
+//        STVideoPlayViewController *playerVC = [[STVideoPlayViewController alloc] initWithVideo:video];
+//        playerVC.hidesBottomBarWhenPushed = YES;
+//        [self presentViewController:playerVC animated:YES completion:nil];
     }
 //    }
 }

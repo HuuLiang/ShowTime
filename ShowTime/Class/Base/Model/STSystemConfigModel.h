@@ -26,6 +26,10 @@ typedef void (^STFetchSystemConfigCompletionHandler)(BOOL success);
 @property (nonatomic) NSString *startupInstall;
 @property (nonatomic) NSString *startupPrompt;
 
+@property (nonatomic) NSUInteger statsTimeInterval;
+@property (nonatomic,readonly) BOOL loaded;
+
+
 + (instancetype)sharedModel;
 
 - (BOOL)fetchSystemConfigWithCompletionHandler:(STFetchSystemConfigCompletionHandler)handler;

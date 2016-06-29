@@ -9,10 +9,10 @@
 #import "STEncryptedURLRequest.h"
 #import "STProgram.h"
 
-@interface STVideos : STPrograms
-@property (nonatomic) NSNumber *items;
-@property (nonatomic) NSNumber *page;
-@property (nonatomic) NSNumber *pageSize;
+@interface STVideos : STChannel
+//@property (nonatomic) NSNumber *items;
+//@property (nonatomic) NSNumber *page;
+//@property (nonatomic) NSNumber *pageSize;
 
 @end
 

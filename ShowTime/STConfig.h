@@ -15,7 +15,7 @@
 #define ST_PACKAGE_CERTIFICATE  @"iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd."
 
 #define ST_REST_APP_ID          @"QUBA_2005"
-#define ST_REST_PV              @"110"
+#define ST_REST_PV              @110
 #define ST_REST_APP_VERSION     ((NSString *)([NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"]))
 
 //#define ST_BASE_URL             @"http://120.24.252.114:8093"
@@ -39,6 +39,15 @@
 #define ST_PAYMENT_COMMIT_URL           @"http://pay.iqu8.net/paycenter/qubaPr.json"
 #define ST_PAYMENT_RESERVE_DATA         [NSString stringWithFormat:@"%@$%@", ST_REST_APP_ID, ST_CHANNEL_NO]
 
+
+#define ST_STATS_BASE_URL              @"http://stats.iqu8.cn"//@"http://120.24.252.114"//
+#define ST_STATS_CPC_URL               @"/stats/cpcs.service"
+#define ST_STATS_TAB_URL               @"/stats/tabStat.service"
+#define ST_STATS_PAY_URL               @"/stats/payRes.service"
+static NSString *const kLaunchSeqKeyName = @"stshoutime_launchseq_keyname";
+
+
+
 #define ST_WECHAT_APP_ID        @"wx4af04eb5b3dbfb56"
 #define ST_WECHAT_MCH_ID        @"1281148901"
 #define ST_WECHAT_PRIVATE_KEY   @"hangzhouquba20151112qwertyuiopas"
@@ -59,5 +68,8 @@
 #define ST_SYSTEM_CONFIG_STARTUP_INSTALL    @"START_INSTALL"
 #define ST_SYSTEM_CONFIG_SPREAD_TOP_IMAGE   @"SPREAD_TOP_IMG"
 #define ST_SYSTEM_CONFIG_SPREAD_URL         @"SPREAD_URL"
+#define ST_SYSTEM_CONFIG_STATS_TIME_INTERVAL   @"STATS_TIME_INTERVAL"
+
+
 
 #endif /* STConfig_h */

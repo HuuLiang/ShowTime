@@ -23,8 +23,9 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "AlipayManager.h"
 #import "STKLaunchView.h"
+#import "STSystemConfigModel.h"
 
-@interface STAppDelegate () <WXApiDelegate>
+@interface STAppDelegate () <WXApiDelegate,UITabBarControllerDelegate>
 @property (nonatomic,retain) STWeChatPayQueryOrderRequest *wechatPayOrderQueryRequest;
 @end
 
@@ -65,7 +66,7 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[anchorNav, homeNav, mineNav];
     tabBarController.selectedViewController = homeNav;
-    
+    tabBarController.delegate = self;
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _window.rootViewController = tabBarController;
     return _window;
@@ -121,10 +122,13 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [STUtil accumateLaunchSeq];
     [[STErrorHandler sharedHandler] initialize];
     [[STPaymentManager sharedManager] setup];
     [self setupMobStatistics];
     [self setupCommonStyles];
+    [[STNetworkInfo sharedInfo] startMonitoring];
+    
     [self.window makeKeyAndVisible];
     STKLaunchView *launchView = [[STKLaunchView alloc] init];
     [launchView show];
@@ -142,6 +146,15 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     
     [[STPaymentModel sharedModel] startRetryingToCommitUnprocessedOrders];
     [[STSystemConfigModel sharedModel] fetchSystemConfigWithCompletionHandler:^(BOOL success) {
+        NSUInteger statsTimeInterval = 180;
+        if ([STSystemConfigModel sharedModel].loaded && [STSystemConfigModel sharedModel].statsTimeInterval > 0) {
+            statsTimeInterval = [STSystemConfigModel sharedModel].statsTimeInterval;
+        }
+        statsTimeInterval = 20;
+        [[STStatsManager sharedManager] scheduleStatsUploadWithTimeInterval:statsTimeInterval];
+        
+
+        
         if (!success) {
             return ;
         }
@@ -234,4 +247,16 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
         [[WeChatPayManager sharedInstance] sendNotificationByResult:payResult];
     }
 }
+
+#pragma mark - UITabBarControllerDelegate
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    [[STStatsManager sharedManager] statsTabIndex:tabBarController.selectedIndex subTabIndex:[STUtil currentSubTabPageIndex] forClickCount:1];
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    [[STStatsManager sharedManager] statsStopDurationAtTabIndex:tabBarController.selectedIndex subTabIndex:[STUtil currentSubTabPageIndex]];
+    return YES;
+}
+
 @end

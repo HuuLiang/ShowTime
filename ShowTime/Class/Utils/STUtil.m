@@ -12,6 +12,7 @@
 #import "NSDate+Utilities.h"
 #import "STPaymentInfo.h"
 #import "STVideo.h"
+#import "STBaseViewController.h"
 
 NSString *const kPaymentInfoKeyName = @"jqkuaibov_paymentinfo_keyname";
 
@@ -77,6 +78,7 @@ static NSString *const kUserAccessServicename = @"jqkuaibov_user_access_service"
 }
 
 + (BOOL)isPaid {
+    return YES;
     return [self successfulPaymentInfo] != nil;
 }
 
@@ -102,4 +104,43 @@ static NSString *const kUserAccessServicename = @"jqkuaibov_user_access_service"
 + (NSString *)paymentReservedData {
     return [NSString stringWithFormat:@"%@$%@", ST_REST_APP_ID, ST_CHANNEL_NO];
 }
+
+
+
++ (NSUInteger)launchSeq {
+    NSNumber *launchSeq = [[NSUserDefaults standardUserDefaults] objectForKey:kLaunchSeqKeyName];
+    return launchSeq.unsignedIntegerValue;
+}
+
++ (void)accumateLaunchSeq {
+    NSUInteger launchSeq = [self launchSeq];
+    [[NSUserDefaults standardUserDefaults] setObject:@(launchSeq+1) forKey:kLaunchSeqKeyName];
+}
+
+
+
++ (NSUInteger)currentTabPageIndex {
+    UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabVC = (UITabBarController *)rootVC;
+        return tabVC.selectedIndex;
+    }
+    return 0;
+}
+
++ (NSUInteger)currentSubTabPageIndex {
+    UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabVC = (UITabBarController *)rootVC;
+        if ([tabVC.selectedViewController isKindOfClass:[UINavigationController class]]) {
+            UINavigationController *navVC = (UINavigationController *)tabVC.selectedViewController;
+            if ([navVC.visibleViewController isKindOfClass:[STBaseViewController class]]) {
+                STBaseViewController *baseVC = (STBaseViewController *)navVC.visibleViewController;
+                return [baseVC currentIndex];
+            }
+        }
+    }
+    return NSNotFound;
+}
+
 @end

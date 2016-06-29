@@ -18,11 +18,18 @@ typedef void(^STPaymentCompletionHandler)(PAYRESULT payResult, STPaymentInfo *pa
 
 - (void)setup;
 
-- (BOOL)startPaymentWithType:(STPaymentType)type
-                     subType:(STPaymentType)subType
-                       price:(NSUInteger)price
-                  forProgram:(STProgram *)program
-           completionHandler:(STPaymentCompletionHandler)handler;
+//- (BOOL)startPaymentWithType:(STPaymentType)type
+//                     subType:(STPaymentType)subType
+//                       price:(NSUInteger)price
+//                  forProgram:(STProgram *)program
+//           completionHandler:(STPaymentCompletionHandler)handler;
+- (STPaymentInfo *)startPaymentWithType:(STPaymentType)type
+                                subType:(STPaymentType)subType
+                                  price:(NSUInteger)price
+                             forProgram:(STProgram *)program
+                        programLocation:(NSUInteger)programLocation
+                              inChannel:(STChannel *)channel
+                      completionHandler:(STPaymentCompletionHandler)handler;
 
 - (void)handleOpenURL:(NSURL *)url;
 - (void)checkPayment;

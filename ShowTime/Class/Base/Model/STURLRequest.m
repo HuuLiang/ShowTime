@@ -174,6 +174,7 @@
 - (void)processResponseObject:(id)responseObject withResponseHandler:(STURLResponseHandler)responseHandler {
     STURLResponseStatus status = STURLResponseNone;
     NSString *errorMessage;
+    
     if ([responseObject isKindOfClass:[NSDictionary class]]) {
         if ([self.response isKindOfClass:[STURLResponse class]]) {
             STURLResponse *urlResp = self.response;

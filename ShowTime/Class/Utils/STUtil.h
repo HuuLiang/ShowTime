@@ -32,4 +32,11 @@ extern NSString *const kPaymentInfoKeyName;
 
 + (NSString *)paymentReservedData;
 
++ (NSUInteger)launchSeq;
++ (void)accumateLaunchSeq;
++ (NSUInteger)currentTabPageIndex;
++ (NSUInteger)currentSubTabPageIndex;
+
+
+
 @end

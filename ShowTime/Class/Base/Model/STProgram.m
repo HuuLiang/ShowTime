@@ -20,10 +20,10 @@
 
 @end
 
-@implementation STPrograms
+//@implementation STPrograms
+//
+//- (Class)programListElementClass {
+//    return [STProgram class];
+//}
 
-- (Class)programListElementClass {
-    return [STProgram class];
-}
-
-@end
+//@end

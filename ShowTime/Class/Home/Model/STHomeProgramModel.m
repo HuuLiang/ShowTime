@@ -11,7 +11,7 @@
 @implementation STHomeProgramResponse
 
 - (Class)columnListElementClass {
-    return [STPrograms class];
+    return [STChannel class];
 }
 
 @end
@@ -69,18 +69,18 @@
 - (void)filterProgramTypes {
     _fetchedVideoAndAdProgramList = [self.fetchedProgramList bk_select:^BOOL(id obj)
                                            {
-                                               STProgramType type = ((STPrograms *)obj).type.unsignedIntegerValue;
+                                               STProgramType type = ((STChannel *)obj).type.unsignedIntegerValue;
                                                return type == STProgramTypeVideo || type == STProgramTypeAd || type == STProgramTypeTrival;
                                            }];
     
-    NSArray<STPrograms *> *bannerProgramList = [self.fetchedProgramList bk_select:^BOOL(id obj)
+    NSArray<STChannel *> *bannerProgramList = [self.fetchedProgramList bk_select:^BOOL(id obj)
                                                 {
-                                                    STProgramType type = ((STPrograms *)obj).type.unsignedIntegerValue;
+                                                    STProgramType type = ((STChannel *)obj).type.unsignedIntegerValue;
                                                     return type == STProgramTypeBanner;
                                                 }];
     
     NSMutableArray *bannerPrograms = [NSMutableArray array];
-    [bannerProgramList enumerateObjectsUsingBlock:^(STPrograms * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [bannerProgramList enumerateObjectsUsingBlock:^(STChannel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.programList.count > 0) {
             [bannerPrograms addObjectsFromArray:obj.programList];
         }

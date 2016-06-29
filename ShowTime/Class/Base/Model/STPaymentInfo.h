@@ -17,6 +17,10 @@ typedef NS_ENUM(NSUInteger, STPaymentStatus) {
 
 @interface STPaymentInfo : NSObject
 
+@property (nonatomic) NSNumber *contentLocation;
+@property (nonatomic) NSNumber *columnId;
+@property (nonatomic) NSNumber *columnType;
+
 @property (nonatomic) NSString *paymentId;
 @property (nonatomic) NSString *orderId;
 @property (nonatomic) NSNumber *orderPrice;

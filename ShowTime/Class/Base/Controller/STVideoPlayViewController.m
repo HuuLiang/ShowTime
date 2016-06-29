@@ -66,7 +66,9 @@
 - (void)dismissAndPopPayment {
     if (![STUtil isPaid]) {
         
-        [[STPaymentViewController sharedPaymentVC] popupPaymentInView:self.view.window forProgram:self.video];
+//        [[STPaymentViewController sharedPaymentVC] popupPaymentInView:self.view.window forProgram:self.video];
+//        [[STPaymentViewController sharedPaymentVC] popupPaymentInView:self.view.window forProgram:self.video programLocation:self inChannel:<#(STChannel *)#>];
+        
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

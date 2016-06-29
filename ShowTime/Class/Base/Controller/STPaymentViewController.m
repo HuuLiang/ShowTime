@@ -26,6 +26,9 @@
 @property (nonatomic,retain) STProgram *programToPayFor;
 @property (nonatomic,retain) STPaymentInfo *paymentInfo;
 
+@property (nonatomic) NSUInteger programLocationToPayFor;
+@property (nonatomic,retain) STChannel *channelToPayFor;
+
 @property (nonatomic,readonly,retain) NSDictionary *paymentTypeMap;
 @end
 
@@ -70,7 +73,7 @@
         [_popView addPaymentWithImage:[UIImage imageNamed:@"wechat_icon"] title:@"微信客户端支付" available:YES action:^(id sender) {
             Pay(useBuildInWeChatPay?STPaymentTypeWeChatPay:STPaymentTypeIAppPay, useBuildInWeChatPay?STPaymentTypeNone:STPaymentTypeWeChatPay);
         }];
-
+        
     }
     
     if (([STPaymentConfig sharedConfig].iappPayInfo.supportPayTypes.unsignedIntegerValue & STIAppPayTypeAlipay)
@@ -84,6 +87,8 @@
     _popView.closeAction = ^(id sender){
         @strongify(self);
         [self hidePayment];
+        [[STStatsManager sharedManager] statsPayWithOrderNo:nil payAction:STStatsPayActionClose payResult:PAYRESULT_UNKNOWN forProgram:self.programToPayFor programLocation:self.programLocationToPayFor inChannel:self.channelToPayFor andTabIndex:[STUtil currentTabPageIndex] subTabIndex:[STUtil currentSubTabPageIndex]];
+        
     };
     return _popView;
 }
@@ -103,13 +108,17 @@
     }
 }
 
-- (void)popupPaymentInView:(UIView *)view forProgram:(STProgram *)program {
+- (void)popupPaymentInView:(UIView *)view forProgram:(STProgram *)program
+           programLocation:(NSUInteger)programLocation
+                 inChannel:(STChannel *)channel{
     if (self.view.superview) {
         [self.view removeFromSuperview];
     }
     
     self.payAmount = nil;
     self.programToPayFor = program;
+    self.programLocationToPayFor = programLocation;
+    self.channelToPayFor = channel;
     self.view.frame = view.bounds;
     self.view.alpha = 0;
     
@@ -142,9 +151,9 @@
 }
 
 - (void)setPayAmount:(NSNumber *)payAmount {
-//#ifdef DEBUG
-//    payAmount = @(0.1);
-//#endif
+    //#ifdef DEBUG
+    //    payAmount = @(0.1);
+    //#endif
     _payAmount = payAmount;
     self.popView.showPrice = payAmount;
 }
@@ -154,6 +163,9 @@
         self.view.alpha = 0;
     } completion:^(BOOL finished) {
         [self.view removeFromSuperview];
+        self.programToPayFor = nil;
+        self.programLocationToPayFor = 0;
+        self.channelToPayFor = nil;
     }];
 }
 
@@ -163,15 +175,22 @@
        paymentSubType:(STPaymentType)subType
 {
     @weakify(self);
-    [[STPaymentManager sharedManager] startPaymentWithType:paymentType
-                                                   subType:subType
-                                                     price:price*100
-                                                forProgram:program
-                                         completionHandler:^(PAYRESULT payResult, STPaymentInfo *paymentInfo)
-    {
-        @strongify(self);
-        [self notifyPaymentResult:payResult withPaymentInfo:paymentInfo];
-    }];
+    STPaymentInfo *paymentInfo = [[STPaymentManager sharedManager] startPaymentWithType:paymentType
+                                                                                subType:subType
+                                                                                  price:price*100
+                                                                             forProgram:program
+                                                                        programLocation:self.programLocationToPayFor
+                                                                              inChannel:self.channelToPayFor
+                                                                      completionHandler:^(PAYRESULT payResult, STPaymentInfo *paymentInfo)
+                                  {
+                                      @strongify(self);
+                                      [self notifyPaymentResult:payResult withPaymentInfo:paymentInfo];
+                                  }];
+    
+    if (paymentInfo) {
+        [[STStatsManager sharedManager] statsPayWithPaymentInfo:paymentInfo forPayAction:STStatsPayActionGoToPay andTabIndex:[STUtil currentTabPageIndex] subTabIndex:[STUtil currentSubTabPageIndex]];
+    }
+    
 }
 
 
@@ -200,6 +219,9 @@
     }
     
     [[STPaymentModel sharedModel] commitPaymentInfo:paymentInfo];
+    
+    [[STStatsManager sharedManager] statsPayWithPaymentInfo:paymentInfo forPayAction:STStatsPayActionPayBack andTabIndex:[STUtil currentTabPageIndex] subTabIndex:[STUtil currentSubTabPageIndex]];
+    
 }
 
 //- (void)IpaynowPluginResult:(IPNPayResult)result errCode:(NSString *)errCode errInfo:(NSString *)errInfo {

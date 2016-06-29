@@ -13,6 +13,7 @@
 #import "STRocketBarrageView.h"
 #import "STVideoMessagePollingView.h"
 #import "STVideoCommentModel.h"
+#import "STPaymentViewController.h"
 
 static const CGFloat kThumbFlowerButtonInsets = 10;
 static int kSTBarrageIndex = 0;
@@ -31,6 +32,7 @@ static int kSTBarrageIndex = 0;
 @property (nonatomic,retain) STRocketBarrageView *rocketBarrageView;
 @property (nonatomic,retain) STVideoMessagePollingView *messagePollingView;
 @property (nonatomic,retain) NSTimer *timer;
+//@property (nonatomic,retain) NSTimer *loadTimer;//加载弹幕
 @property (nonatomic,retain) NSArray *usersList;
 @property (nonatomic,retain) NSArray *barrageList;
 @end
@@ -39,7 +41,7 @@ static int kSTBarrageIndex = 0;
 
 DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
 
-- (instancetype)initWithVideo:(STVideo *)video {
+- (instancetype)initWithVideo:(STProgram *)video {
     self = [self init];
     if (self) {
         _video = video;
@@ -51,8 +53,8 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor blackColor];
-    
-    _player = [[STLiveVideoPlayer alloc] initWithVideoURL:[NSURL URLWithString:_video.videoUrl]];
+    STVideo *video = (STVideo *)_video;
+    _player = [[STLiveVideoPlayer alloc] initWithVideoURL:[NSURL URLWithString:video.videoUrl]];
     [self.view addSubview:_player];
     {
         [_player mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -83,6 +85,11 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
     
     [_closeButton bk_addEventHandler:^(id sender) {
         @strongify(self);
+        if (![STUtil isPaid]) {
+            
+            [[STPaymentViewController sharedPaymentVC] popupPaymentInView:self.view.window forProgram:self.video programLocation:self.videoLocation inChannel:self.channel];
+        }
+
         [self dismissViewControllerAnimated:YES completion:nil];
     } forControlEvents:UIControlEventTouchUpInside];
     
@@ -161,6 +168,8 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
     
     [[[STVideoCommentModel alloc] init] fetchCommentWithCompletionHandler:^(BOOL Success, NSArray *commentList) {
         if (Success) {
+//            [_loadTimer invalidate];
+//            _loadTimer = nil;
             if (commentList.count == 0) {
                 return ;
             }
@@ -217,10 +226,10 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     if (object == _player.player && [keyPath isEqualToString:@"status"])
     {
-        if (_player.player.status == AVPlayerStatusReadyToPlay) {
-            [self loadBarrages];
-        }
-        
+//        if (_player.player.status == AVPlayerStatusReadyToPlay) {
+//           _loadTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(loadBarrages) userInfo:nil repeats:YES];
+//        }
+        [self loadBarrages];
     }
     
 }
@@ -300,7 +309,8 @@ DefineLazyPropertyInitialization(STRocketBarrageView, rocketBarrageView)
     [super viewDidDisappear:animated];
     [_timer invalidate];
     _timer = nil;
-    
+//    [_loadTimer invalidate];
+//    _loadTimer = nil;
 }
 
 - (void)didReceiveMemoryWarning {

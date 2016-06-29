@@ -25,6 +25,10 @@ static NSString *const kPaymentInfoPaymentMchId = @"kuaibov_paymentinfo_paymentm
 static NSString *const kPaymentInfoPaymentSignKey = @"kuaibov_paymentinfo_paymentsignkey_keyname";
 static NSString *const kPaymentInfoPaymentNotifyUrl = @"kuaibov_paymentinfo_paymentnotifyurl_keyname";
 
+static NSString *const kPaymentInfoContentLocationKeyName = @"kuaibov_paymentinfo_contentlocation_keyname";
+static NSString *const kPaymentInfoColumnIdKeyName = @"kuaibov_paymentinfo_columnid_keyname";
+static NSString *const kPaymentInfoColumnTypeKeyName = @"kuaibov_paymentinfo_columntype_keyname";
+
 @implementation STPaymentInfo
 
 - (NSString *)paymentId {
@@ -53,6 +57,10 @@ static NSString *const kPaymentInfoPaymentNotifyUrl = @"kuaibov_paymentinfo_paym
     paymentInfo.mchId = payment[kPaymentInfoPaymentMchId];
     paymentInfo.notifyUrl = payment[kPaymentInfoPaymentNotifyUrl];
     paymentInfo.signKey = payment[kPaymentInfoPaymentSignKey];
+    
+    paymentInfo.contentLocation = payment[kPaymentInfoContentLocationKeyName];
+    paymentInfo.columnId = payment[kPaymentInfoColumnIdKeyName];
+    paymentInfo.columnType = payment[kPaymentInfoColumnTypeKeyName];
     return paymentInfo;
 }
 
@@ -73,6 +81,10 @@ static NSString *const kPaymentInfoPaymentNotifyUrl = @"kuaibov_paymentinfo_paym
     [payment safelySetObject:self.mchId forKey:kPaymentInfoPaymentMchId];
     [payment safelySetObject:self.notifyUrl forKey:kPaymentInfoPaymentNotifyUrl];
     [payment safelySetObject:self.signKey forKey:kPaymentInfoPaymentSignKey];
+    
+    [payment safelySetObject:self.contentLocation forKey:kPaymentInfoContentLocationKeyName];
+    [payment safelySetObject:self.columnId forKey:kPaymentInfoColumnIdKeyName];
+    [payment safelySetObject:self.columnType forKey:kPaymentInfoColumnTypeKeyName];
     return payment;
 }
 

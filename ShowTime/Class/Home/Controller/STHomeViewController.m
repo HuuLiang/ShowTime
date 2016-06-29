@@ -107,8 +107,8 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
     }];
 }
 
-- (STPrograms *)programsInSection:(NSUInteger)section {
-    STPrograms *programs;
+- (STChannel *)programsInSection:(NSUInteger)section {
+    STChannel *programs;
     if (section < self.programModel.fetchedVideoAndAdProgramList.count) {
         programs = self.programModel.fetchedVideoAndAdProgramList[section];
     }
@@ -140,7 +140,7 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 //        return self.programModel.fetchedBannerPrograms;
 //    }
 //    
-//    STPrograms *programs = self.programModel.fetchedVideoAndAdProgramList[indexPath.section-1];
+//    STChannel *programs = self.programModel.fetchedVideoAndAdProgramList[indexPath.section-1];
 //    
 //    NSMutableArray *programsForCell = [NSMutableArray array];
 //    for (NSUInteger i = 0; i < 3; ++i) {
@@ -153,7 +153,7 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 //}
 
 //- (STProgram *)adProgramAtIndexPath:(NSIndexPath *)indexPath {
-//    STPrograms *programs = self.programModel.fetchedVideoAndAdProgramList[indexPath.section-1];
+//    STChannel *programs = self.programModel.fetchedVideoAndAdProgramList[indexPath.section-1];
 //    if (programs.type.unsignedIntegerValue == STProgramTypeAd) {
 //        return programs.programList[indexPath.item];
 //    }
@@ -161,7 +161,7 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 //}
 
 //- (BOOL)isAdBannerInSection:(NSUInteger)section {
-//    STPrograms *programs = self.programModel.fetchedVideoAndAdProgramList[section-1];
+//    STChannel *programs = self.programModel.fetchedVideoAndAdProgramList[section-1];
 //    return programs.type.unsignedIntegerValue == STProgramTypeAd;
 //}
 
@@ -170,10 +170,20 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
     // Dispose of any resources that can be recreated.
 }
 
+
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+//    [[STStatsManager sharedManager] statsTabIndex:self.tabBarController.selectedIndex subTabIndex:[STUtil currentSubTabPageIndex] forClickCount:1];
+//
+//}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [[STStatsManager sharedManager] statsTabIndex:self.tabBarController.selectedIndex subTabIndex:[STUtil currentSubTabPageIndex] forSlideCount:1];
+}
+
 #pragma mark - UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    STPrograms *programs = [self programsInSection:indexPath.section];
+    STChannel *programs = [self programsInSection:indexPath.section];
     STProgram *program;
     if (indexPath.item < programs.programList.count) {
         program = programs.programList[indexPath.item];
@@ -245,7 +255,7 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    STPrograms *programs = [self programsInSection:section];
+    STChannel *programs = [self programsInSection:section];
     //|| programs.type.unsignedIntegerValue == STProgramTypeTrival
     if (programs.type.unsignedIntegerValue == STProgramTypeVideo || programs.type.unsignedIntegerValue == STProgramTypeTrival) {
         return programs.programList.count;
@@ -259,7 +269,7 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath
 {
-    STPrograms *programs = [self programsInSection:indexPath.section];
+    STChannel *programs = [self programsInSection:indexPath.section];
     if (programs.type.unsignedIntegerValue != STProgramTypeVideo) {
         return nil;
     }
@@ -276,7 +286,7 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
 //     return CGSizeMake(collectionView.bounds.size.width-kInteritemSpacing*2, MIN(25,collectionView.bounds.size.height*0.06));
-    STPrograms *programs = [self programsInSection:section];
+    STChannel *programs = [self programsInSection:section];
     if (programs.type.unsignedIntegerValue ==  STProgramTypeVideo ) {
         return CGSizeMake(collectionView.bounds.size.width-kInteritemSpacing*2, MIN(25,collectionView.bounds.size.height*0.06));
     }
@@ -284,7 +294,7 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    STPrograms *programs = [self programsInSection:indexPath.section];
+    STChannel *programs = [self programsInSection:indexPath.section];
     if (programs.type.unsignedIntegerValue == STProgramTypeVideo ||programs.type.unsignedIntegerValue == STProgramTypeTrival) {
         return self.normalCellSize;
     } else if (programs.type.unsignedIntegerValue == STProgramTypeAd) {
@@ -294,7 +304,7 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    STPrograms *programs = [self programsInSection:section];
+    STChannel *programs = [self programsInSection:section];
     if (programs.type.unsignedIntegerValue == STProgramTypeVideo ||programs.type.unsignedIntegerValue == STProgramTypeTrival) {
         return UIEdgeInsetsMake(kInteritemSpacing, kInteritemSpacing, kInteritemSpacing, kInteritemSpacing);
     } else if (programs.type.unsignedIntegerValue == STProgramTypeAd) {
@@ -304,16 +314,23 @@ DefineLazyPropertyInitialization(STHomeProgramModel, programModel)
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    STPrograms *programs = [self programsInSection:indexPath.section];
+    STChannel *programs = [self programsInSection:indexPath.section];
     if (programs.type.unsignedIntegerValue == STProgramTypeVideo) {
         if (indexPath.item < programs.programList.count) {
+            
             STProgram *program = programs.programList[indexPath.item];
-            [self switchToPlayProgram:program];
+            
+            [self switchToPlayProgram:program isTrival:NO programLocation:indexPath.item inChannel:programs];
+            //数据统计
+             [[STStatsManager sharedManager] statsCPCWithProgram:program programLocation:indexPath.item inChannel:programs andTabIndex:self.tabBarController.selectedIndex subTabIndex:[STUtil currentSubTabPageIndex]];
         }
     } else if (programs.type.unsignedIntegerValue == STProgramTypeAd) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:programs.spreadUrl]];
     } else if (programs.type.unsignedIntegerValue == STProgramTypeTrival) {
-        [self playVideo:programs.programList[indexPath.item] withTimeControl:YES shouldPopPayment:YES];
+        
+        [self switchToPlayProgram:programs.programList[indexPath.item] isTrival:YES programLocation:indexPath.item inChannel:programs];
+        
+         [[STStatsManager sharedManager] statsCPCWithProgram:programs.programList[indexPath.item] programLocation:indexPath.item inChannel:programs andTabIndex:self.tabBarController.selectedIndex subTabIndex:[STUtil currentSubTabPageIndex]];
     
     }
 }

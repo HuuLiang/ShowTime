@@ -46,7 +46,9 @@ static NSString *const kSuccessResponse = @"SUCCESS";
                              @"cpuV":@"",
                              @"appV":[STUtil appVersion],
                              @"appVN":@"",
-                             @"ccn":ST_PACKAGE_CERTIFICATE};
+                             @"ccn":ST_PACKAGE_CERTIFICATE,
+                              @"operator":[STNetworkInfo sharedInfo].carriarName ?: @""
+                             };
     
     BOOL success = [self requestURLPath:ST_ACTIVATE_URL withParams:params responseHandler:^(STURLResponseStatus respStatus, NSString *errorMessage) {
         NSString *userId;

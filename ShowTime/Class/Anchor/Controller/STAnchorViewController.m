@@ -213,6 +213,11 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
     // Dispose of any resources that can be recreated.
 }
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [[STStatsManager sharedManager] statsTabIndex:self.tabBarController.selectedIndex subTabIndex:[STUtil currentSubTabPageIndex] forSlideCount:1];
+}
+
+
 #pragma mark - UITableViewDataSource,UITableViewDelegate
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -259,7 +264,8 @@ DefineLazyPropertyInitialization(NSMutableArray, videos)
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section < self.videos.count) {
         STProgram *video = self.videos[indexPath.section];
-        [self switchToPlayProgram:video];
+        [self switchToPlayProgram:video isTrival:NO programLocation:indexPath.item inChannel:_videoModel.fetchedVideos];
+        [[STStatsManager sharedManager] statsCPCWithProgram:video programLocation:indexPath.section inChannel:_videoModel.fetchedVideos andTabIndex:self.tabBarController.selectedIndex subTabIndex:[STUtil currentSubTabPageIndex]];
     }
 }
 @end
