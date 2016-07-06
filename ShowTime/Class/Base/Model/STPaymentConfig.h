@@ -42,11 +42,34 @@ typedef NS_ENUM(NSUInteger, STIAppPayType) {
 + (instancetype)defaultConfig;
 @end
 
+@interface STVIAPayConfig : NSObject
+
+//@property (nonatomic) NSString *packageId;
+@property (nonatomic) NSNumber *supportPayTypes;
+
+@end
+
+@interface STSPayConfig : NSObject
+@property (nonatomic) NSString *signKey;
+@property (nonatomic) NSString *mchId;
+@property (nonatomic) NSString *notifyUrl;
+@end
+
+@interface STHTPayConfig : NSObject
+@property (nonatomic) NSString *key;
+@property (nonatomic) NSString *mchId;
+@property (nonatomic) NSString *notifyUrl;
+@end
+
+
 @interface STPaymentConfig : STURLResponse
 
 @property (nonatomic,retain) STWeChatPaymentConfig *weixinInfo;
 @property (nonatomic,retain) STAlipayConfig *alipayInfo;
 @property (nonatomic,retain) STIAppPayConfig *iappPayInfo;
+@property (nonatomic,retain) STVIAPayConfig *syskPayInfo;
+@property (nonatomic,retain) STSPayConfig *wftPayInfo;
+@property (nonatomic,retain) STHTPayConfig *haitunPayInfo;
 
 + (instancetype)sharedConfig;
 - (void)setAsCurrentConfig;

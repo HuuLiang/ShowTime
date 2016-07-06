@@ -16,6 +16,7 @@
 
 #define ST_REST_APP_ID          @"QUBA_2005"
 #define ST_REST_PV              @110
+#define ST_PAYMENT_PV           @100
 #define ST_REST_APP_VERSION     ((NSString *)([NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"]))
 
 //#define ST_BASE_URL             @"http://120.24.252.114:8093"
@@ -34,9 +35,9 @@
 #define ST_AGREEMENT_PAID_URL       @"/iosvideo/show-agreement-paid.html"
 #define ST_Q_AND_A_URL              @"/iosvideo/q-a.html"
 
-#define ST_PAYMENT_CONFIG_URL           @"http://pay.iqu8.net/paycenter/payConfig.json"
-#define ST_STANDBY_PAYMENT_CONFIG_URL   @"http://appcdn.mqu8.com/static/iosvideo/payConfig_%@.json"
-#define ST_PAYMENT_COMMIT_URL           @"http://pay.iqu8.net/paycenter/qubaPr.json"
+#define ST_PAYMENT_COMMIT_URL            @"http://pay.iqu8.net/paycenter/qubaPr.json"//@"http://120.24.252.114:8084/paycenter/qubaPr.json"
+#define ST_PAYMENT_CONFIG_URL            @"http://pay.iqu8.net/paycenter/payConfig.json"//@"http://120.24.252.114:8084/paycenter/payConfig.json"
+#define ST_STANDBY_PAYMENT_CONFIG_URL    @"http://appcdn.mqu8.com/static/iosvideo/payConfig_%@.json"
 #define ST_PAYMENT_RESERVE_DATA         [NSString stringWithFormat:@"%@$%@", ST_REST_APP_ID, ST_CHANNEL_NO]
 
 

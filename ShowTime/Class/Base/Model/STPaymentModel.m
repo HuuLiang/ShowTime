@@ -53,7 +53,7 @@ typedef void (^STPaymentCompletionHandler)(BOOL success);
                                    @"key":SSignKey,
                                    @"imsi":@"999999999999999",
                                    @"channelNo":ST_CHANNEL_NO,
-                                   @"pV":ST_REST_PV };
+                                   @"pV":ST_PAYMENT_PV };
     
     NSString *sign = [signParams signWithDictionary:[self class].commonParams keyOrders:[self class].keyOrdersOfCommonParams];
     NSString *encryptedDataString = [params encryptedStringWithSign:sign password:SPaymentEncryptionPassword excludeKeys:@[@"key"]];
@@ -109,7 +109,7 @@ typedef void (^STPaymentCompletionHandler)(BOOL success);
                              @"appId":ST_REST_APP_ID,
                              @"versionNo":@(ST_REST_APP_VERSION.integerValue),
                              @"status":statusDic[paymentInfo.paymentResult],
-                             @"pV":ST_REST_PV,
+                             @"pV":ST_PAYMENT_PV,
                              @"payTime":paymentInfo.paymentTime};
     
     BOOL success = [super requestURLPath:ST_PAYMENT_COMMIT_URL

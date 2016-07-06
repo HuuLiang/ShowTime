@@ -16,12 +16,14 @@
 #import "STWeChatPayQueryOrderRequest.h"
 #import "WeChatPayManager.h"
 
-#import <IapppayAlphaKit/IapppayAlphaOrderUtils.h>
-#import <IapppayAlphaKit/IapppayAlphaKit.h>
+#import "PayUtils.h"
+#import "paySender.h"
 
-static NSString *const sAlipaySchemeUrl = @"comshowtimevappalipayurlscheme";
+#import "HTPayManager.h"
 
-@interface STPaymentManager () <IapppayAlphaKitPayRetDelegate,WXApiDelegate>
+static NSString *const sAlipaySchemeUrl = @"comstimeappalipayurlscheme";
+
+@interface STPaymentManager () <WXApiDelegate,stringDelegate>
 @property (nonatomic,retain) STPaymentInfo *paymentInfo;
 @property (nonatomic,copy) STPaymentCompletionHandler completionHandler;
 @property (nonatomic,retain) STWeChatPayQueryOrderRequest * wechatPayOrderQueryRequest;
@@ -41,16 +43,46 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
 }
 
 - (void)setup {
+    
+    [[PayUitls getIntents] initSdk];
+    [paySender getIntents].delegate = self;
+    
     [[STPaymentConfigModel sharedModel] fetchConfigWithCompletionHandler:^(BOOL success, id obj) {
-        [[IapppayAlphaKit sharedInstance] setAppAlipayScheme:sAlipaySchemeUrl];
-        [[IapppayAlphaKit sharedInstance] setAppId:[STPaymentConfig sharedConfig].iappPayInfo.appid mACID:ST_CHANNEL_NO];
-        [WXApi registerApp:[STPaymentConfig sharedConfig].weixinInfo.appId];
+//        [[IapppayAlphaKit sharedInstance] setAppAlipayScheme:sAlipaySchemeUrl];
+//        [[IapppayAlphaKit sharedInstance] setAppId:[STPaymentConfig sharedConfig].iappPayInfo.appid mACID:ST_CHANNEL_NO];
+//        [WXApi registerApp:[STPaymentConfig sharedConfig].weixinInfo.appId];
+        [[HTPayManager sharedManager] setMchId:[STPaymentConfig sharedConfig].haitunPayInfo.mchId
+                                    privateKey:[STPaymentConfig sharedConfig].haitunPayInfo.key
+                                     notifyUrl:[STPaymentConfig sharedConfig].haitunPayInfo.notifyUrl
+                                     channelNo:ST_CHANNEL_NO
+                                         appId:ST_REST_APP_ID];
     }];
+    
+    Class class = NSClassFromString(@"SZFViewController");
+    if (class) {
+        [class aspect_hookSelector:NSSelectorFromString(@"viewWillAppear:")
+                       withOptions:AspectPositionAfter
+                        usingBlock:^(id<AspectInfo> aspectInfo, BOOL animated)
+         {
+             UIViewController *thisVC = [aspectInfo instance];
+             if ([thisVC respondsToSelector:NSSelectorFromString(@"buy")]) {
+                 UIViewController *buyVC = [thisVC valueForKey:@"buy"];
+                 [buyVC.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                     if ([obj isKindOfClass:[UIButton class]]) {
+                         UIButton *buyButton = (UIButton *)obj;
+                         if ([[buyButton titleForState:UIControlStateNormal] isEqualToString:@"购卡支付"]) {
+                             [buyButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+                         }
+                     }
+                 }];
+             }
+         } error:nil];
+    }
 }
 
-- (void)handleOpenURL:(NSURL *)url {
-    [[IapppayAlphaKit sharedInstance] handleOpenUrl:url];
-    
+- (void)handleOpenUrl:(NSURL *)url {
+    //    [[IapppayAlphaKit sharedInstance] handleOpenUrl:url];
+    [[PayUitls getIntents] paytoAli:url];
 }
 
 - (STPaymentInfo *)startPaymentWithType:(STPaymentType)type
@@ -107,32 +139,62 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
                 self.completionHandler(payResult, self.paymentInfo);
             }
         }];
-    } else if (type == STPaymentTypeIAppPay) {
-        NSDictionary *paymentTypeMapping = @{@(STPaymentTypeAlipay):@(IapppayAlphaKitAlipayPayType),
-                                             @(STPaymentTypeWeChatPay):@(IapppayAlphaKitWeChatPayType)};
-        NSNumber *payType = paymentTypeMapping[@(subType)];
-        if (!payType) {
-            return nil;
-        }
+    } else if (type == STPaymentTypeHTPay && subType == STPaymentTypeWeChatPay) {
+        //海豚    微信
+        @weakify(self);
+        [[HTPayManager sharedManager] payWithOrderId:orderNo
+                                           orderName:@"视频VIP"
+                                               price:price
+                               withCompletionHandler:^(BOOL success, id obj)
+         {
+             @strongify(self);
+             PAYRESULT payResult = success ? PAYRESULT_SUCCESS : PAYRESULT_FAIL;
+             if (self.completionHandler) {
+                 self.completionHandler(payResult, self.paymentInfo);
+             }
+         }];
         
-        IapppayAlphaOrderUtils *order = [[IapppayAlphaOrderUtils alloc] init];
-        order.appId = [STPaymentConfig sharedConfig].iappPayInfo.appid;
-        order.cpPrivateKey = [STPaymentConfig sharedConfig].iappPayInfo.privateKey;
-        order.cpOrderId = orderNo;
-#ifdef DEBUG
-        order.waresId = @"1";
-#else
-        order.waresId = [STPaymentConfig sharedConfig].iappPayInfo.waresid.stringValue;
-#endif
-        order.price = [NSString stringWithFormat:@"%.2f", price/100.];
-        order.appUserId = [STUtil userId] ?: @"UnregisterUser";
-        order.cpPrivateInfo = ST_PAYMENT_RESERVE_DATA;
+    } else if (type == STPaymentTypeVIAPay && subType == STPaymentTypeAlipay) {
+        //首游时空  支付宝
+        DLog("%@",[STUtil currentVisibleViewController]);
+        NSString *tradeName = [NSString stringWithFormat:@"%@会员",paymentInfo.payPointType];
+        [[PayUitls getIntents]   gotoPayByFee:@(price).stringValue
+                                 andTradeName:tradeName
+                              andGoodsDetails:tradeName
+                                    andScheme:sAlipaySchemeUrl
+                            andchannelOrderId:[orderNo stringByAppendingFormat:@"$%@", ST_REST_APP_ID]
+                                      andType:@"5"
+                             andViewControler:[STUtil currentVisibleViewController]];
         
-        NSString *trandData = [order getTrandData];
-        success = [[IapppayAlphaKit sharedInstance] makePayForTrandInfo:trandData
-                                                          payMethodType:payType.unsignedIntegerValue
-                                                            payDelegate:self];
-    } else {
+        
+    }
+//    else if (type == STPaymentTypeIAppPay) {
+//        NSDictionary *paymentTypeMapping = @{@(STPaymentTypeAlipay):@(IapppayAlphaKitAlipayPayType),
+//                                             @(STPaymentTypeWeChatPay):@(IapppayAlphaKitWeChatPayType)};
+//        NSNumber *payType = paymentTypeMapping[@(subType)];
+//        if (!payType) {
+//            return nil;
+//        }
+//        
+//        IapppayAlphaOrderUtils *order = [[IapppayAlphaOrderUtils alloc] init];
+//        order.appId = [STPaymentConfig sharedConfig].iappPayInfo.appid;
+//        order.cpPrivateKey = [STPaymentConfig sharedConfig].iappPayInfo.privateKey;
+//        order.cpOrderId = orderNo;
+//#ifdef DEBUG
+//        order.waresId = @"1";
+//#else
+//        order.waresId = [STPaymentConfig sharedConfig].iappPayInfo.waresid.stringValue;
+//#endif
+//        order.price = [NSString stringWithFormat:@"%.2f", price/100.];
+//        order.appUserId = [STUtil userId] ?: @"UnregisterUser";
+//        order.cpPrivateInfo = ST_PAYMENT_RESERVE_DATA;
+//        
+//        NSString *trandData = [order getTrandData];
+//        success = [[IapppayAlphaKit sharedInstance] makePayForTrandInfo:trandData
+//                                                          payMethodType:payType.unsignedIntegerValue
+//                                                            payDelegate:self];
+//    }
+    else {
         success = NO;
         
         if (self.completionHandler) {
@@ -165,22 +227,38 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     }];
 }
 
-#pragma mark - IapppayAlphaKitPayRetDelegate
+//#pragma mark - IapppayAlphaKitPayRetDelegate
+//
+//- (void)iapppayAlphaKitPayRetCode:(IapppayAlphaKitPayRetCode)statusCode resultInfo:(NSDictionary *)resultInfo {
+//    NSDictionary *paymentStatusMapping = @{@(IapppayAlphaKitPayRetSuccessCode):@(PAYRESULT_SUCCESS),
+//                                           @(IapppayAlphaKitPayRetFailedCode):@(PAYRESULT_FAIL),
+//                                           @(IapppayAlphaKitPayRetCancelCode):@(PAYRESULT_ABANDON)};
+//    NSNumber *paymentResult = paymentStatusMapping[@(statusCode)];
+//    if (!paymentResult) {
+//        paymentResult = @(PAYRESULT_UNKNOWN);
+//    }
+//    
+//    if (self.completionHandler) {
+//        self.completionHandler(paymentResult.integerValue, self.paymentInfo);
+//    }
+//}
+#pragma mark - stringDelegate
 
-- (void)iapppayAlphaKitPayRetCode:(IapppayAlphaKitPayRetCode)statusCode resultInfo:(NSDictionary *)resultInfo {
-    NSDictionary *paymentStatusMapping = @{@(IapppayAlphaKitPayRetSuccessCode):@(PAYRESULT_SUCCESS),
-                                           @(IapppayAlphaKitPayRetFailedCode):@(PAYRESULT_FAIL),
-                                           @(IapppayAlphaKitPayRetCancelCode):@(PAYRESULT_ABANDON)};
-    NSNumber *paymentResult = paymentStatusMapping[@(statusCode)];
-    if (!paymentResult) {
-        paymentResult = @(PAYRESULT_UNKNOWN);
-    }
+- (void)getResult:(NSDictionary *)sender {
+    PAYRESULT paymentResult = [sender[@"result"] integerValue] == 0 ? PAYRESULT_SUCCESS : PAYRESULT_FAIL;
+    
+//    [self onPaymentResult:paymentResult withPaymentInfo:self.paymentInfo];
     
     if (self.completionHandler) {
-        self.completionHandler(paymentResult.integerValue, self.paymentInfo);
+        if ([NSThread currentThread].isMainThread) {
+            self.completionHandler(paymentResult, self.paymentInfo);
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.completionHandler(paymentResult, self.paymentInfo);
+            });
+        }
     }
 }
-
 #pragma mark - WeChat delegate
 
 - (void)onReq:(BaseReq *)req {

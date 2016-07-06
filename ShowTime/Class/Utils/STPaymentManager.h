@@ -31,7 +31,7 @@ typedef void(^STPaymentCompletionHandler)(PAYRESULT payResult, STPaymentInfo *pa
                               inChannel:(STChannel *)channel
                       completionHandler:(STPaymentCompletionHandler)handler;
 
-- (void)handleOpenURL:(NSURL *)url;
+- (void)handleOpenUrl:(NSURL *)url;
 - (void)checkPayment;
 
 @end

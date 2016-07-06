@@ -19,5 +19,6 @@
 #import "NSObject+Properties.h"
 #import "NSDate+Utilities.h"
 #import "NSMutableDictionary+SafeCoding.h"
+#import "UIView+Loading.h"
 
 #endif /* STExtensions_h */

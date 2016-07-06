@@ -21,7 +21,7 @@
 #import "MobClick.h"
 #import "WeChatPayManager.h"
 #import <AlipaySDK/AlipaySDK.h>
-#import "AlipayManager.h"
+//#import "AlipayManager.h"
 #import "STKLaunchView.h"
 #import "STSystemConfigModel.h"
 
@@ -202,10 +202,17 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-        [[AlipayManager shareInstance] sendNotificationByResult:resultDic];
-    }];
-    [WXApi handleOpenURL:url delegate:self];
+    [[STPaymentManager sharedManager] handleOpenUrl:url];
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+    [[STPaymentManager sharedManager] handleOpenUrl:url];
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    [[STPaymentManager sharedManager] handleOpenUrl:url];
     return YES;
 }
 
