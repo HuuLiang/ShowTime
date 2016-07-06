@@ -8,6 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		2C57C6BC94B77B370E62F7B7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099B90208C840C450D0B0031 /* libPods.a */; };
+		B3061FC31D17DC9C00A02A3F /* STVideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3061FC21D17DC9C00A02A3F /* STVideoPlayViewController.m */; };
+		B3061FCA1D17DF1C00A02A3F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3061FC91D17DF1C00A02A3F /* Security.framework */; };
+		B3061FCC1D17DF4E00A02A3F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3061FCB1D17DF4E00A02A3F /* libc++.tbd */; };
+		B3061FCF1D17DFF200A02A3F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3061FCE1D17DFF200A02A3F /* CoreMedia.framework */; };
+		B3061FD21D17E09C00A02A3F /* STVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B3061FD11D17E09C00A02A3F /* STVideoPlayer.m */; };
+		B31FD0C01D2286D7008079B5 /* NSObject+DictionaryRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0BD1D2286D7008079B5 /* NSObject+DictionaryRepresentation.m */; };
+		B31FD0C11D2286D7008079B5 /* NSObject+PropertyAccessInspecting.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0BF1D2286D7008079B5 /* NSObject+PropertyAccessInspecting.m */; };
+		B31FD0C41D228761008079B5 /* STChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0C31D228761008079B5 /* STChannel.m */; };
+		B31FD0CD1D236438008079B5 /* DBHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0C71D236438008079B5 /* DBHandler.m */; };
+		B31FD0CE1D236438008079B5 /* DBPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0CA1D236438008079B5 /* DBPersistence.m */; };
+		B31FD0CF1D236438008079B5 /* DBTableVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0CC1D236438008079B5 /* DBTableVersion.m */; };
+		B31FD0D41D23648B008079B5 /* STNetworkInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0D11D23648B008079B5 /* STNetworkInfo.m */; };
+		B31FD0D51D23648B008079B5 /* STStatsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0D31D23648B008079B5 /* STStatsManager.m */; };
+		B31FD0DF1D236600008079B5 /* STCPCStatsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0D81D236600008079B5 /* STCPCStatsModel.m */; };
+		B31FD0E01D236600008079B5 /* STPayStatsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0DA1D236600008079B5 /* STPayStatsModel.m */; };
+		B31FD0E11D236600008079B5 /* STStatsBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0DC1D236600008079B5 /* STStatsBaseModel.m */; };
+		B31FD0E21D236600008079B5 /* STTabStatsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0DE1D236600008079B5 /* STTabStatsModel.m */; };
+		B3BD70E81CE9B58600607BF3 /* STVideoCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD70E71CE9B58600607BF3 /* STVideoCommentModel.m */; };
+		B3BD70ED1CE9B9AA00607BF3 /* STVideoMessagePollingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD70EA1CE9B9AA00607BF3 /* STVideoMessagePollingCell.m */; };
+		B3BD70EE1CE9B9AA00607BF3 /* STVideoMessagePollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD70EC1CE9B9AA00607BF3 /* STVideoMessagePollingView.m */; };
+		B3BD70FD1CEAEE6200607BF3 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD70FC1CEAEE6200607BF3 /* NSArray+Log.m */; };
+		B3C7E21D1CEDF3340008F297 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C7E21C1CEDF3340008F297 /* NSString+Size.m */; };
+		B3D33B8C1CF53A10008A6C7D /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D33B851CF53A10008A6C7D /* UITableView+FDIndexPathHeightCache.m */; };
+		B3D33B8D1CF53A10008A6C7D /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D33B871CF53A10008A6C7D /* UITableView+FDKeyedHeightCache.m */; };
+		B3D33B8E1CF53A10008A6C7D /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D33B891CF53A10008A6C7D /* UITableView+FDTemplateLayoutCell.m */; };
+		B3D33B8F1CF53A10008A6C7D /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D33B8B1CF53A10008A6C7D /* UITableView+FDTemplateLayoutCellDebug.m */; };
+		B3EC589A1CF58D6400AC74F4 /* STKLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EC58991CF58D6400AC74F4 /* STKLaunchView.m */; };
+		B3EC589E1CF58E4C00AC74F4 /* launch_image5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B3EC589D1CF58E4C00AC74F4 /* launch_image5.jpg */; };
 		BC1740A91C59030900C7BA41 /* STWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1740A81C59030900C7BA41 /* STWebViewController.m */; };
 		BC1740AE1C59062400C7BA41 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1740AB1C59062400C7BA41 /* libMobClickLibrary.a */; };
 		BC2148981C59B87D00C4B636 /* AlipayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2148801C59B87D00C4B636 /* AlipayManager.m */; };
@@ -111,6 +139,60 @@
 		099B90208C840C450D0B0031 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D72EE74B640F671571F685 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9B0615D034C8224A6EC762B7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B3061FC11D17DC9C00A02A3F /* STVideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STVideoPlayViewController.h; sourceTree = "<group>"; };
+		B3061FC21D17DC9C00A02A3F /* STVideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STVideoPlayViewController.m; sourceTree = "<group>"; };
+		B3061FC71D17DE4800A02A3F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B3061FC91D17DF1C00A02A3F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B3061FCB1D17DF4E00A02A3F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		B3061FCE1D17DFF200A02A3F /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B3061FD01D17E09C00A02A3F /* STVideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STVideoPlayer.h; sourceTree = "<group>"; };
+		B3061FD11D17E09C00A02A3F /* STVideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STVideoPlayer.m; sourceTree = "<group>"; };
+		B31FD0BC1D2286D7008079B5 /* NSObject+DictionaryRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DictionaryRepresentation.h"; sourceTree = "<group>"; };
+		B31FD0BD1D2286D7008079B5 /* NSObject+DictionaryRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DictionaryRepresentation.m"; sourceTree = "<group>"; };
+		B31FD0BE1D2286D7008079B5 /* NSObject+PropertyAccessInspecting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PropertyAccessInspecting.h"; sourceTree = "<group>"; };
+		B31FD0BF1D2286D7008079B5 /* NSObject+PropertyAccessInspecting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PropertyAccessInspecting.m"; sourceTree = "<group>"; };
+		B31FD0C21D228761008079B5 /* STChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STChannel.h; sourceTree = "<group>"; };
+		B31FD0C31D228761008079B5 /* STChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STChannel.m; sourceTree = "<group>"; };
+		B31FD0C61D236438008079B5 /* DBHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHandler.h; sourceTree = "<group>"; };
+		B31FD0C71D236438008079B5 /* DBHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHandler.m; sourceTree = "<group>"; };
+		B31FD0C81D236438008079B5 /* DBMigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBMigration.h; sourceTree = "<group>"; };
+		B31FD0C91D236438008079B5 /* DBPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPersistence.h; sourceTree = "<group>"; };
+		B31FD0CA1D236438008079B5 /* DBPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPersistence.m; sourceTree = "<group>"; };
+		B31FD0CB1D236438008079B5 /* DBTableVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBTableVersion.h; sourceTree = "<group>"; };
+		B31FD0CC1D236438008079B5 /* DBTableVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBTableVersion.m; sourceTree = "<group>"; };
+		B31FD0D01D23648B008079B5 /* STNetworkInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STNetworkInfo.h; sourceTree = "<group>"; };
+		B31FD0D11D23648B008079B5 /* STNetworkInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STNetworkInfo.m; sourceTree = "<group>"; };
+		B31FD0D21D23648B008079B5 /* STStatsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStatsManager.h; sourceTree = "<group>"; };
+		B31FD0D31D23648B008079B5 /* STStatsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStatsManager.m; sourceTree = "<group>"; };
+		B31FD0D71D236600008079B5 /* STCPCStatsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCPCStatsModel.h; sourceTree = "<group>"; };
+		B31FD0D81D236600008079B5 /* STCPCStatsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCPCStatsModel.m; sourceTree = "<group>"; };
+		B31FD0D91D236600008079B5 /* STPayStatsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPayStatsModel.h; sourceTree = "<group>"; };
+		B31FD0DA1D236600008079B5 /* STPayStatsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPayStatsModel.m; sourceTree = "<group>"; };
+		B31FD0DB1D236600008079B5 /* STStatsBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STStatsBaseModel.h; sourceTree = "<group>"; };
+		B31FD0DC1D236600008079B5 /* STStatsBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStatsBaseModel.m; sourceTree = "<group>"; };
+		B31FD0DD1D236600008079B5 /* STTabStatsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTabStatsModel.h; sourceTree = "<group>"; };
+		B31FD0DE1D236600008079B5 /* STTabStatsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STTabStatsModel.m; sourceTree = "<group>"; };
+		B3BD70E61CE9B58600607BF3 /* STVideoCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STVideoCommentModel.h; sourceTree = "<group>"; };
+		B3BD70E71CE9B58600607BF3 /* STVideoCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STVideoCommentModel.m; sourceTree = "<group>"; };
+		B3BD70E91CE9B9AA00607BF3 /* STVideoMessagePollingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STVideoMessagePollingCell.h; sourceTree = "<group>"; };
+		B3BD70EA1CE9B9AA00607BF3 /* STVideoMessagePollingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STVideoMessagePollingCell.m; sourceTree = "<group>"; };
+		B3BD70EB1CE9B9AA00607BF3 /* STVideoMessagePollingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STVideoMessagePollingView.h; sourceTree = "<group>"; };
+		B3BD70EC1CE9B9AA00607BF3 /* STVideoMessagePollingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STVideoMessagePollingView.m; sourceTree = "<group>"; };
+		B3BD70FB1CEAEE6200607BF3 /* NSArray+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
+		B3BD70FC1CEAEE6200607BF3 /* NSArray+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
+		B3C7E21B1CEDF3340008F297 /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
+		B3C7E21C1CEDF3340008F297 /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
+		B3D33B841CF53A10008A6C7D /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
+		B3D33B851CF53A10008A6C7D /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
+		B3D33B861CF53A10008A6C7D /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
+		B3D33B871CF53A10008A6C7D /* UITableView+FDKeyedHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDKeyedHeightCache.m"; sourceTree = "<group>"; };
+		B3D33B881CF53A10008A6C7D /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCell.h"; sourceTree = "<group>"; };
+		B3D33B891CF53A10008A6C7D /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
+		B3D33B8A1CF53A10008A6C7D /* UITableView+FDTemplateLayoutCellDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCellDebug.h"; sourceTree = "<group>"; };
+		B3D33B8B1CF53A10008A6C7D /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
+		B3EC58981CF58D6400AC74F4 /* STKLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STKLaunchView.h; sourceTree = "<group>"; };
+		B3EC58991CF58D6400AC74F4 /* STKLaunchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STKLaunchView.m; sourceTree = "<group>"; };
+		B3EC589D1CF58E4C00AC74F4 /* launch_image5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launch_image5.jpg; sourceTree = "<group>"; };
 		BC1740A71C59030900C7BA41 /* STWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STWebViewController.h; sourceTree = "<group>"; };
 		BC1740A81C59030900C7BA41 /* STWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STWebViewController.m; sourceTree = "<group>"; };
 		BC1740AB1C59062400C7BA41 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -280,6 +362,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3061FCF1D17DFF200A02A3F /* CoreMedia.framework in Frameworks */,
+				B3061FCC1D17DF4E00A02A3F /* libc++.tbd in Frameworks */,
+				B3061FCA1D17DF1C00A02A3F /* Security.framework in Frameworks */,
 				BC2148A51C59BE5C00C4B636 /* CoreMotion.framework in Frameworks */,
 				BC21489A1C59B87D00C4B636 /* AlipaySDK.framework in Frameworks */,
 				BC5F48C31C579EF700CCC1C2 /* libz.tbd in Frameworks */,
@@ -313,6 +398,10 @@
 		953D296C53D03EFDAA1119D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3061FCE1D17DFF200A02A3F /* CoreMedia.framework */,
+				B3061FCB1D17DF4E00A02A3F /* libc++.tbd */,
+				B3061FC91D17DF1C00A02A3F /* Security.framework */,
+				B3061FC71D17DE4800A02A3F /* AVFoundation.framework */,
 				BC2148A41C59BE5C00C4B636 /* CoreMotion.framework */,
 				BC5F48C21C579EF700CCC1C2 /* libz.tbd */,
 				BC5F48C01C579EE600CCC1C2 /* libsqlite3.tbd */,
@@ -320,6 +409,60 @@
 				099B90208C840C450D0B0031 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B31FD0C51D236438008079B5 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				B31FD0C61D236438008079B5 /* DBHandler.h */,
+				B31FD0C71D236438008079B5 /* DBHandler.m */,
+				B31FD0C81D236438008079B5 /* DBMigration.h */,
+				B31FD0C91D236438008079B5 /* DBPersistence.h */,
+				B31FD0CA1D236438008079B5 /* DBPersistence.m */,
+				B31FD0CB1D236438008079B5 /* DBTableVersion.h */,
+				B31FD0CC1D236438008079B5 /* DBTableVersion.m */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		B31FD0D61D236600008079B5 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				B31FD0D71D236600008079B5 /* STCPCStatsModel.h */,
+				B31FD0D81D236600008079B5 /* STCPCStatsModel.m */,
+				B31FD0D91D236600008079B5 /* STPayStatsModel.h */,
+				B31FD0DA1D236600008079B5 /* STPayStatsModel.m */,
+				B31FD0DB1D236600008079B5 /* STStatsBaseModel.h */,
+				B31FD0DC1D236600008079B5 /* STStatsBaseModel.m */,
+				B31FD0DD1D236600008079B5 /* STTabStatsModel.h */,
+				B31FD0DE1D236600008079B5 /* STTabStatsModel.m */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		B3BD70E51CE9B57600607BF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B3D33B831CF53A10008A6C7D /* FDTemplateLayoutCell */,
+				B3BD70E61CE9B58600607BF3 /* STVideoCommentModel.h */,
+				B3BD70E71CE9B58600607BF3 /* STVideoCommentModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B3D33B831CF53A10008A6C7D /* FDTemplateLayoutCell */ = {
+			isa = PBXGroup;
+			children = (
+				B3D33B841CF53A10008A6C7D /* UITableView+FDIndexPathHeightCache.h */,
+				B3D33B851CF53A10008A6C7D /* UITableView+FDIndexPathHeightCache.m */,
+				B3D33B861CF53A10008A6C7D /* UITableView+FDKeyedHeightCache.h */,
+				B3D33B871CF53A10008A6C7D /* UITableView+FDKeyedHeightCache.m */,
+				B3D33B881CF53A10008A6C7D /* UITableView+FDTemplateLayoutCell.h */,
+				B3D33B891CF53A10008A6C7D /* UITableView+FDTemplateLayoutCell.m */,
+				B3D33B8A1CF53A10008A6C7D /* UITableView+FDTemplateLayoutCellDebug.h */,
+				B3D33B8B1CF53A10008A6C7D /* UITableView+FDTemplateLayoutCellDebug.m */,
+			);
+			path = FDTemplateLayoutCell;
 			sourceTree = "<group>";
 		};
 		BC1740AA1C59062400C7BA41 /* Umeng */ = {
@@ -404,6 +547,8 @@
 		BC2EC13E1C55FC9B005037E0 = {
 			isa = PBXGroup;
 			children = (
+				B3BD70FB1CEAEE6200607BF3 /* NSArray+Log.h */,
+				B3BD70FC1CEAEE6200607BF3 /* NSArray+Log.m */,
 				BC2EC1491C55FC9B005037E0 /* ShowTime */,
 				BC2EC1631C55FC9B005037E0 /* ShowTimeTests */,
 				BC2EC16E1C55FC9B005037E0 /* ShowTimeUITests */,
@@ -494,6 +639,7 @@
 		BC2EC17F1C55FD43005037E0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B31FD0C51D236438008079B5 /* DataBase */,
 				BC5F48961C57919D00CCC1C2 /* WeChatPay */,
 				BC246EBC1C57176E003AD339 /* rac_extobjc */,
 				BC2EC19A1C561089005037E0 /* Extensions */,
@@ -507,6 +653,10 @@
 				BC246ECF1C571B33003AD339 /* STHudManager.m */,
 				EC26429D1CB63CEA0008B9B8 /* STPaymentManager.h */,
 				EC26429E1CB63CEA0008B9B8 /* STPaymentManager.m */,
+				B31FD0D01D23648B008079B5 /* STNetworkInfo.h */,
+				B31FD0D11D23648B008079B5 /* STNetworkInfo.m */,
+				B31FD0D21D23648B008079B5 /* STStatsManager.h */,
+				B31FD0D31D23648B008079B5 /* STStatsManager.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -556,6 +706,8 @@
 			children = (
 				BC2EC1851C55FDC3005037E0 /* STBaseViewController.h */,
 				BC2EC1861C55FDC3005037E0 /* STBaseViewController.m */,
+				B3061FC11D17DC9C00A02A3F /* STVideoPlayViewController.h */,
+				B3061FC21D17DC9C00A02A3F /* STVideoPlayViewController.m */,
 				BC246EE81C57825C003AD339 /* STPaymentViewController.h */,
 				BC246EE91C57825C003AD339 /* STPaymentViewController.m */,
 				BC1740A71C59030900C7BA41 /* STWebViewController.h */,
@@ -569,6 +721,7 @@
 		BC2EC18E1C56003D005037E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B31FD0D61D236600008079B5 /* Stats */,
 				BC246E9D1C571495003AD339 /* STURLRequest.h */,
 				BC246E9E1C571495003AD339 /* STURLRequest.m */,
 				BC246E991C571495003AD339 /* STEncryptedURLRequest.h */,
@@ -577,6 +730,8 @@
 				BC246EA01C571495003AD339 /* STURLResponse.m */,
 				BC246E9B1C571495003AD339 /* STProgram.h */,
 				BC246E9C1C571495003AD339 /* STProgram.m */,
+				B31FD0C21D228761008079B5 /* STChannel.h */,
+				B31FD0C31D228761008079B5 /* STChannel.m */,
 				BC246EA11C571495003AD339 /* STVideo.h */,
 				BC246EA21C571495003AD339 /* STVideo.m */,
 				BC246EDC1C577735003AD339 /* STPaymentInfo.h */,
@@ -659,8 +814,14 @@
 				BC246EBA1C5716CC003AD339 /* NSString+md5.m */,
 				BC246EC31C571811003AD339 /* NSObject+Properties.h */,
 				BC246EC41C571811003AD339 /* NSObject+Properties.m */,
+				B31FD0BC1D2286D7008079B5 /* NSObject+DictionaryRepresentation.h */,
+				B31FD0BD1D2286D7008079B5 /* NSObject+DictionaryRepresentation.m */,
+				B31FD0BE1D2286D7008079B5 /* NSObject+PropertyAccessInspecting.h */,
+				B31FD0BF1D2286D7008079B5 /* NSObject+PropertyAccessInspecting.m */,
 				BC246EDF1C57777C003AD339 /* NSMutableDictionary+SafeCoding.h */,
 				BC246EE01C57777C003AD339 /* NSMutableDictionary+SafeCoding.m */,
+				B3C7E21B1CEDF3340008F297 /* NSString+Size.h */,
+				B3C7E21C1CEDF3340008F297 /* NSString+Size.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -677,10 +838,14 @@
 		BC2EC1B31C5649E4005037E0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B3EC58981CF58D6400AC74F4 /* STKLaunchView.h */,
+				B3EC58991CF58D6400AC74F4 /* STKLaunchView.m */,
 				BC2EC1B41C5649F0005037E0 /* STFootedView.h */,
 				BC2EC1B51C5649F0005037E0 /* STFootedView.m */,
 				BC246EEB1C5782CD003AD339 /* STPaymentPopView.h */,
 				BC246EEC1C5782CD003AD339 /* STPaymentPopView.m */,
+				B3061FD01D17E09C00A02A3F /* STVideoPlayer.h */,
+				B3061FD11D17E09C00A02A3F /* STVideoPlayer.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -714,6 +879,7 @@
 		BC6879621C589EAE00339FAE /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				B3BD70E51CE9B57600607BF3 /* Model */,
 				BC6879671C58A04F00339FAE /* View */,
 				BC6879631C589ED700339FAE /* Controller */,
 			);
@@ -732,6 +898,10 @@
 		BC6879671C58A04F00339FAE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B3BD70E91CE9B9AA00607BF3 /* STVideoMessagePollingCell.h */,
+				B3BD70EA1CE9B9AA00607BF3 /* STVideoMessagePollingCell.m */,
+				B3BD70EB1CE9B9AA00607BF3 /* STVideoMessagePollingView.h */,
+				B3BD70EC1CE9B9AA00607BF3 /* STVideoMessagePollingView.m */,
 				BC6879681C58A07900339FAE /* STLiveVideoPlayer.h */,
 				BC6879691C58A07900339FAE /* STLiveVideoPlayer.m */,
 				BC68796B1C58C5AE00339FAE /* STMessagePopupView.h */,
@@ -746,6 +916,7 @@
 			isa = PBXGroup;
 			children = (
 				BCFBEB2E1C93EA17003BF595 /* payment_header_placeholder.jpg */,
+				B3EC589D1CF58E4C00AC74F4 /* launch_image5.jpg */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -887,6 +1058,7 @@
 				BC2148991C59B87D00C4B636 /* AlipaySDK.bundle in Resources */,
 				BCFBEB2F1C93EA17003BF595 /* payment_header_placeholder.jpg in Resources */,
 				BC246E831C571259003AD339 /* config.plist in Resources */,
+				B3EC589E1CF58E4C00AC74F4 /* launch_image5.jpg in Resources */,
 				BC2EC1571C55FC9B005037E0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -964,27 +1136,35 @@
 				BC2148A31C59B87D00C4B636 /* RSADataVerifier.m in Sources */,
 				BC246EDB1C5776C6003AD339 /* NSDate+Utilities.m in Sources */,
 				BC5F48A11C57919D00CCC1C2 /* WeChatPayManager.m in Sources */,
+				B31FD0DF1D236600008079B5 /* STCPCStatsModel.m in Sources */,
 				BC68796A1C58A07900339FAE /* STLiveVideoPlayer.m in Sources */,
 				BC246ED11C571B33003AD339 /* STHudManager.m in Sources */,
+				B3BD70FD1CEAEE6200607BF3 /* NSArray+Log.m in Sources */,
 				BC2EC1941C560B3A005037E0 /* STAnchorViewController.m in Sources */,
 				BC246EB81C57169C003AD339 /* NSString+crypt.m in Sources */,
+				B3D33B8E1CF53A10008A6C7D /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				BC246EC51C571811003AD339 /* NSObject+Properties.m in Sources */,
 				BC2EC1B91C56548E005037E0 /* UITableView+Separator.m in Sources */,
 				BC2EC1A81C5617D6005037E0 /* STHomeCell.m in Sources */,
 				BC6879661C58A01D00339FAE /* STLiveVideoViewController.m in Sources */,
 				BC2148A11C59B87D00C4B636 /* openssl_wrapper.m in Sources */,
 				BC5F48BD1C579EA300CCC1C2 /* STSystemConfigModel.m in Sources */,
+				B3BD70E81CE9B58600607BF3 /* STVideoCommentModel.m in Sources */,
 				BC21489C1C59B87D00C4B636 /* base64.m in Sources */,
 				BC246EA31C571495003AD339 /* STEncryptedURLRequest.m in Sources */,
+				B31FD0D51D23648B008079B5 /* STStatsManager.m in Sources */,
 				BC246EEA1C57825C003AD339 /* STPaymentViewController.m in Sources */,
 				BC21489E1C59B87D00C4B636 /* DataVerifier.m in Sources */,
 				BC5F48A01C57919D00CCC1C2 /* payRequsestHandler.mm in Sources */,
 				BC21489B1C59B87D00C4B636 /* Order.m in Sources */,
+				B31FD0CE1D236438008079B5 /* DBPersistence.m in Sources */,
 				BC5F48AE1C5794E500CCC1C2 /* STUserAccessModel.m in Sources */,
+				B3061FD21D17E09C00A02A3F /* STVideoPlayer.m in Sources */,
 				BC246ED51C577433003AD339 /* STHotVideoModel.m in Sources */,
 				BC246EA51C571495003AD339 /* STURLRequest.m in Sources */,
 				BC21489F1C59B87D00C4B636 /* MD5DataSigner.m in Sources */,
 				BC68796D1C58C5AE00339FAE /* STMessagePopupView.m in Sources */,
+				B3D33B8D1CF53A10008A6C7D /* UITableView+FDKeyedHeightCache.m in Sources */,
 				BC246EC21C57176E003AD339 /* RACEXTRuntimeExtensions.m in Sources */,
 				BC2EC1A11C5612CB005037E0 /* UIColor+hexColor.m in Sources */,
 				BC5F489F1C57919D00CCC1C2 /* ApiXml.mm in Sources */,
@@ -994,23 +1174,34 @@
 				BC5F48C91C57A24D00CCC1C2 /* STWeChatPayQueryOrderRequest.m in Sources */,
 				BC2EC18D1C55FEB2005037E0 /* STAppDelegate.m in Sources */,
 				BC246EE61C57789C003AD339 /* STSystemConfig.m in Sources */,
+				B31FD0D41D23648B008079B5 /* STNetworkInfo.m in Sources */,
 				BC5F48AB1C5794C600CCC1C2 /* STActivateModel.m in Sources */,
+				B3C7E21D1CEDF3340008F297 /* NSString+Size.m in Sources */,
 				BC2EC14C1C55FC9B005037E0 /* main.m in Sources */,
+				B31FD0CD1D236438008079B5 /* DBHandler.m in Sources */,
+				B3061FC31D17DC9C00A02A3F /* STVideoPlayViewController.m in Sources */,
 				BC2EC1991C560B5F005037E0 /* STMineViewController.m in Sources */,
+				B3D33B8F1CF53A10008A6C7D /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
+				B3EC589A1CF58D6400AC74F4 /* STKLaunchView.m in Sources */,
 				BC246E891C5712C8003AD339 /* STConfiguration.m in Sources */,
 				BC2EC1AE1C564695005037E0 /* UIScrollView+Refresh.m in Sources */,
 				BC246EA61C571495003AD339 /* STURLResponse.m in Sources */,
+				B3D33B8C1CF53A10008A6C7D /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				BC246EB41C5715E6003AD339 /* NSDictionary+STSign.m in Sources */,
 				BC246ED81C577650003AD339 /* STUtil.m in Sources */,
+				B31FD0C01D2286D7008079B5 /* NSObject+DictionaryRepresentation.m in Sources */,
 				BC246EAE1C571586003AD339 /* STHomeProgramModel.m in Sources */,
 				BC246EA71C571495003AD339 /* STVideo.m in Sources */,
 				EC2642991CB632920008B9B8 /* STPaymentConfig.m in Sources */,
 				EC26429F1CB63CEA0008B9B8 /* STPaymentManager.m in Sources */,
 				BC246EBB1C5716CC003AD339 /* NSString+md5.m in Sources */,
 				BC246EE11C57777C003AD339 /* NSMutableDictionary+SafeCoding.m in Sources */,
+				B3BD70ED1CE9B9AA00607BF3 /* STVideoMessagePollingCell.m in Sources */,
 				BC1740A91C59030900C7BA41 /* STWebViewController.m in Sources */,
 				BC6879701C58CE6E00339FAE /* STRocketBarrageView.m in Sources */,
 				BC2148A21C59B87D00C4B636 /* RSADataSigner.m in Sources */,
+				B31FD0CF1D236438008079B5 /* DBTableVersion.m in Sources */,
+				B3BD70EE1CE9B9AA00607BF3 /* STVideoMessagePollingView.m in Sources */,
 				BC2148981C59B87D00C4B636 /* AlipayManager.m in Sources */,
 				BC2148A01C59B87D00C4B636 /* NSDataEx.m in Sources */,
 				BC246ED01C571B33003AD339 /* STErrorHandler.m in Sources */,
@@ -1021,7 +1212,12 @@
 				BC21489D1C59B87D00C4B636 /* DataSigner.m in Sources */,
 				BC246EA41C571495003AD339 /* STProgram.m in Sources */,
 				BC2EC19D1C5610C4005037E0 /* UIImage+color.m in Sources */,
+				B31FD0E01D236600008079B5 /* STPayStatsModel.m in Sources */,
+				B31FD0E21D236600008079B5 /* STTabStatsModel.m in Sources */,
+				B31FD0C11D2286D7008079B5 /* NSObject+PropertyAccessInspecting.m in Sources */,
+				B31FD0C41D228761008079B5 /* STChannel.m in Sources */,
 				BC2EC1B61C5649F0005037E0 /* STFootedView.m in Sources */,
+				B31FD0E11D236600008079B5 /* STStatsBaseModel.m in Sources */,
 				BC2EC1AB1C562A64005037E0 /* STHomeCollectionHeaderView.m in Sources */,
 				BC2148A81C59C85400C4B636 /* STInputTextViewController.m in Sources */,
 			);
