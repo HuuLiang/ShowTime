@@ -139,20 +139,28 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
                 self.completionHandler(payResult, self.paymentInfo);
             }
         }];
-    } else if (type == STPaymentTypeHTPay && subType == STPaymentTypeWeChatPay) {
+    } else if (type == STPaymentTypeVIAPay && subType == STPaymentTypeWeChatPay) {
         //海豚    微信
         @weakify(self);
-        [[HTPayManager sharedManager] payWithOrderId:orderNo
-                                           orderName:@"视频VIP"
-                                               price:price
-                               withCompletionHandler:^(BOOL success, id obj)
-         {
-             @strongify(self);
-             PAYRESULT payResult = success ? PAYRESULT_SUCCESS : PAYRESULT_FAIL;
-             if (self.completionHandler) {
-                 self.completionHandler(payResult, self.paymentInfo);
-             }
-         }];
+//        [[HTPayManager sharedManager] payWithOrderId:orderNo
+//                                           orderName:@"视频VIP"
+//                                               price:price
+//                               withCompletionHandler:^(BOOL success, id obj)
+//         {
+//             @strongify(self);
+//             PAYRESULT payResult = success ? PAYRESULT_SUCCESS : PAYRESULT_FAIL;
+//             if (self.completionHandler) {
+//                 self.completionHandler(payResult, self.paymentInfo);
+//             }
+//         }];
+        NSString *tradeName = [NSString stringWithFormat:@"%@会员",paymentInfo.payPointType];
+        [[PayUitls getIntents]   gotoPayByFee:@(price).stringValue
+                                 andTradeName:tradeName
+                              andGoodsDetails:tradeName
+                                    andScheme:sAlipaySchemeUrl
+                            andchannelOrderId:[orderNo stringByAppendingFormat:@"$%@", ST_REST_APP_ID]
+                                      andType:@"2"
+                             andViewControler:[STUtil currentVisibleViewController]];
         
     } else if (type == STPaymentTypeVIAPay && subType == STPaymentTypeAlipay) {
         //首游时空  支付宝
