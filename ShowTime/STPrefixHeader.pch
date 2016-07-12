@@ -32,6 +32,23 @@
 #import "STStatsManager.h"
 #import "STNetworkInfo.h"
 
+
+
+typedef NS_ENUM(NSUInteger, STDeviceTypes) {
+    STDeviceTypeUnknown,
+    STDeviceType_iPhone4,
+    STDeviceType_iPhone4S,
+    STDeviceType_iPhone5,
+    STDeviceType_iPhone5C,
+    STDeviceType_iPhone5S,
+    STDeviceType_iPhone6,
+    STDeviceType_iPhone6P,
+    STDeviceType_iPhone6S,
+    STDeviceType_iPhone6SP,
+    STDeviceType_iPhoneSE,
+    STDeviceType_iPad = 100
+};
+
 typedef NS_ENUM(NSUInteger, STPaymentType) {
     STPaymentTypeNone,
     STPaymentTypeAlipay = 1001,

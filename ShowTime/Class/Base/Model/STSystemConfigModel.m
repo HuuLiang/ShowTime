@@ -34,7 +34,7 @@
 - (BOOL)fetchSystemConfigWithCompletionHandler:(STFetchSystemConfigCompletionHandler)handler {
     @weakify(self);
     BOOL success = [self requestURLPath:ST_SYSTEM_CONFIG_URL
-                             withParams:nil
+                             withParams:@{@"type" : @([STUtil  deviceType])}
                         responseHandler:^(STURLResponseStatus respStatus, NSString *errorMessage)
     {
         @strongify(self);

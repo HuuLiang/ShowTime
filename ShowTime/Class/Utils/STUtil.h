@@ -29,6 +29,7 @@ extern NSString *const kPaymentInfoKeyName;
 + (NSString *)userId;
 + (NSString *)deviceName;
 + (NSString *)appVersion;
++ (NSInteger)deviceType;
 
 + (NSString *)paymentReservedData;
 
