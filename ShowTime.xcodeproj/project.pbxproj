@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C57C6BC94B77B370E62F7B7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099B90208C840C450D0B0031 /* libPods.a */; };
+		69BEF0CD2491C617D62C585E /* libPods-ShowTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F7892607CCC3D672233390A /* libPods-ShowTime.a */; };
 		B3061FC31D17DC9C00A02A3F /* STVideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3061FC21D17DC9C00A02A3F /* STVideoPlayViewController.m */; };
 		B3061FCA1D17DF1C00A02A3F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3061FC91D17DF1C00A02A3F /* Security.framework */; };
 		B3061FCC1D17DF4E00A02A3F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3061FCB1D17DF4E00A02A3F /* libc++.tbd */; };
@@ -25,6 +25,15 @@
 		B31FD0E01D236600008079B5 /* STPayStatsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0DA1D236600008079B5 /* STPayStatsModel.m */; };
 		B31FD0E11D236600008079B5 /* STStatsBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0DC1D236600008079B5 /* STStatsBaseModel.m */; };
 		B31FD0E21D236600008079B5 /* STTabStatsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0DE1D236600008079B5 /* STTabStatsModel.m */; };
+		B34FF1931D33940F00355D4E /* IapppayH5Kit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FF1911D33940F00355D4E /* IapppayH5Kit.framework */; };
+		B34FF1941D33940F00355D4E /* IapppayH5Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B34FF1921D33940F00355D4E /* IapppayH5Resource.bundle */; };
+		B34FF1AB1D33942000355D4E /* libSPaySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FF1A91D33942000355D4E /* libSPaySDK.a */; };
+		B34FF1AC1D33942000355D4E /* SPaySDKResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B34FF1AA1D33942000355D4E /* SPaySDKResource.bundle */; };
+		B34FF1B01D33943B00355D4E /* IappPayMananger.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FF1AF1D33943B00355D4E /* IappPayMananger.m */; };
+		B34FF1BA1D33955D00355D4E /* SPayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FF1B31D33955D00355D4E /* SPayUtil.m */; };
+		B34FF1BB1D33955D00355D4E /* SPConst.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FF1B51D33955D00355D4E /* SPConst.m */; };
+		B34FF1BC1D33955D00355D4E /* SPHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FF1B71D33955D00355D4E /* SPHTTPManager.m */; };
+		B34FF1BD1D33955D00355D4E /* SPRequestForm.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FF1B91D33955D00355D4E /* SPRequestForm.m */; };
 		B3BD70E81CE9B58600607BF3 /* STVideoCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD70E71CE9B58600607BF3 /* STVideoCommentModel.m */; };
 		B3BD70ED1CE9B9AA00607BF3 /* STVideoMessagePollingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD70EA1CE9B9AA00607BF3 /* STVideoMessagePollingCell.m */; };
 		B3BD70EE1CE9B9AA00607BF3 /* STVideoMessagePollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD70EC1CE9B9AA00607BF3 /* STVideoMessagePollingView.m */; };
@@ -133,9 +142,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		099B90208C840C450D0B0031 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		30D72EE74B640F671571F685 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		9B0615D034C8224A6EC762B7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		4D564F9C81F38F8934CC34A4 /* Pods-ShowTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShowTime/Pods-ShowTime.release.xcconfig"; sourceTree = "<group>"; };
+		9F7892607CCC3D672233390A /* libPods-ShowTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShowTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3061FC11D17DC9C00A02A3F /* STVideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STVideoPlayViewController.h; sourceTree = "<group>"; };
 		B3061FC21D17DC9C00A02A3F /* STVideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STVideoPlayViewController.m; sourceTree = "<group>"; };
 		B3061FC71D17DE4800A02A3F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -169,6 +177,38 @@
 		B31FD0DC1D236600008079B5 /* STStatsBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStatsBaseModel.m; sourceTree = "<group>"; };
 		B31FD0DD1D236600008079B5 /* STTabStatsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTabStatsModel.h; sourceTree = "<group>"; };
 		B31FD0DE1D236600008079B5 /* STTabStatsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STTabStatsModel.m; sourceTree = "<group>"; };
+		B34FF1911D33940F00355D4E /* IapppayH5Kit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IapppayH5Kit.framework; sourceTree = "<group>"; };
+		B34FF1921D33940F00355D4E /* IapppayH5Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IapppayH5Resource.bundle; sourceTree = "<group>"; };
+		B34FF1971D33942000355D4E /* NSDictionary+SPayUtilsExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SPayUtilsExtras.h"; sourceTree = "<group>"; };
+		B34FF1981D33942000355D4E /* NSString+SPayUtilsExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SPayUtilsExtras.h"; sourceTree = "<group>"; };
+		B34FF1991D33942000355D4E /* SPayClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClient.h; sourceTree = "<group>"; };
+		B34FF19A1D33942000355D4E /* SPayClientAlipayConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientAlipayConfigModel.h; sourceTree = "<group>"; };
+		B34FF19B1D33942000355D4E /* SPayClientConstEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientConstEnum.h; sourceTree = "<group>"; };
+		B34FF19C1D33942000355D4E /* SPayClientHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientHeaders.h; sourceTree = "<group>"; };
+		B34FF19D1D33942000355D4E /* SPayClientPayAppPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPayAppPayManager.h; sourceTree = "<group>"; };
+		B34FF19E1D33942000355D4E /* SPayClientPayDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPayDetailModel.h; sourceTree = "<group>"; };
+		B34FF19F1D33942000355D4E /* SPayClientPayHelpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPayHelpModel.h; sourceTree = "<group>"; };
+		B34FF1A01D33942000355D4E /* SPayClientPayStateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPayStateModel.h; sourceTree = "<group>"; };
+		B34FF1A11D33942000355D4E /* SPayClientPaySuccessDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPaySuccessDetailModel.h; sourceTree = "<group>"; };
+		B34FF1A21D33942000355D4E /* SPayClientPaySuccessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientPaySuccessModel.h; sourceTree = "<group>"; };
+		B34FF1A31D33942000355D4E /* SPayClientQQConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientQQConfigModel.h; sourceTree = "<group>"; };
+		B34FF1A41D33942000355D4E /* SPayClientReverseScanPayDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientReverseScanPayDetailModel.h; sourceTree = "<group>"; };
+		B34FF1A51D33942000355D4E /* SPayClientWapPayDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientWapPayDetailModel.h; sourceTree = "<group>"; };
+		B34FF1A61D33942000355D4E /* SPayClientWechatConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientWechatConfigModel.h; sourceTree = "<group>"; };
+		B34FF1A71D33942000355D4E /* SPayClientXMLWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayClientXMLWriter.h; sourceTree = "<group>"; };
+		B34FF1A81D33942000355D4E /* SPBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPBaseModel.h; sourceTree = "<group>"; };
+		B34FF1A91D33942000355D4E /* libSPaySDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSPaySDK.a; sourceTree = "<group>"; };
+		B34FF1AA1D33942000355D4E /* SPaySDKResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SPaySDKResource.bundle; sourceTree = "<group>"; };
+		B34FF1AE1D33943B00355D4E /* IappPayMananger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IappPayMananger.h; sourceTree = "<group>"; };
+		B34FF1AF1D33943B00355D4E /* IappPayMananger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IappPayMananger.m; sourceTree = "<group>"; };
+		B34FF1B21D33955D00355D4E /* SPayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPayUtil.h; sourceTree = "<group>"; };
+		B34FF1B31D33955D00355D4E /* SPayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPayUtil.m; sourceTree = "<group>"; };
+		B34FF1B41D33955D00355D4E /* SPConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPConst.h; sourceTree = "<group>"; };
+		B34FF1B51D33955D00355D4E /* SPConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPConst.m; sourceTree = "<group>"; };
+		B34FF1B61D33955D00355D4E /* SPHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPHTTPManager.h; sourceTree = "<group>"; };
+		B34FF1B71D33955D00355D4E /* SPHTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPHTTPManager.m; sourceTree = "<group>"; };
+		B34FF1B81D33955D00355D4E /* SPRequestForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPRequestForm.h; sourceTree = "<group>"; };
+		B34FF1B91D33955D00355D4E /* SPRequestForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPRequestForm.m; sourceTree = "<group>"; };
 		B3BD70E61CE9B58600607BF3 /* STVideoCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STVideoCommentModel.h; sourceTree = "<group>"; };
 		B3BD70E71CE9B58600607BF3 /* STVideoCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STVideoCommentModel.m; sourceTree = "<group>"; };
 		B3BD70E91CE9B9AA00607BF3 /* STVideoMessagePollingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STVideoMessagePollingCell.h; sourceTree = "<group>"; };
@@ -317,6 +357,7 @@
 		BC68796E1C58CE6E00339FAE /* STRocketBarrageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STRocketBarrageView.h; sourceTree = "<group>"; };
 		BC68796F1C58CE6E00339FAE /* STRocketBarrageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STRocketBarrageView.m; sourceTree = "<group>"; };
 		BCFBEB2E1C93EA17003BF595 /* payment_header_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = payment_header_placeholder.jpg; sourceTree = "<group>"; };
+		E69C53095193E84E33DDA4EC /* Pods-ShowTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShowTime/Pods-ShowTime.debug.xcconfig"; sourceTree = "<group>"; };
 		EC2642971CB632920008B9B8 /* STPaymentConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPaymentConfig.h; sourceTree = "<group>"; };
 		EC2642981CB632920008B9B8 /* STPaymentConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPaymentConfig.m; sourceTree = "<group>"; };
 		EC26429A1CB632B90008B9B8 /* STPaymentConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPaymentConfigModel.h; sourceTree = "<group>"; };
@@ -359,10 +400,12 @@
 				ECF99B7A1D2CDBB8003CBCA8 /* pay.a in Frameworks */,
 				ECF99B781D2CDBB8003CBCA8 /* AlipaySDK.framework in Frameworks */,
 				ECF99B791D2CDBB8003CBCA8 /* HYMergerPaySDK.framework in Frameworks */,
+				B34FF1931D33940F00355D4E /* IapppayH5Kit.framework in Frameworks */,
 				BC5F48BF1C579EDE00CCC1C2 /* CoreTelephony.framework in Frameworks */,
+				B34FF1AB1D33942000355D4E /* libSPaySDK.a in Frameworks */,
 				BC1740AE1C59062400C7BA41 /* libMobClickLibrary.a in Frameworks */,
 				BC5F48A81C5791CD00CCC1C2 /* libWeChatSDK.a in Frameworks */,
-				2C57C6BC94B77B370E62F7B7 /* libPods.a in Frameworks */,
+				69BEF0CD2491C617D62C585E /* libPods-ShowTime.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,7 +437,7 @@
 				BC5F48C21C579EF700CCC1C2 /* libz.tbd */,
 				BC5F48C01C579EE600CCC1C2 /* libsqlite3.tbd */,
 				BC5F48BE1C579EDE00CCC1C2 /* CoreTelephony.framework */,
-				099B90208C840C450D0B0031 /* libPods.a */,
+				9F7892607CCC3D672233390A /* libPods-ShowTime.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -426,6 +469,74 @@
 				B31FD0DE1D236600008079B5 /* STTabStatsModel.m */,
 			);
 			path = Stats;
+			sourceTree = "<group>";
+		};
+		B34FF1901D33940F00355D4E /* iAppPay */ = {
+			isa = PBXGroup;
+			children = (
+				B34FF1911D33940F00355D4E /* IapppayH5Kit.framework */,
+				B34FF1921D33940F00355D4E /* IapppayH5Resource.bundle */,
+			);
+			path = iAppPay;
+			sourceTree = "<group>";
+		};
+		B34FF1951D33942000355D4E /* SPaySDK */ = {
+			isa = PBXGroup;
+			children = (
+				B34FF1961D33942000355D4E /* include */,
+				B34FF1A91D33942000355D4E /* libSPaySDK.a */,
+				B34FF1AA1D33942000355D4E /* SPaySDKResource.bundle */,
+			);
+			path = SPaySDK;
+			sourceTree = "<group>";
+		};
+		B34FF1961D33942000355D4E /* include */ = {
+			isa = PBXGroup;
+			children = (
+				B34FF1971D33942000355D4E /* NSDictionary+SPayUtilsExtras.h */,
+				B34FF1981D33942000355D4E /* NSString+SPayUtilsExtras.h */,
+				B34FF1991D33942000355D4E /* SPayClient.h */,
+				B34FF19A1D33942000355D4E /* SPayClientAlipayConfigModel.h */,
+				B34FF19B1D33942000355D4E /* SPayClientConstEnum.h */,
+				B34FF19C1D33942000355D4E /* SPayClientHeaders.h */,
+				B34FF19D1D33942000355D4E /* SPayClientPayAppPayManager.h */,
+				B34FF19E1D33942000355D4E /* SPayClientPayDetailModel.h */,
+				B34FF19F1D33942000355D4E /* SPayClientPayHelpModel.h */,
+				B34FF1A01D33942000355D4E /* SPayClientPayStateModel.h */,
+				B34FF1A11D33942000355D4E /* SPayClientPaySuccessDetailModel.h */,
+				B34FF1A21D33942000355D4E /* SPayClientPaySuccessModel.h */,
+				B34FF1A31D33942000355D4E /* SPayClientQQConfigModel.h */,
+				B34FF1A41D33942000355D4E /* SPayClientReverseScanPayDetailModel.h */,
+				B34FF1A51D33942000355D4E /* SPayClientWapPayDetailModel.h */,
+				B34FF1A61D33942000355D4E /* SPayClientWechatConfigModel.h */,
+				B34FF1A71D33942000355D4E /* SPayClientXMLWriter.h */,
+				B34FF1A81D33942000355D4E /* SPBaseModel.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		B34FF1AD1D33943B00355D4E /* iAppPayUtil */ = {
+			isa = PBXGroup;
+			children = (
+				B34FF1AE1D33943B00355D4E /* IappPayMananger.h */,
+				B34FF1AF1D33943B00355D4E /* IappPayMananger.m */,
+			);
+			path = iAppPayUtil;
+			sourceTree = "<group>";
+		};
+		B34FF1B11D33955D00355D4E /* SPayUtil */ = {
+			isa = PBXGroup;
+			children = (
+				B34FF1B21D33955D00355D4E /* SPayUtil.h */,
+				B34FF1B31D33955D00355D4E /* SPayUtil.m */,
+				B34FF1B41D33955D00355D4E /* SPConst.h */,
+				B34FF1B51D33955D00355D4E /* SPConst.m */,
+				B34FF1B61D33955D00355D4E /* SPHTTPManager.h */,
+				B34FF1B71D33955D00355D4E /* SPHTTPManager.m */,
+				B34FF1B81D33955D00355D4E /* SPRequestForm.h */,
+				B34FF1B91D33955D00355D4E /* SPRequestForm.m */,
+			);
+			path = SPayUtil;
 			sourceTree = "<group>";
 		};
 		B3BD70E51CE9B57600607BF3 /* Model */ = {
@@ -500,8 +611,8 @@
 				BC2EC1631C55FC9B005037E0 /* ShowTimeTests */,
 				BC2EC16E1C55FC9B005037E0 /* ShowTimeUITests */,
 				BC2EC1481C55FC9B005037E0 /* Products */,
-				E1395A711428683153B15924 /* Pods */,
 				953D296C53D03EFDAA1119D8 /* Frameworks */,
+				D59C21961F19561DEB9F8E63 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -575,6 +686,8 @@
 		BC2EC17E1C55FD30005037E0 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				B34FF1951D33942000355D4E /* SPaySDK */,
+				B34FF1901D33940F00355D4E /* iAppPay */,
 				ECF99B641D2CDBB8003CBCA8 /* AlipaySDK */,
 				ECF99B671D2CDBB8003CBCA8 /* VIAPay */,
 				BC1740AA1C59062400C7BA41 /* Umeng */,
@@ -586,6 +699,8 @@
 		BC2EC17F1C55FD43005037E0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B34FF1B11D33955D00355D4E /* SPayUtil */,
+				B34FF1AD1D33943B00355D4E /* iAppPayUtil */,
 				ECF99B821D2CDBDA003CBCA8 /* HTPay */,
 				B31FD0C51D236438008079B5 /* DataBase */,
 				BC5F48961C57919D00CCC1C2 /* WeChatPay */,
@@ -871,11 +986,11 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		E1395A711428683153B15924 /* Pods */ = {
+		D59C21961F19561DEB9F8E63 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9B0615D034C8224A6EC762B7 /* Pods.debug.xcconfig */,
-				30D72EE74B640F671571F685 /* Pods.release.xcconfig */,
+				E69C53095193E84E33DDA4EC /* Pods-ShowTime.debug.xcconfig */,
+				4D564F9C81F38F8934CC34A4 /* Pods-ShowTime.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -934,12 +1049,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC2EC1741C55FC9B005037E0 /* Build configuration list for PBXNativeTarget "ShowTime" */;
 			buildPhases = (
-				C279D536D3B813B82FC46352 /* Check Pods Manifest.lock */,
+				58F63CE3D81E1A4F5EFCF52A /* [CP] Check Pods Manifest.lock */,
 				BC2EC1431C55FC9B005037E0 /* Sources */,
 				BC2EC1441C55FC9B005037E0 /* Frameworks */,
 				BC2EC1451C55FC9B005037E0 /* Resources */,
-				2C6C3FFC322E750A6B2CAFE7 /* Embed Pods Frameworks */,
-				AA79858E562A94003280A87C /* Copy Pods Resources */,
+				838894B649BEFDF83482C0CA /* [CP] Embed Pods Frameworks */,
+				24C3085281A4784661866AE3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1034,6 +1149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECF99B771D2CDBB8003CBCA8 /* AlipaySDK.bundle in Resources */,
+				B34FF1AC1D33942000355D4E /* SPaySDKResource.bundle in Resources */,
 				BCFBEB2F1C93EA17003BF595 /* payment_header_placeholder.jpg in Resources */,
 				ECF99B7B1D2CDBB8003CBCA8 /* Config.txt in Resources */,
 				ECF99B7E1D2CDBB8003CBCA8 /* private_key.p12 in Resources */,
@@ -1042,6 +1158,7 @@
 				B3EC589E1CF58E4C00AC74F4 /* launch_image5.jpg in Resources */,
 				ECF99B811D2CDBB8003CBCA8 /* VIASDKVERSION.txt in Resources */,
 				BC2EC1571C55FC9B005037E0 /* Assets.xcassets in Resources */,
+				B34FF1941D33940F00355D4E /* IapppayH5Resource.bundle in Resources */,
 				ECF99B7D1D2CDBB8003CBCA8 /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1063,49 +1180,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2C6C3FFC322E750A6B2CAFE7 /* Embed Pods Frameworks */ = {
+		24C3085281A4784661866AE3 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShowTime/Pods-ShowTime-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AA79858E562A94003280A87C /* Copy Pods Resources */ = {
+		58F63CE3D81E1A4F5EFCF52A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C279D536D3B813B82FC46352 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		838894B649BEFDF83482C0CA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShowTime/Pods-ShowTime-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1121,6 +1238,7 @@
 				BC5F48A11C57919D00CCC1C2 /* WeChatPayManager.m in Sources */,
 				B31FD0DF1D236600008079B5 /* STCPCStatsModel.m in Sources */,
 				BC68796A1C58A07900339FAE /* STLiveVideoPlayer.m in Sources */,
+				B34FF1BB1D33955D00355D4E /* SPConst.m in Sources */,
 				BC246ED11C571B33003AD339 /* STHudManager.m in Sources */,
 				BC2EC1941C560B3A005037E0 /* STAnchorViewController.m in Sources */,
 				BC246EB81C57169C003AD339 /* NSString+crypt.m in Sources */,
@@ -1145,13 +1263,16 @@
 				BC246EC21C57176E003AD339 /* RACEXTRuntimeExtensions.m in Sources */,
 				BC2EC1A11C5612CB005037E0 /* UIColor+hexColor.m in Sources */,
 				BC5F489F1C57919D00CCC1C2 /* ApiXml.mm in Sources */,
+				B34FF1BA1D33955D00355D4E /* SPayUtil.m in Sources */,
 				BC246EED1C5782CD003AD339 /* STPaymentPopView.m in Sources */,
 				BC2EC1B21C5647D6005037E0 /* STAnchorCell.m in Sources */,
 				ECF99B7C1D2CDBB8003CBCA8 /* MBProgressHUD+NJ.m in Sources */,
 				BC2EC18A1C55FDDA005037E0 /* STHomeViewController.m in Sources */,
 				BC5F48C91C57A24D00CCC1C2 /* STWeChatPayQueryOrderRequest.m in Sources */,
+				B34FF1B01D33943B00355D4E /* IappPayMananger.m in Sources */,
 				BC2EC18D1C55FEB2005037E0 /* STAppDelegate.m in Sources */,
 				BC246EE61C57789C003AD339 /* STSystemConfig.m in Sources */,
+				B34FF1BC1D33955D00355D4E /* SPHTTPManager.m in Sources */,
 				B31FD0D41D23648B008079B5 /* STNetworkInfo.m in Sources */,
 				BC5F48AB1C5794C600CCC1C2 /* STActivateModel.m in Sources */,
 				B3C7E21D1CEDF3340008F297 /* NSString+Size.m in Sources */,
@@ -1193,6 +1314,7 @@
 				B31FD0C11D2286D7008079B5 /* NSObject+PropertyAccessInspecting.m in Sources */,
 				B31FD0C41D228761008079B5 /* STChannel.m in Sources */,
 				BC2EC1B61C5649F0005037E0 /* STFootedView.m in Sources */,
+				B34FF1BD1D33955D00355D4E /* SPRequestForm.m in Sources */,
 				B31FD0E11D236600008079B5 /* STStatsBaseModel.m in Sources */,
 				BC2EC1AB1C562A64005037E0 /* STHomeCollectionHeaderView.m in Sources */,
 				BC2148A81C59C85400C4B636 /* STInputTextViewController.m in Sources */,
@@ -1322,7 +1444,7 @@
 		};
 		BC2EC1751C55FC9B005037E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B0615D034C8224A6EC762B7 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = E69C53095193E84E33DDA4EC /* Pods-ShowTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1343,6 +1465,7 @@
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/WeChatSDK",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/Umeng",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/VIAPay",
+					"$(PROJECT_DIR)/ShowTime/Class/Vendor/SPaySDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.showtime2016.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1352,7 +1475,7 @@
 		};
 		BC2EC1761C55FC9B005037E0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30D72EE74B640F671571F685 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 4D564F9C81F38F8934CC34A4 /* Pods-ShowTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1373,6 +1496,7 @@
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/WeChatSDK",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/Umeng",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/VIAPay",
+					"$(PROJECT_DIR)/ShowTime/Class/Vendor/SPaySDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.showtime2016.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";

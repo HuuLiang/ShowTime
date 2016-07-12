@@ -32,6 +32,8 @@ typedef void(^STPaymentCompletionHandler)(PAYRESULT payResult, STPaymentInfo *pa
                       completionHandler:(STPaymentCompletionHandler)handler;
 
 - (void)handleOpenUrl:(NSURL *)url;
-- (void)checkPayment;
+- (void)applicationWillEnterForeground;
+- (STPaymentType)wechatPaymentType;
+- (STPaymentType)alipayPaymentType;
 
 @end

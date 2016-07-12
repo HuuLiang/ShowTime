@@ -189,12 +189,13 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    [[STPaymentManager sharedManager] applicationWillEnterForeground];
     
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [self checkPayment];
+//    [self checkPayment];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -216,24 +217,24 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     return YES;
 }
 
-- (void)checkPayment {
-    if ([STUtil isPaid]) {
-        return ;
-    }
-    
-    NSArray<STPaymentInfo *> *payingPaymentInfos = [STUtil payingPaymentInfos];
-    [payingPaymentInfos enumerateObjectsUsingBlock:^(STPaymentInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        STPaymentType paymentType = obj.paymentType.unsignedIntegerValue;
-        if (paymentType == STPaymentTypeWeChatPay) {
-            [self.wechatPayOrderQueryRequest queryOrderWithNo:obj.orderId completionHandler:^(BOOL success, NSString *trade_state, double total_fee) {
-                if ([trade_state isEqualToString:@"SUCCESS"]) {
-                    STPaymentViewController *paymentVC = [STPaymentViewController sharedPaymentVC];
-                    [paymentVC notifyPaymentResult:PAYRESULT_SUCCESS withPaymentInfo:obj];
-                }
-            }];
-        }
-    }];
-}
+//- (void)checkPayment {
+//    if ([STUtil isPaid]) {
+//        return ;
+//    }
+//    
+//    NSArray<STPaymentInfo *> *payingPaymentInfos = [STUtil payingPaymentInfos];
+//    [payingPaymentInfos enumerateObjectsUsingBlock:^(STPaymentInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        STPaymentType paymentType = obj.paymentType.unsignedIntegerValue;
+//        if (paymentType == STPaymentTypeWeChatPay) {
+//            [self.wechatPayOrderQueryRequest queryOrderWithNo:obj.orderId completionHandler:^(BOOL success, NSString *trade_state, double total_fee) {
+//                if ([trade_state isEqualToString:@"SUCCESS"]) {
+//                    STPaymentViewController *paymentVC = [STPaymentViewController sharedPaymentVC];
+//                    [paymentVC notifyPaymentResult:PAYRESULT_SUCCESS withPaymentInfo:obj];
+//                }
+//            }];
+//        }
+//    }];
+//}
 
 #pragma mark - WeChat delegate
 

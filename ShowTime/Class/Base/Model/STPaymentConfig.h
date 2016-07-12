@@ -8,10 +8,10 @@
 
 #import "STURLResponse.h"
 
-typedef NS_ENUM(NSUInteger, STIAppPayType) {
-    STIAppPayTypeUnknown = 0,
-    STIAppPayTypeWeChat = 1 << 0,
-    STIAppPayTypeAlipay = 1 << 1
+typedef NS_ENUM(NSUInteger, STSubPayType) {
+    STSubPayTypeUnknown = 0,
+    STSubPayTypeWeChat = 1 << 0,
+    STSubPayTypeAlipay = 1 << 1
 };
 
 @interface STWeChatPaymentConfig : NSObject
@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, STIAppPayType) {
 @property (nonatomic) NSString *signKey;
 @property (nonatomic) NSString *notifyUrl;
 
-+ (instancetype)defaultConfig;
+//+ (instancetype)defaultConfig;
 @end
 
 @interface STAlipayConfig : NSObject

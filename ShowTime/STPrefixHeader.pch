@@ -38,6 +38,7 @@ typedef NS_ENUM(NSUInteger, STPaymentType) {
     STPaymentTypeWeChatPay = 1008,
     STPaymentTypeIAppPay = 1009,
     STPaymentTypeVIAPay = 1010, //首游时空
+    STPaymentTypeSPay = 1012, //威富通
     STPaymentTypeHTPay = 1015 //海豚支付
 };
 
@@ -74,5 +75,7 @@ if (block) block(__VA_ARGS__);
 #define kDefaultDateFormat    @"yyyyMMddHHmmss"
 
 typedef void (^STCompletionHandler)(BOOL success, id obj);
+typedef void (^STPaymentsCompletionHandler)(PAYRESULT payResult, STPaymentInfo *paymentInfo);
+
 typedef void (^STAction)(id obj);
 #endif /* STPrefixHeader_pch */

@@ -17,6 +17,9 @@ typedef void (^STFetchSystemConfigCompletionHandler)(BOOL success);
 
 @interface STSystemConfigModel : STEncryptedURLRequest
 
+@property (nonatomic) NSString *contact;
+
+
 @property (nonatomic) double payAmount;
 @property (nonatomic) NSString *paymentImage;
 @property (nonatomic) NSString *channelTopImage;

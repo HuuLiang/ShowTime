@@ -60,6 +60,8 @@
                     self.spreadURL = config.value;
                 }else if ([config.name isEqualToString:ST_SYSTEM_CONFIG_STATS_TIME_INTERVAL]) {
                     self.statsTimeInterval = config.value.integerValue;
+                }else if ([config.name isEqualToString:ST_SYSTEM_CONFIG_CONTACT]) {
+                    self.contact = config.value;
                 }
             }];
             _loaded = YES;
