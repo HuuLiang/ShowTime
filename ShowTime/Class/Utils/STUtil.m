@@ -80,7 +80,7 @@ static NSString *const kUserAccessServicename = @"jqkuaibov_user_access_service"
 }
 
 + (BOOL)isPaid {
-//    return YES;
+    //    return YES;
     return [self successfulPaymentInfo] != nil;
 }
 
@@ -121,6 +121,9 @@ static NSString *const kUserAccessServicename = @"jqkuaibov_user_access_service"
         return STDeviceType_iPhone6SP;
     } else if ([deviceName rangeOfString:@"iPhone8,4"].location == 0) {
         return STDeviceType_iPhoneSE;
+    }else if ([deviceName rangeOfString:@"iPad"].location == 0){
+        
+        return STDeviceType_iPad;
     } else {
         return STDeviceTypeUnknown;
     }
