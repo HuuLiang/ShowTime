@@ -81,5 +81,4 @@ static NSString *const SPaymentEncryptionPassword = @"wdnxs&*@#!*qb)*&qiang";
     return ret;
 }
 
-
 @end

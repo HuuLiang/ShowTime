@@ -122,7 +122,7 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
                       completionHandler:(STPaymentCompletionHandler)handler {
     DLog("----type-%lu------subtype-%lu-----",(unsigned long)type,(unsigned long)subType);
     
-    //        price = 1;
+//            price = 1;
     if (type == STPaymentTypeNone || (type == STPaymentTypeIAppPay && subType == STPaymentTypeNone)) {
         if (self.completionHandler) {
             self.completionHandler(PAYRESULT_FAIL,nil);
