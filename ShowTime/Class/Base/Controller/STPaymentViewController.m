@@ -86,6 +86,15 @@
         }];
         
     }
+    
+    STPaymentType carkPaymentType = [[STPaymentManager sharedManager] cardPayPaymentType];
+    
+    if (carkPaymentType != STPaymentTypeNone) {
+        [_popView addPaymentWithImage:[UIImage imageNamed:@"card_pay_icon"] title:@"购卡支付" available:YES action:^(id obj) {
+            Pay(STPaymentTypeIAppPay,STPaymentTypeNone);
+        }];
+    }
+    
 //    if (([STPaymentConfig sharedConfig].iappPayInfo.supportPayTypes.unsignedIntegerValue & STIAppPayTypeWeChat) || [STPaymentConfig sharedConfig].weixinInfo) {
 //        BOOL useBuildInWeChatPay = [STPaymentConfig sharedConfig].weixinInfo != nil;
 //        [_popView addPaymentWithImage:[UIImage imageNamed:@"wechat_icon"] title:@"微信客户端支付" available:YES action:^(id sender) {

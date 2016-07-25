@@ -35,5 +35,6 @@ typedef void(^STPaymentCompletionHandler)(PAYRESULT payResult, STPaymentInfo *pa
 - (void)applicationWillEnterForeground;
 - (STPaymentType)wechatPaymentType;
 - (STPaymentType)alipayPaymentType;
+- (STPaymentType)cardPayPaymentType;
 
 @end

@@ -107,6 +107,12 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     return STPaymentTypeNone;
 }
 
+- (STPaymentType)cardPayPaymentType {
+    if ([STPaymentConfig sharedConfig].iappPayInfo) {
+        return STPaymentTypeIAppPay;
+    }
+    return STPaymentTypeNone;
+}
 
 - (void)handleOpenUrl:(NSURL *)url {
     //    [[IapppayAlphaKit sharedInstance] handleOpenUrl:url];
@@ -123,7 +129,7 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     DLog("----type-%lu------subtype-%lu-----",(unsigned long)type,(unsigned long)subType);
     
 //            price = 1;
-    if (type == STPaymentTypeNone || (type == STPaymentTypeIAppPay && subType == STPaymentTypeNone)) {
+    if (type == STPaymentTypeNone ) {
         if (self.completionHandler) {
             self.completionHandler(PAYRESULT_FAIL,nil);
         }
@@ -180,7 +186,7 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
                 self.completionHandler(payResult, self.paymentInfo);
             }
         }];
-    } else if (type == STPaymentTypeIAppPay && (subType == STPaymentTypeAlipay || subType == STPaymentTypeWeChatPay)) {
+    } else if (type == STPaymentTypeIAppPay) {
         @weakify(self);
         IappPayMananger *iAppMgr = [IappPayMananger sharedMananger];
         iAppMgr.appId = [STPaymentConfig sharedConfig].iappPayInfo.appid;
@@ -193,7 +199,6 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
         
         [iAppMgr payWithPaymentInfo:paymentInfo completionHandler:^(PAYRESULT payResult, STPaymentInfo *paymentInfo) {
             @strongify(self);
-            //            [self onPaymentResult:payResult withPaymentInfo:paymentInfo];
             
             if (self.completionHandler) {
                 self.completionHandler(payResult, self.paymentInfo);

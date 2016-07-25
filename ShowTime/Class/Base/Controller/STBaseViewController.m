@@ -44,7 +44,7 @@
         UIViewController *videoPlayVC = [[STLiveVideoViewController alloc] initWithVideo:program];//[self playerVCWithVideo:program];
         videoPlayVC.hidesBottomBarWhenPushed = YES;
         [self presentViewController:videoPlayVC animated:YES completion:nil];
-    }else if (![STUtil isPaid] && isTrival == YES) {
+    }else if (isTrival == YES) {
     STLiveVideoViewController *videoPlayVC = [[STLiveVideoViewController alloc] initWithVideo:program];
         videoPlayVC.isTrival = YES;
         videoPlayVC.channel = channel;
