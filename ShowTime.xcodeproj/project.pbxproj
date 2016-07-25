@@ -1449,7 +1449,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1468,9 +1468,9 @@
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/VIAPay",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/SPaySDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.iqu8.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.showtime2016.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d2417c85-9391-4acc-9804-5c98d02ec4e4";
+				PROVISIONING_PROFILE = "4e7309e3-adb6-4e73-80c9-dbba211bd466";
 			};
 			name = Debug;
 		};
@@ -1480,7 +1480,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1499,9 +1499,9 @@
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/VIAPay",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/SPaySDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.iqu8.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.showtime2016.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d2417c85-9391-4acc-9804-5c98d02ec4e4";
+				PROVISIONING_PROFILE = "4e7309e3-adb6-4e73-80c9-dbba211bd466";
 			};
 			name = Release;
 		};
