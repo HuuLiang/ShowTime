@@ -1,7 +1,6 @@
 platform :ios, '7.0'
 
 target 'ShowTime' do
-    
     pod 'AFNetworking', '~> 3.0.4'
     pod 'Masonry', '~> 0.6.4'
     pod 'SDWebImage', '~> 3.7.4'
@@ -14,5 +13,4 @@ target 'ShowTime' do
     pod 'UITextView+Placeholder', '~> 1.1.0'
     pod 'FMDB', '~> 2.6.2'
     pod 'XMLReader-Arc', '~> 1.1'
-    
 end

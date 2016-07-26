@@ -189,7 +189,7 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    [[STPaymentManager sharedManager] applicationWillEnterForeground];
+//    [[STPaymentManager sharedManager] applicationWillEnterForeground];
     
 }
 
