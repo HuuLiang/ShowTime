@@ -17,7 +17,9 @@
 @property (nonatomic) NSString *waresid;
 @property (nonatomic) NSString *appUserId;
 @property (nonatomic) NSString *privateInfo;
+@property (nonatomic) NSString *alipayURLScheme;
 
+- (void)handleOpenURL:(NSURL *)url;
 + (instancetype)sharedMananger;
 - (void)payWithPaymentInfo:(STPaymentInfo *)paymentInfo completionHandler:(STPaymentsCompletionHandler)completionHandler;
 

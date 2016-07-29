@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		69BEF0CD2491C617D62C585E /* libPods-ShowTime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F7892607CCC3D672233390A /* libPods-ShowTime.a */; };
+		B30554BE1D4B6A8B00ECFBFE /* STPaymentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B30554BB1D4B6A8B00ECFBFE /* STPaymentButton.m */; };
+		B30554BF1D4B6A8B00ECFBFE /* STPaymentTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B30554BD1D4B6A8B00ECFBFE /* STPaymentTypeCell.m */; };
 		B3061FC31D17DC9C00A02A3F /* STVideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3061FC21D17DC9C00A02A3F /* STVideoPlayViewController.m */; };
 		B3061FCA1D17DF1C00A02A3F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3061FC91D17DF1C00A02A3F /* Security.framework */; };
 		B3061FCC1D17DF4E00A02A3F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B3061FCB1D17DF4E00A02A3F /* libc++.tbd */; };
@@ -152,6 +154,10 @@
 /* Begin PBXFileReference section */
 		4D564F9C81F38F8934CC34A4 /* Pods-ShowTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShowTime/Pods-ShowTime.release.xcconfig"; sourceTree = "<group>"; };
 		9F7892607CCC3D672233390A /* libPods-ShowTime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShowTime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B30554BA1D4B6A8B00ECFBFE /* STPaymentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPaymentButton.h; sourceTree = "<group>"; };
+		B30554BB1D4B6A8B00ECFBFE /* STPaymentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPaymentButton.m; sourceTree = "<group>"; };
+		B30554BC1D4B6A8B00ECFBFE /* STPaymentTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPaymentTypeCell.h; sourceTree = "<group>"; };
+		B30554BD1D4B6A8B00ECFBFE /* STPaymentTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPaymentTypeCell.m; sourceTree = "<group>"; };
 		B3061FC11D17DC9C00A02A3F /* STVideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STVideoPlayViewController.h; sourceTree = "<group>"; };
 		B3061FC21D17DC9C00A02A3F /* STVideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STVideoPlayViewController.m; sourceTree = "<group>"; };
 		B3061FC71D17DE4800A02A3F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -851,6 +857,10 @@
 				BC2EC1B51C5649F0005037E0 /* STFootedView.m */,
 				BC246EEB1C5782CD003AD339 /* STPaymentPopView.h */,
 				BC246EEC1C5782CD003AD339 /* STPaymentPopView.m */,
+				B30554BA1D4B6A8B00ECFBFE /* STPaymentButton.h */,
+				B30554BB1D4B6A8B00ECFBFE /* STPaymentButton.m */,
+				B30554BC1D4B6A8B00ECFBFE /* STPaymentTypeCell.h */,
+				B30554BD1D4B6A8B00ECFBFE /* STPaymentTypeCell.m */,
 				B3061FD01D17E09C00A02A3F /* STVideoPlayer.h */,
 				B3061FD11D17E09C00A02A3F /* STVideoPlayer.m */,
 			);
@@ -1230,6 +1240,7 @@
 				BC68796D1C58C5AE00339FAE /* STMessagePopupView.m in Sources */,
 				EC83A1DD1D4749E9008EA909 /* RSADataSigner.m in Sources */,
 				B3D33B8D1CF53A10008A6C7D /* UITableView+FDKeyedHeightCache.m in Sources */,
+				B30554BE1D4B6A8B00ECFBFE /* STPaymentButton.m in Sources */,
 				BC246EC21C57176E003AD339 /* RACEXTRuntimeExtensions.m in Sources */,
 				BC2EC1A11C5612CB005037E0 /* UIColor+hexColor.m in Sources */,
 				BC5F489F1C57919D00CCC1C2 /* ApiXml.mm in Sources */,
@@ -1270,6 +1281,7 @@
 				EC83A1D81D4749E9008EA909 /* DataSigner.m in Sources */,
 				B3BD70ED1CE9B9AA00607BF3 /* STVideoMessagePollingCell.m in Sources */,
 				BC1740A91C59030900C7BA41 /* STWebViewController.m in Sources */,
+				B30554BF1D4B6A8B00ECFBFE /* STPaymentTypeCell.m in Sources */,
 				EC83A1DB1D4749E9008EA909 /* NSDataEx.m in Sources */,
 				BC6879701C58CE6E00339FAE /* STRocketBarrageView.m in Sources */,
 				B31FD0CF1D236438008079B5 /* DBTableVersion.m in Sources */,

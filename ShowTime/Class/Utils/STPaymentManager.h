@@ -24,7 +24,7 @@ typedef void(^STPaymentCompletionHandler)(PAYRESULT payResult, STPaymentInfo *pa
 //                  forProgram:(STProgram *)program
 //           completionHandler:(STPaymentCompletionHandler)handler;
 - (STPaymentInfo *)startPaymentWithType:(STPaymentType)type
-                                subType:(STPaymentType)subType
+                                subType:(STSubPayType)subType
                                   price:(NSUInteger)price
                              forProgram:(STProgram *)program
                         programLocation:(NSUInteger)programLocation
@@ -32,9 +32,10 @@ typedef void(^STPaymentCompletionHandler)(PAYRESULT payResult, STPaymentInfo *pa
                       completionHandler:(STPaymentCompletionHandler)handler;
 
 - (void)handleOpenUrl:(NSURL *)url;
-- (void)applicationWillEnterForeground;
+//- (void)applicationWillEnterForeground;
 - (STPaymentType)wechatPaymentType;
 - (STPaymentType)alipayPaymentType;
 - (STPaymentType)cardPayPaymentType;
+- (STPaymentType)qqPaymentType ;
 
 @end

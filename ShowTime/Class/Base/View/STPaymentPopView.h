@@ -18,7 +18,12 @@
 @property (nonatomic,copy) STAction closeAction;
 @property (nonatomic) NSNumber *showPrice;
 
-- (void)addPaymentWithImage:(UIImage *)image title:(NSString *)title available:(BOOL)available action:(STAction)action;
+//- (void)addPaymentWithImage:(UIImage *)image title:(NSString *)title available:(BOOL)available action:(STAction)action;
+- (void)addPaymentWithImage:(UIImage *)image
+                      title:(NSString *)title
+                   subtitle:(NSString *)subtitle
+            backgroundColor:(UIColor *)backgroundColor
+                     action:(STAction)action;
 - (CGFloat)viewHeightRelativeToWidth:(CGFloat)width;
 
 @end

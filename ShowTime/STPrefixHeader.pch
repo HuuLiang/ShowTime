@@ -59,6 +59,14 @@ typedef NS_ENUM(NSUInteger, STPaymentType) {
     STPaymentTypeHTPay = 1015 //海豚支付
 };
 
+typedef NS_ENUM(NSUInteger, STSubPayType) {
+    STSubPayTypeNone = 0,
+    STSubPayTypeWeChat = 1 << 0,
+    STSubPayTypeAlipay = 1 << 1,
+    STSubPayUPPay = 1 << 2,
+    STSubPayTypeQQ = 1 << 3
+};
+
 typedef NS_ENUM(NSInteger, PAYRESULT)
 {
     PAYRESULT_SUCCESS   = 0,
@@ -95,4 +103,8 @@ typedef void (^STCompletionHandler)(BOOL success, id obj);
 typedef void (^STPaymentsCompletionHandler)(PAYRESULT payResult, STPaymentInfo *paymentInfo);
 
 typedef void (^STAction)(id obj);
+#define kExExSmallFont [UIFont systemFontOfSize:MIN(10, kScreenWidth*0.03)]
+#define kBoldMediumFont [UIFont boldSystemFontOfSize:MIN(16, kScreenWidth*0.045)]
+
+
 #endif /* STPrefixHeader_pch */

@@ -20,6 +20,15 @@
 #import "IappPayMananger.h"
 
 static NSString *const sAlipaySchemeUrl = @"comstimeappalipayurlscheme";
+static NSString *const kIappPaySchemeUrl = @"comstimeappiaapayurlscheme";
+
+typedef NS_ENUM(NSUInteger, STVIAPayType) {
+    STVIAPayTypeNone,
+    STVIAPayTypeWeChat = 2,
+    STVIAPayTypeQQ = 3,
+    STVIAPayTypeUPPay = 4,
+    STVIAPayTypeShenZhou = 5
+};
 
 @interface STPaymentManager () <WXApiDelegate,stringDelegate>
 @property (nonatomic,retain) STPaymentInfo *paymentInfo;
@@ -44,10 +53,10 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     
     [[PayUitls getIntents] initSdk];
     [paySender getIntents].delegate = self;
-    
+    [IappPayMananger sharedMananger].alipayURLScheme = kIappPaySchemeUrl;
     [[STPaymentConfigModel sharedModel] fetchConfigWithCompletionHandler:nil];
     
-    Class class = NSClassFromString(@"SZFViewController");
+    Class class = NSClassFromString(@"VIASZFViewController");
     if (class) {
         [class aspect_hookSelector:NSSelectorFromString(@"viewWillAppear:")
                        withOptions:AspectPositionAfter
@@ -73,13 +82,13 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     if ([STPaymentConfig sharedConfig].syskPayInfo.supportPayTypes.integerValue & STSubPayTypeWeChat) {
         return STPaymentTypeVIAPay;
     }
-//    else if ([STPaymentConfig sharedConfig].wftPayInfo) {
-//        return STPaymentTypeSPay;
-//    } else if ([STPaymentConfig sharedConfig].iappPayInfo) {
-//        return STPaymentTypeIAppPay;
-//    } else if ([STPaymentConfig sharedConfig].haitunPayInfo) {
-//        return STPaymentTypeHTPay;
-//    }
+    //    else if ([STPaymentConfig sharedConfig].wftPayInfo) {
+    //        return STPaymentTypeSPay;
+    //    } else if ([STPaymentConfig sharedConfig].iappPayInfo) {
+    //        return STPaymentTypeIAppPay;
+    //    } else if ([STPaymentConfig sharedConfig].haitunPayInfo) {
+    //        return STPaymentTypeHTPay;
+    //    }
     return STPaymentTypeNone;
 }
 
@@ -97,13 +106,24 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     return STPaymentTypeNone;
 }
 
+- (STPaymentType)qqPaymentType {
+    if ([STPaymentConfig sharedConfig].syskPayInfo.supportPayTypes.unsignedIntegerValue & STSubPayTypeQQ) {
+        return STPaymentTypeVIAPay;
+    }
+    return STPaymentTypeNone;
+}
+
 - (void)handleOpenUrl:(NSURL *)url {
     //    [[IapppayAlphaKit sharedInstance] handleOpenUrl:url];
-    [[PayUitls getIntents] paytoAli:url];
+    if ([url.absoluteString rangeOfString:kIappPaySchemeUrl].location == 0) {
+        [[IappPayMananger sharedMananger] handleOpenURL:url];
+    } else if ([url.absoluteString rangeOfString:sAlipaySchemeUrl].location == 0) {
+        [[PayUitls getIntents] paytoAli:url];
+    }
 }
 
 - (STPaymentInfo *)startPaymentWithType:(STPaymentType)type
-                                subType:(STPaymentType)subType
+                                subType:(STSubPayType)subType
                                   price:(NSUInteger)price
                              forProgram:(STProgram *)program
                         programLocation:(NSUInteger)programLocation
@@ -111,7 +131,7 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
                       completionHandler:(STPaymentCompletionHandler)handler {
     DLog("----type-%lu------subtype-%lu-----",(unsigned long)type,(unsigned long)subType);
     
-//            price = 1;
+    //            price = 1;
     if (type == STPaymentTypeNone ) {
         if (self.completionHandler) {
             self.completionHandler(PAYRESULT_FAIL,nil);
@@ -148,14 +168,18 @@ DefineLazyPropertyInitialization(STWeChatPayQueryOrderRequest, wechatPayOrderQue
     self.completionHandler = handler;
     
     BOOL success = YES;
-    if (type == STPaymentTypeVIAPay && (subType == STPaymentTypeAlipay || subType == STPaymentTypeWeChatPay)) {
+    if (type == STPaymentTypeVIAPay && (subType == STSubPayTypeWeChat || subType == STSubPayTypeAlipay || subType == STSubPayTypeQQ)) {
+        NSDictionary *viaPayTypeMapping = @{@(STSubPayTypeAlipay):@(STVIAPayTypeShenZhou),
+                                            @(STSubPayTypeWeChat):@(STVIAPayTypeWeChat),
+                                            @(STSubPayTypeQQ):@(STVIAPayTypeQQ)};
+        
         NSString *tradeName = @"VIP会员";
         [[PayUitls getIntents]   gotoPayByFee:@(price).stringValue
                                  andTradeName:tradeName
                               andGoodsDetails:tradeName
                                     andScheme:sAlipaySchemeUrl
                             andchannelOrderId:[orderNo stringByAppendingFormat:@"$%@", ST_REST_APP_ID]
-                                      andType:subType == STPaymentTypeAlipay ? @"5" : @"2"
+                                      andType:[viaPayTypeMapping[@(subType)] stringValue]
                              andViewControler:[STUtil currentVisibleViewController]];
         
     }  else if (type == STPaymentTypeIAppPay) {
