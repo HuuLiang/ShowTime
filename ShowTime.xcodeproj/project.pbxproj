@@ -27,9 +27,9 @@
 		B31FD0E01D236600008079B5 /* STPayStatsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0DA1D236600008079B5 /* STPayStatsModel.m */; };
 		B31FD0E11D236600008079B5 /* STStatsBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0DC1D236600008079B5 /* STStatsBaseModel.m */; };
 		B31FD0E21D236600008079B5 /* STTabStatsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B31FD0DE1D236600008079B5 /* STTabStatsModel.m */; };
+		B32BB7431D5B2D8300E76494 /* IapppayAlphaResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B32BB7421D5B2D8300E76494 /* IapppayAlphaResource.bundle */; };
+		B32BB7451D5B2D9000E76494 /* IapppayAlphaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B32BB7441D5B2D9000E76494 /* IapppayAlphaKit.framework */; };
 		B34FF1B01D33943B00355D4E /* IappPayMananger.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FF1AF1D33943B00355D4E /* IappPayMananger.m */; };
-		B3B223B31D45C58D004B00C8 /* IapppayResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B3B223B21D45C58D004B00C8 /* IapppayResource.bundle */; };
-		B3B223B51D45C595004B00C8 /* IapppayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B223B41D45C595004B00C8 /* IapppayKit.framework */; };
 		B3BD70E81CE9B58600607BF3 /* STVideoCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD70E71CE9B58600607BF3 /* STVideoCommentModel.m */; };
 		B3BD70ED1CE9B9AA00607BF3 /* STVideoMessagePollingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD70EA1CE9B9AA00607BF3 /* STVideoMessagePollingCell.m */; };
 		B3BD70EE1CE9B9AA00607BF3 /* STVideoMessagePollingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3BD70EC1CE9B9AA00607BF3 /* STVideoMessagePollingView.m */; };
@@ -191,10 +191,10 @@
 		B31FD0DC1D236600008079B5 /* STStatsBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStatsBaseModel.m; sourceTree = "<group>"; };
 		B31FD0DD1D236600008079B5 /* STTabStatsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTabStatsModel.h; sourceTree = "<group>"; };
 		B31FD0DE1D236600008079B5 /* STTabStatsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STTabStatsModel.m; sourceTree = "<group>"; };
+		B32BB7421D5B2D8300E76494 /* IapppayAlphaResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IapppayAlphaResource.bundle; sourceTree = "<group>"; };
+		B32BB7441D5B2D9000E76494 /* IapppayAlphaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IapppayAlphaKit.framework; sourceTree = "<group>"; };
 		B34FF1AE1D33943B00355D4E /* IappPayMananger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IappPayMananger.h; sourceTree = "<group>"; };
 		B34FF1AF1D33943B00355D4E /* IappPayMananger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IappPayMananger.m; sourceTree = "<group>"; };
-		B3B223B21D45C58D004B00C8 /* IapppayResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IapppayResource.bundle; sourceTree = "<group>"; };
-		B3B223B41D45C595004B00C8 /* IapppayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IapppayKit.framework; sourceTree = "<group>"; };
 		B3BD70E61CE9B58600607BF3 /* STVideoCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STVideoCommentModel.h; sourceTree = "<group>"; };
 		B3BD70E71CE9B58600607BF3 /* STVideoCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STVideoCommentModel.m; sourceTree = "<group>"; };
 		B3BD70E91CE9B9AA00607BF3 /* STVideoMessagePollingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STVideoMessagePollingCell.h; sourceTree = "<group>"; };
@@ -395,7 +395,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3061FCF1D17DFF200A02A3F /* CoreMedia.framework in Frameworks */,
-				B3B223B51D45C595004B00C8 /* IapppayKit.framework in Frameworks */,
 				EC83A1D41D4749E9008EA909 /* PayUtil.framework in Frameworks */,
 				B3061FCC1D17DF4E00A02A3F /* libc++.tbd in Frameworks */,
 				B3061FCA1D17DF1C00A02A3F /* Security.framework in Frameworks */,
@@ -407,6 +406,7 @@
 				BC1740AE1C59062400C7BA41 /* libMobClickLibrary.a in Frameworks */,
 				BC5F48A81C5791CD00CCC1C2 /* libWeChatSDK.a in Frameworks */,
 				69BEF0CD2491C617D62C585E /* libPods-ShowTime.a in Frameworks */,
+				B32BB7451D5B2D9000E76494 /* IapppayAlphaKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,8 +475,8 @@
 		B34FF1901D33940F00355D4E /* iAppPay */ = {
 			isa = PBXGroup;
 			children = (
-				B3B223B41D45C595004B00C8 /* IapppayKit.framework */,
-				B3B223B21D45C58D004B00C8 /* IapppayResource.bundle */,
+				B32BB7441D5B2D9000E76494 /* IapppayAlphaKit.framework */,
+				B32BB7421D5B2D8300E76494 /* IapppayAlphaResource.bundle */,
 			);
 			path = iAppPay;
 			sourceTree = "<group>";
@@ -1130,10 +1130,10 @@
 				EC83A1CD1D4749E9008EA909 /* btn6.png in Resources */,
 				BC246E831C571259003AD339 /* config.plist in Resources */,
 				EC83A1CE1D4749E9008EA909 /* btn7.png in Resources */,
+				B32BB7431D5B2D8300E76494 /* IapppayAlphaResource.bundle in Resources */,
 				EC83A1CB1D4749E9008EA909 /* btn3.png in Resources */,
 				EC83A1CF1D4749E9008EA909 /* btn8.png in Resources */,
 				EC83A1D51D4749E9008EA909 /* private_key.p12 in Resources */,
-				B3B223B31D45C58D004B00C8 /* IapppayResource.bundle in Resources */,
 				EC83A1D61D4749E9008EA909 /* public_key.der in Resources */,
 				EC83A1D01D4749E9008EA909 /* btn9.png in Resources */,
 				EC83A1D31D4749E9008EA909 /* Config.txt in Resources */,

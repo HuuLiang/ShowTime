@@ -19,8 +19,7 @@
 @property (nonatomic) NSString *privateInfo;
 @property (nonatomic) NSString *alipayURLScheme;
 
-- (void)handleOpenURL:(NSURL *)url;
 + (instancetype)sharedMananger;
-- (void)payWithPaymentInfo:(STPaymentInfo *)paymentInfo completionHandler:(STPaymentsCompletionHandler)completionHandler;
-
+- (void)payWithPaymentInfo:(STPaymentInfo *)paymentInfo payType:(STSubPayType)payType completionHandler:(STPaymentsCompletionHandler)completionHandler;
+- (void)handleOpenURL:(NSURL *)url;
 @end
