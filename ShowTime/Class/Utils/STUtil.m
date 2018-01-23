@@ -80,7 +80,7 @@ static NSString *const kUserAccessServicename = @"jqkuaibov_user_access_service"
 }
 
 + (BOOL)isPaid {
-    //    return YES;
+        return YES;
     return [self successfulPaymentInfo] != nil;
 }
 

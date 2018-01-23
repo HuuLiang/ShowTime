@@ -1083,6 +1083,7 @@
 					BC2EC1461C55FC9B005037E0 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 7VHT3KAS56;
+						ProvisioningStyle = Automatic;
 					};
 					BC2EC15F1C55FC9B005037E0 = {
 						CreatedOnToolsVersion = 7.2;
@@ -1432,7 +1433,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7VHT3KAS56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/Alipay",
@@ -1450,9 +1452,10 @@
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/VIAPay",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/SPaySDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.showtime2016.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bsyy.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e7309e3-adb6-4e73-80c9-dbba211bd466";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1463,7 +1466,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Neijiang Fenghuang Enterprise (Group) Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7VHT3KAS56;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/Alipay",
@@ -1481,9 +1485,10 @@
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/VIAPay",
 					"$(PROJECT_DIR)/ShowTime/Class/Vendor/SPaySDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.showtime2016.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bsyy.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e7309e3-adb6-4e73-80c9-dbba211bd466";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
